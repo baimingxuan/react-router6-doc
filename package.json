@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "react router v6 chinese document",
   "main": "index.js",
+  "repository": "https://github.com/baimingxuan/react-router6-doc.git",
+  "author": "baimingxuan",
   "license": "Apache",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
