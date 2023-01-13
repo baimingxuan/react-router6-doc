@@ -1,0 +1,15 @@
+{
+  "name": "react-router6-doc",
+  "version": "1.0.0",
+  "description": "react router v6 chinese document",
+  "main": "index.js",
+  "license": "Apache",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.36"
+  }
+}
