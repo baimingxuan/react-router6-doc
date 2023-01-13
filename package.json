@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/baimingxuan/react-router6-doc.git",
   "author": "baimingxuan",
-  "license": "Apache",
+  "license": "GNU GENERAL PUBLIC",
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
