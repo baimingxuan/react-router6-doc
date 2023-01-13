@@ -7,11 +7,10 @@
   "author": "baimingxuan",
   "license": "Apache",
   "scripts": {
-    "docs:dev": "vitepress dev docs --host",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-alpha.36"
+    "vuepress": "^1.9.8"
   }
 }
