@@ -25,8 +25,16 @@ module.exports = {
                         path: '/start/overview'
                     },
                     {
-                        title: '快速上手',
-                        path: '/guide/getting-started'
+                        title: '教程',
+                        path: '/start/tutorial'
+                    },
+                    {
+                        title: '常见问题',
+                        path: '/start/faq'
+                    },
+                    {
+                        title: '核心概念',
+                        path: '/start/concepts'
                     }
                 ]
             },
