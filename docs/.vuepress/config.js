@@ -37,6 +37,64 @@ module.exports = {
                         path: '/start/concepts'
                     }
                 ]
+            },
+            {
+                title: 'Router',
+                path: '/router/picking-a-router',
+                collapsable: false,
+                children: [
+                    {
+                        title: '选择Router',
+                        path: '/router/picking-a-router'
+                    },
+                    {
+                        title: 'createBrowserRouter',
+                        path: '/router/create-browser-router'
+                    },
+                    {
+                        title: 'createHashRouter',
+                        path: '/router/create-hash-router'
+                    },
+                    {
+                        title: 'createMemoryRouter',
+                        path: '/router/create-memory-router'
+                    },
+                    {
+                        title: 'RouterProvider',
+                        path: '/router/router-provider'
+                    }
+                ]
+            },
+            {
+                title: 'Router组件',
+                path: '/components/browser-router',
+                collapsable: false,
+                children: [
+                    {
+                        title: 'BrowserRouter',
+                        path: '/components/browser-router'
+                    },
+                    {
+                        title: 'HashRouter',
+                        path: '/components/hash-router'
+                    },
+                    {
+                        title: 'MemoryRouter',
+                        path: '/components/memory-router'
+                    },
+                    {
+                        title: 'NativeRouter',
+                        path: '/components/native-router'
+                    },
+                    {
+                        title: 'router',
+                        path: '/components/router'
+                    },
+                    {
+                        title: 'StaticRouter',
+                        path: '/components/static-router'
+                    }
+                ]
             }
         ],
         lastUpdated: '上次更新时间',
