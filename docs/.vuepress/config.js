@@ -67,35 +67,109 @@ module.exports = {
             },
             {
                 title: 'Router组件',
-                path: '/components/browser-router',
+                path: '/router-components/browser-router',
                 collapsable: false,
                 children: [
                     {
                         title: 'BrowserRouter',
-                        path: '/components/browser-router'
+                        path: '/router-components/browser-router'
                     },
                     {
                         title: 'HashRouter',
-                        path: '/components/hash-router'
+                        path: '/router-components/hash-router'
                     },
                     {
                         title: 'MemoryRouter',
-                        path: '/components/memory-router'
+                        path: '/router-components/memory-router'
                     },
                     {
                         title: 'NativeRouter',
-                        path: '/components/native-router'
+                        path: '/router-components/native-router'
                     },
                     {
                         title: 'router',
-                        path: '/components/router'
+                        path: '/router-components/router'
                     },
                     {
                         title: 'StaticRouter',
-                        path: '/components/static-router'
+                        path: '/router-components/static-router'
                     }
                 ]
-            }
+            },
+            {
+                title: 'route',
+                path: '/route/route',
+                collapsable: false,
+                children: [
+                    {
+                        title: 'Route',
+                        path: '/route/route'
+                    },
+                    {
+                        title: 'action',
+                        path: '/route/action'
+                    },
+                    {
+                        title: 'errorElement',
+                        path: '/route/error-element'
+                    },
+                    {
+                        title: 'Loader',
+                        path: '/route/loader'
+                    },
+                    {
+                        title: 'shouldRevalidate',
+                        path: '/route/should-revalidate'
+                    }
+                ]
+            },
+            {
+                title: '组件',
+                path: '/components/await',
+                collapsable: false,
+                children: [
+                    {
+                        title: 'Await',
+                        path: '/components/await'
+                    },
+                    {
+                        title: 'Form',
+                        path: '/components/form'
+                    },
+                    {
+                        title: 'Link',
+                        path: '/components/link'
+                    },
+                    {
+                        title: 'Link(RN)',
+                        path: '/components/link-native'
+                    },
+                    {
+                        title: 'NavLink',
+                        path: '/components/nav-link'
+                    },
+                    {
+                        title: 'Navigate',
+                        path: '/components/navigate'
+                    },
+                    {
+                        title: 'Outlet',
+                        path: '/components/outlet'
+                    },
+                    {
+                        title: 'Route',
+                        path: '/components/route'
+                    },
+                    {
+                        title: 'Routes',
+                        path: '/components/routes'
+                    },
+                    {
+                        title: 'ScrollRestoration',
+                        path: '/components/scroll-restoration'
+                    }
+                ]
+            },
         ],
         lastUpdated: '上次更新时间',
         docsRepo: 'baimingxuan/react-router6-doc',
