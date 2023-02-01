@@ -170,6 +170,128 @@ module.exports = {
                     }
                 ]
             },
+            {
+                title: 'Hooks',
+                path: '/hooks/use-action-data',
+                collapsable: false,
+                children: [
+                    {
+                        title: 'useActionData',
+                        path: '/hooks/use-action-data'
+                    },
+                    {
+                        title: 'useAsyncError',
+                        path: '/hooks/use-async-error'
+                    },
+                    {
+                        title: 'useAsyncValue',
+                        path: '/hooks/use-async-value'
+                    },
+                    {
+                        title: 'useBeforeUnload',
+                        path: '/hooks/use-before-unload'
+                    },
+                    {
+                        title: 'useFetcher',
+                        path: '/hooks/use-fetcher'
+                    },
+                    {
+                        title: 'useFetchers',
+                        path: '/hooks/use-fetchers'
+                    },
+                    {
+                        title: 'useFormAction',
+                        path: '/hooks/use-form-action'
+                    },{
+                        title: 'useHref',
+                        path: '/hooks/use-href'
+                    },
+                    {
+                        title: 'useInRouterContext',
+                        path: '/hooks/use-in-router-context'
+                    },
+                    {
+                        title: 'useLinkClickHandler',
+                        path: '/hooks/use-link-click-handler'
+                    },
+                    {
+                        title: 'useLinkPressHandler',
+                        path: '/hooks/use-link-press-handler'
+                    },
+                    {
+                        title: 'useLoaderData',
+                        path: '/hooks/use-loader-data'
+                    },
+                    {
+                        title: 'useLocation',
+                        path: '/hooks/use-location'
+                    },
+                    {
+                        title: 'useMatch',
+                        path: '/hooks/use-match'
+                    },
+                    {
+                        title: 'useMatches',
+                        path: '/hooks/use-matches'
+                    },
+                    {
+                        title: 'useNavigate',
+                        path: '/hooks/use-navigate'
+                    },
+                    {
+                        title: 'useNavigation',
+                        path: '/hooks/use-navigation'
+                    },
+                    {
+                        title: 'useNavigationType',
+                        path: '/hooks/use-navigation-type'
+                    },
+                    {
+                        title: 'useOutlet',
+                        path: '/hooks/use-outlet'
+                    },
+                    {
+                        title: 'useOutletContext',
+                        path: '/hooks/use-outlet-context'
+                    },
+                    {
+                        title: 'useParams',
+                        path: '/hooks/use-params'
+                    },
+                    {
+                        title: 'useResolvedPath',
+                        path: '/hooks/use-resolved-path'
+                    },
+                    {
+                        title: 'useRevalidator',
+                        path: '/hooks/use-revalidator'
+                    },
+                    {
+                        title: 'useRouteError',
+                        path: '/hooks/use-route-error'
+                    },
+                    {
+                        title: 'useRouteLoaderData',
+                        path: '/hooks/use-route-loader-data'
+                    },
+                    {
+                        title: 'useRoutes',
+                        path: '/hooks/use-routes'
+                    },
+                    {
+                        title: 'useSearchParams',
+                        path: '/hooks/use-search-params'
+                    },
+                    {
+                        title: 'useSearchParams(RN)',
+                        path: '/hooks/use-search-params-rn'
+                    },
+                    {
+                        title: 'useSubmit',
+                        path: '/hooks/use-submit'
+                    }
+                ]
+            }
         ],
         lastUpdated: '上次更新时间',
         docsRepo: 'baimingxuan/react-router6-doc',
