@@ -171,7 +171,7 @@ module.exports = {
                 ]
             },
             {
-                title: 'Hooks',
+                title: '钩子函数',
                 path: '/hooks/use-action-data',
                 collapsable: false,
                 children: [
@@ -289,6 +289,103 @@ module.exports = {
                     {
                         title: 'useSubmit',
                         path: '/hooks/use-submit'
+                    }
+                ]
+            },
+            {
+                title: 'Fetch工具类',
+                path: '/fetch/json',
+                collapsable: false,
+                children: [
+                    {
+                        title: 'json',
+                        path: '/fetch/json'
+                    },
+                    {
+                        title: 'redirect',
+                        path: '/fetch/redirect'
+                    }
+                ]
+            },
+            {
+                title: '工具类',
+                path: '/utils/create-routes-from-children',
+                collapsable: false,
+                children: [
+                    {
+                        title: 'createRoutesFromChildren',
+                        path: '/utils/create-routes-from-children'
+                    },
+                    {
+                        title: 'createRoutesFromElements',
+                        path: '/utils/create-routes-from-elements'
+                    },
+                    {
+                        title: 'createSearchParams',
+                        path: '/utils/create-search-params'
+                    },
+                    {
+                        title: 'defer',
+                        path: '/utils/defer'
+                    },
+                    {
+                        title: 'generatePath',
+                        path: '/utils/generate-path'
+                    },
+                     {
+                        title: 'isRouteErrorResponse',
+                        path: '/utils/is-route-error-response'
+                    },
+                    {
+                        title: 'Location',
+                        path: '/utils/location'
+                    },
+                    {
+                        title: 'matchPath',
+                        path: '/utils/match-path'
+                    },
+                     {
+                        title: 'matchRoutes',
+                        path: '/utils/match-routes'
+                    },
+                    {
+                        title: 'renderMatches',
+                        path: '/utils/render-matches'
+                    },
+                    {
+                        title: 'resolvePath',
+                        path: '/utils/resolve-path'
+                    }
+                ]
+            },
+            {
+                title: '指南',
+                path: '/guides/ssr',
+                collapsable: false,
+                children: [
+                    {
+                        title: '服务端渲染',
+                        path: '/guides/ssr'
+                    },
+                    {
+                        title: '贡献',
+                        path: '/guides/contributing'
+                    },
+                    {
+                        title: '数据库整合',
+                        path: '/guides/data-libs'
+                    },
+                    {
+                        title: '延迟数据',
+                        path: '/guides/deferred'
+                    },
+                    {
+                        title: '使用FormData',
+                        path: '/guides/form-data'
+                    },
+                    {
+                        title: '索引查询参数',
+                        path: '/guides/index-search-param'
                     }
                 ]
             }
