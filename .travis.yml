@@ -1,9 +1,0 @@
-sudo: required
-language: node_js
-node_js: stable
-script: bash ./deploy.sh
-branches:
-  only:
-    - main
-notifications:
-  email: false
