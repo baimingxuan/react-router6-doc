@@ -585,27 +585,27 @@ export default function Root() {
 
 我们将在一秒钟内创建我们的第一个联系人，但首先让我们谈谈 HTML。
 
-根据 JavaScript 寒武纪大爆发之前的 Web 开发，React Router 模拟 HTML 表单导航作为数据突变原语。它为您提供了客户端呈现的应用程序的 UX 功能以及“老式”Web 模型的简单性。
+根据 JavaScript 寒武纪大爆发之前的 Web 开发，React Router 模拟 HTML 表单导航作为数据突变原语。它为您提供了客户端渲染应用程序的功能，并具有“老式”Web 模型的简单性。
 
-虽然一些 Web 开发人员不熟悉，但 HTML 表单实际上会在浏览器中引起导航，就像单击链接一样。唯一的区别在于请求：链接只能更改 URL，而表单还可以更改请求方法（GET 与 POST）和请求正文（POST 表单数据）。
+虽然对一些 Web 开发人员来说不熟悉，但 HTML 表单实际上会在浏览器中引起导航，就像单击链接一样。唯一的区别在于请求：链接只能更改 URL，而表单还可以更改请求方法（GET 与 POST）和请求正文（POST 表单数据）。
 
-如果没有客户端路由，浏览器将自动序列化表单数据并将其作为 POST 的请求主体和 GET 的 URLSearchParams 发送到服务器。React Router 做同样的事情，除了它不是将请求发送到服务器，而是使用客户端路由并将其发送到 route [`action`](https://reactrouter.com/en/main/route/action)。
+如果没有客户端路由，浏览器将自动序列化表单的数据，并将其作为 POST 的请求主体和 GET 的 URLSearchParams 发送到服务器。React Router 做同样的事情，只是它不将请求发送到服务器，而是使用客户端路由并将其发送到路由 [`action`](https://reactrouter.com/en/main/route/action)。
 
-我们可以通过单击应用程序中的“新建”按钮来对此进行测试。该应用程序应该会崩溃，因为 Vite 服务器未配置为处理 POST 请求（它发送 404，尽管它可能应该是 405 🤷）。
+我们可以通过单击应用程序中的“新建”按钮来测试这一点。该应用程序应该会崩溃，因为 Vite 服务器未配置为处理 POST 请求（它发送 404，尽管它可能应该是 405 🤷）。
 
 ![img](https://reactrouter.com/_docs/tutorial/07.webp)
 
-与其将 POST 发送到 Vite 服务器以创建新联系人，不如使用客户端路由。
+我们不要将 POST 发送到 Vite 服务器以创建新联系人，而是使用客户端路由。
 
 ## 创建联系人
 
-我们将通过`action`在我们的根路由中导出 an 来创建新的联系人，将其连接到路由配置，并将我们的更改`<form>`为 React Router [``](https://reactrouter.com/en/main/components/form)。
+我们将通过在我们的根路由导出`action`中来创建新的联系人，将其连接到路由配置，并将我们的更改`<form>`为 React Router [`Form`](https://reactrouter.com/en/main/components/form)。
 
 👉**创建动作并更改`<form>`为`<Form>`**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 import {
   Outlet,
   Link,
@@ -641,11 +641,11 @@ export default function Root() {
 }
 ```
 
-👉**导入并设置路由上的动作**
+👉**在路由上导入并设置动作**
 
 `src/main.jsx`
 
-```javascript
+```jsx
 /* other imports */
 
 import Root, {
@@ -670,17 +670,19 @@ const router = createBrowserRouter([
 ]);
 ```
 
-就是这样！继续并单击“新建”按钮，您应该会看到一条新记录弹出到列表中🥳
+就是这样！继续点击“新建”按钮，您应该会看到一条新记录弹出到列表中🥳
 
 ![img](https://reactrouter.com/_docs/tutorial/08.webp)
 
 该`createContact`方法只是创建一个没有名称或数据或任何东西的空联系人。但它仍然创造了一个记录，保证！
 
-> 🧐 等等……侧边栏怎么更新的？我们在哪里打电话`action`？重新获取数据的代码在哪里？在哪里`useState`，`onSubmit`和`useEffect`？！
+> 🧐 等等……侧边栏怎么更新的？我们在哪里调用`action`？重新获取数据的代码在哪里？`useState`，`onSubmit`和`useEffect`在哪里？！
 
-这就是“老式网络”编程模型出现的地方。正如我们之前讨论的，[``](https://reactrouter.com/en/main/components/form)阻止浏览器将请求发送到服务器并将其发送到您的路由`action`。在 Web 语义中，POST 通常意味着某些数据正在更改。按照惯例，React Router 使用此作为提示，在操作完成后自动重新验证页面上的数据。这意味着您的所有`useLoaderData`挂钩都会更新，并且 UI 会自动与您的数据保持同步！很酷。
+这就是“老式网络”编程模型出现的地方。正如我们之前讨论的，[`Form`](https://reactrouter.com/en/main/components/form)阻止浏览器将请求发送到服务器，而是将其发送到路由`action`。在 Web 语义中，POST 通常意味着某些数据正在更改。按照惯例，React Router 使用此作为提示，在操作完成后自动重新验证页面上的数据。这意味着您的所有`useLoaderData`挂钩都会更新，并且 UI 会自动与您的数据保持同步！很酷。
 
 ## 加载程序中的 URL 参数
+
+👉**点击无名记录**
 
 我们应该再次看到我们旧的静态联系页面，但有一个不同：URL 现在有一个真实的 ID 用于记录。
 
@@ -697,15 +699,17 @@ const router = createBrowserRouter([
 ];
 ```
 
-请注意`:contactId`URL 段。冒号 ( `:`) 具有特殊含义，将其变成“动态段”。动态段将匹配 URL 中该位置的动态（变化的）值，例如联系人 ID。我们将 URL 中的这些值称为“URL 参数”，或简称为“参数”。
+请注意`:contactId`URL 段。冒号 ( `:`) 具有特殊含义，将其变成“动态片段”。动态段将匹配 URL 中该位置的动态（变化的）值，例如联系人 ID。我们将 URL 中的这些值称为“URL 参数”，或简称为“参数”。
 
-这些[`params`](https://reactrouter.com/en/main/route/loader#params)使用与动态段匹配的键传递给加载程序。例如，我们的段已命名`:contactId`，因此值将作为`params.contactId`.
+这些[`params`](https://reactrouter.com/en/main/route/loader#params)使用与动态段匹配的键传递给加载程序。例如，我们的片段已命名`:contactId`，因此值将被传递为`params.contactId`。
 
-这些参数最常用于按 ID 查找记录。让我们试试看。
+这些参数最常用于通过 ID 查找记录。让我们试试看。
 
-👉**将加载程序添加到联系人页面并访问数据`useLoaderData`**
+👉**将loader添加到联系人页面, 并使用`useLoaderData`访问数据**
 
-```javascript
+`src/routes/contact.jsx`
+
+```jsx
 import { Form, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 
@@ -721,7 +725,9 @@ export default function Contact() {
 
 👉**在路由上配置loader**
 
-```javascript
+`src/main.jsx`
+
+```jsx
 /* existing code */
 import Contact, {
   loader as contactLoader,
@@ -751,7 +757,7 @@ const router = createBrowserRouter([
 
 ## 更新数据
 
-就像创建数据一样，您可以使用 更新数据[``](https://reactrouter.com/en/main/components/form)。让我们在 处创建一条新路线`contacts/:contactId/edit`。同样，我们将从组件开始，然后将其连接到路由配置。
+就像创建数据一样，您可以使用[`Form`](https://reactrouter.com/en/main/components/form)更新数据。让我们在`contacts/:contactId/edit`创建一条新路由。同样，我们将从组件开始，然后将其连接到路由配置。
 
 **创建编辑组件**
 
@@ -761,11 +767,11 @@ touch src/routes/edit.jsx
 
 👉**添加编辑页面UI**
 
-没有我们以前没见过的，随意复制/粘贴：
+没有我们以前没见过的，请随意复制/粘贴：
 
 `src/routes/edit.jsx`
 
-```javascript
+```jsx
 import { Form, useLoaderData } from "react-router-dom";
 
 export default function EditContact() {
@@ -826,11 +832,11 @@ export default function EditContact() {
 }
 ```
 
-👉**添加新的编辑路线**
+👉**添加新的编辑路由**
 
 `src/main.jsx`
 
-```javascript
+```jsx
 /* existing code */
 import EditContact from "./routes/edit";
 
@@ -859,23 +865,23 @@ const router = createBrowserRouter([
 /* existing code */
 ```
 
-我们希望它在根路由的出口中呈现，因此我们将它设为现有子路由的同级。
+我们希望它在根路由的`outlet`中渲染，因此我们将它设为现有子路由的同级。
 
-（你可能注意到我们`contactLoader`为这个路由重用了。这只是因为我们在教程中很懒。没有理由尝试在路由之间共享加载器，它们通常有自己的。）
+（你可能注意到，我们重新使用了`contactLoader`这个路由。这只是因为我们在教程中很懒。没有理由尝试在路由之间共享loader，它们通常有自己的loader。）
 
-好吧，点击“编辑”按钮给我们这个新的用户界面：
+好吧，点击“编辑”按钮将为我们提供这个新的UI：
 
 ![img](https://reactrouter.com/_docs/tutorial/11.webp)
 
 ## 使用 FormData 更新联系人
 
-我们刚刚创建的编辑路由已经渲染了一个表单。更新记录所需要做的就是将一个动作连接到路由。表单将发布到操作中，数据将自动重新验证。
+我们刚刚创建的编辑路由已经渲染了一个表单。要更新记录，我们所需要做的就是将一个操作连接到路由。表单将发送到操作，数据将自动重新验证。
 
 👉**为编辑模块添加一个动作**
 
 `src/routes/edit.jsx`
 
-```javascript
+```jsx
 import {
   Form,
   useLoaderData,
@@ -895,7 +901,9 @@ export async function action({ request, params }) {
 
 👉**将动作连接到路线**
 
-```javascript
+`src/main.jsx`
+
+```jsx
 /* existing code */
 import EditContact, {
   action as editAction,
@@ -931,7 +939,7 @@ const router = createBrowserRouter([
 
 ![img](https://reactrouter.com/_docs/tutorial/12.webp)
 
-## 突变讨论
+## Mutation讨论
 
 > 😑 它有效，但我不知道这里发生了什么......
 
