@@ -44,13 +44,15 @@ src
 
 ##  添加 Router
 
-首先要做的是创建一个[浏览器路由器](https://reactrouter.com/en/main/routers/create-browser-router)并配置我们的第一个路由。这将为我们的网络应用程序启用客户端路由。
+首先要做的是创建一个[浏览器路由](https://reactrouter.com/en/main/routers/create-browser-router)并配置我们的第一个路由。这将为我们的`web`应用程序启用客户端路由。
 
 该`main.jsx`文件是入口点。打开它，我们将把 React Router 放在页面上。
 
-👉**创建并渲染浏览器[路由器](https://reactrouter.com/en/main/routers/create-browser-router)`main.jsx`**
+👉**创建并渲染[浏览器路由](https://reactrouter.com/en/main/routers/create-browser-router)在`main.jsx`**
 
-```javascript
+`src/main.jsx`
+
+```jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -73,7 +75,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-第一条路线就是我们通常所说的“根路线”，因为我们的其余路线将在其中呈现。它将作为 UI 的根布局，随着我们的深入，我们将拥有嵌套布局。
+第一条路由就是我们通常所说的“根路由”，因为我们的其余路由将在其里面渲染。它将作为 UI 的根布局，随着我们的深入，我们将有嵌套布局。
 
 ##  根路由
 
@@ -90,7 +92,9 @@ touch src/routes/root.jsx
 
 👉**创建根布局组件**
 
-```javascript
+`src/routes/root.jsx`
+
+```jsx
 export default function Root() {
   return (
     <>
@@ -140,7 +144,9 @@ export default function Root() {
 
 👉**设置`<Root>`为根路由[`element`](https://reactrouter.com/en/main/route/route#element)**
 
-```javascript
+`src/main.jsx`
+
+```jsx
 /* existing imports */
 import Root from "./routes/root";
 
@@ -162,17 +168,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ![img](https://reactrouter.com/_docs/tutorial/01.webp)
 
-## 处理未找到错误
+## 处理Not Found错误
 
 在项目早期了解您的应用程序如何响应错误始终是个好主意，因为在构建新应用程序时，我们编写的错误远远多于功能！发生这种情况时，您的用户不仅会获得良好的体验，而且还会在开发过程中为您提供帮助。
 
-我们添加了一些链接到这个应用程序，让我们看看当我们点击它们时会发生什么？
+我们在这个应用程序中添加了一些链接，让我们看看当我们点击它们时会发生什么？
 
 👉**单击其中一个侧边栏名称**
 
 ![默认 React Router 错误元素的屏幕截图](https://reactrouter.com/_docs/tutorial/02.webp)
 
-总的！这是 React Router 中的默认错误屏幕，由于我们在该应用程序根元素上的 flex box 样式而变得更糟😂。
+总的！这是 React Router 中的默认错误显示，由于我们在该应用程序根元素上的 flex box 样式而变得更糟😂。
 
 任何时候您的应用程序在渲染、加载数据或执行数据突变时抛出错误，React Router 都会捕获它并渲染错误屏幕。让我们制作我们自己的错误页面。
 
@@ -184,7 +190,7 @@ touch src/error-page.jsx
 
 `src/error-page.jsx`
 
-```javascript
+```jsx
 import { useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
@@ -205,7 +211,9 @@ export default function ErrorPage() {
 
 👉**设置`<ErrorPage>`为[`errorElement`](https://reactrouter.com/en/main/route/error-element)根路由**
 
-```javascript
+`src/main.jsx`
+
+```jsx
 /* previous imports */
 import ErrorPage from "./error-page";
 
@@ -228,29 +236,29 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ![新的错误页面，但仍然很难看](https://reactrouter.com/_docs/tutorial/03.webp)
 
-（好吧，那也好不了多少。可能有人忘记找设计师做错页了。可能大家忘记找设计师做错页了，然后怪设计师想不到吧😆）
+（好吧，这也好不到哪去。可能有人忘记找设计师做错误页面。可能大家都忘记找设计师做错页了，然后责怪设计师没想到吧😆）
 
-请注意，它[`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)提供了抛出的错误。当用户导航到不存在的路线时，您将收到带有 "Not Found"的[错误响应](https://reactrouter.com/en/main/utils/is-route-error-response)`statusText`。我们将在本教程的后面看到一些其他错误，并对其进行更多讨论。
+请注意，[`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)提供了抛出的错误。当用户导航到不存在的路线时，您将收到带有 "Not Found"的[错误响应](https://reactrouter.com/en/main/utils/is-route-error-response)`statusText`。我们将在本教程的后面看到一些其他错误，并对其进行更多讨论。
 
 现在，知道几乎所有的错误现在都将由这个页面处理，而不是无限旋转、无响应的页面或空白屏幕就足够了🙌
 
-##  联络路线用户界面
+##  联系人路由界面
 
-我们想要在链接到的 URL 上实际呈现一些内容，而不是 404“未找到”页面。为此，我们需要开辟一条新路线。
+我们想要在链接到的 URL 上实际呈现一些内容，而不是 404“未找到”页面。为此，我们需要开辟一条新路由。
 
-👉**创建联络路线模块**
+👉**创建联系人路由模块**
 
 ```sh
 touch src/routes/contact.jsx
 ```
 
-👉**添加联系人组件UI**
+👉**添加联系人组件界面**
 
 这只是一堆元素，请随意复制/粘贴。
 
 `src/routes/contact.jsx`
 
-```javascript
+```jsx
 import { Form } from "react-router-dom";
 
 export default function Contact() {
@@ -347,7 +355,9 @@ function Favorite({ contact }) {
 
 👉**导入联系人组件并新建路由**
 
-```
+`src/main.jsx`
+
+```jsx
 /* existing imports */
 import Contact from "./routes/contact";
 
@@ -374,15 +384,17 @@ const router = createBrowserRouter([
 
 ## 嵌套路由
 
-我们希望联系人组件像这样在布局*内部呈现。*`<Root>`
+我们希望联系人组件渲染在`<Root>`*内部*，像这样布局。
 
 ![img](https://reactrouter.com/_docs/tutorial/05.webp)
 
-我们通过使联系路由成为根路由的子路由来实现*。*
+我们通过将联系人路由成为根路由的子路由来实现*。*
 
 👉**将 contacts 路由移动为根路由的子路由**
 
-```javascript
+`src/main.jsx`
+
+```jsx
 const router = createBrowserRouter([
   {
     path: "/",
@@ -398,13 +410,15 @@ const router = createBrowserRouter([
 ]);
 ```
 
-您现在将再次看到根布局，但右侧是一个空白页面。我们需要告诉根路由我们希望它*在哪里渲染它的子路由。*我们用[``](https://reactrouter.com/en/main/components/outlet).
+您现在将再次看到根布局，但右侧是一个空白页面。我们需要告诉根路由我们希望它*在哪里渲染它的子路由。*我们使用[`<Outlet>`](https://reactrouter.com/en/main/components/outlet)做到这一点。
 
-找到`<div id="detail">`并在里面放一个插座
+找到`<div id="detail">`并在里面放一个`<Outlet>`。
 
-👉**渲染[``](https://reactrouter.com/en/main/components/outlet)**
+👉**渲染[`<Outlet>`](https://reactrouter.com/en/main/components/outlet)**
 
-```javascript
+`src/routes/root.jsx`
+
+```jsx
 import { Outlet } from "react-router-dom";
 
 export default function Root() {
@@ -421,13 +435,15 @@ export default function Root() {
 
 ## 客户端路由
 
-你可能注意到也可能没有注意到，但是当我们单击侧边栏中的链接时，浏览器正在对下一个 URL 执行完整的文档请求，而不是使用 React Router。
+你可能已经注意到，也可能没有注意到，但是当我们单击侧边栏中的链接时，浏览器正在对下一个 URL 执行完整的文档请求，而不是使用 React Router。
 
-客户端路由允许我们的应用更新 URL 而无需从服务器请求另一个文档。相反，应用程序可以立即呈现新的 UI。让我们用[``](https://reactrouter.com/en/main/components/link).
+客户端路由允许我们的应用更新 URL ，而无需从服务器请求另一个文档。相反，应用程序可以立即渲染新的 UI。让我们使用[`<Link>`](https://reactrouter.com/en/main/components/link)把它变成现实吧。
 
-👉**将侧边栏更改`<a href>`为`<Link to>`**
+👉**将侧边栏`<a href>`改为`<Link to>`**
 
-```javascript
+`src/routes/root.jsx`
+
+```jsx
 import { Outlet, Link } from "react-router-dom";
 
 export default function Root() {
@@ -454,26 +470,26 @@ export default function Root() {
 }
 ```
 
-您可以在浏览器 devtools 中打开网络选项卡，以查看它不再请求文档。
+您可以在浏览器 devtools 中打开网络选项卡，查看它不再请求文档了。
 
-## 加载数据中
+## 加载数据
 
 URL 段、布局和数据通常耦合（三倍？）在一起。我们已经可以在这个应用程序中看到它：
 
 | 网址段     | 成分        | 数据       |
 | ---------- | ----------- | ---------- |
 | /          | `<Root>`    | 联系人列表 |
-| 联系人/:id | `<Contact>` | 个别联系   |
+| 联系人/:id | `<Contact>` | 独立联系人 |
 
 由于这种自然耦合，React Router 具有数据约定，可以轻松地将数据放入路由组件中。
 
-我们将使用两个 API 来加载数据，[`loader`](https://reactrouter.com/en/main/route/loader)以及[`useLoaderData`](https://reactrouter.com/en/main/hooks/use-loader-data). 首先，我们将在根模块中创建并导出一个加载程序函数，然后将其连接到路由。最后，我们将访问并呈现数据。
+我们将使用两个 API 来加载数据，[`loader`](https://reactrouter.com/en/main/route/loader)和[`useLoaderData`](https://reactrouter.com/en/main/hooks/use-loader-data). 首先，我们将在根模块中创建并导出一个`loader`函数，然后将其连接到路由。最后，我们将访问并渲染数据。
 
-👉**导出加载器`root.jsx`**
+👉**从`root.jsx`导出loader**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 import { Outlet, Link } from "react-router-dom";
 import { getContacts } from "../contacts";
 
@@ -487,7 +503,7 @@ export async function loader() {
 
 `src/main.jsx`
 
-```javascript
+```jsx
 /* other imports */
 import Root, { loader as rootLoader } from "./routes/root";
 
@@ -511,7 +527,7 @@ const router = createBrowserRouter([
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 import {
   Outlet,
   Link,
