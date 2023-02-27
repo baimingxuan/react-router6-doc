@@ -1,6 +1,6 @@
 # `createMemoryRouter`
 
-内存路由器不使用浏览器历史，而是在内存中管理它自己的历史堆栈。它主要用于测试和组件开发工具，如 Storybook，但也可用于在任何非浏览器环境中运行 React Router。
+内存路由在内存中管理自己的历史堆栈，而不是使用浏览器的历史记录。它主要用于测试和组件开发工具，如 Storybook，但也可以用于在任何非浏览器环境中运行React Router。
 
 ```javascript
 import {
@@ -56,7 +56,7 @@ function createMemoryRouter(
 
 ## `initialEntries`
 
-历史堆栈中的初始条目。这允许您使用历史堆栈中已有的多个位置开始测试（或应用程序）（用于测试后退导航等）
+历史堆栈中的初始条目。这允许您启用具有历史堆栈中已存在的多个位置的测试（或应用程序）（用于测试后退导航等）
 
 ```javascript
 createMemoryRouter(routes, {
@@ -66,7 +66,7 @@ createMemoryRouter(routes, {
 
 ## `initialIndex`
 
-要呈现的历史堆栈中的初始索引。这允许您在特定条目处开始测试。它默认为`initialEntries`.
+要渲染的历史堆栈中的初始索引。这允许您在特定条目处开始测试。它默认为`initialEntries`中的最后一个条目。
 
 ```javascript
 createMemoryRouter(routes, {
@@ -77,4 +77,4 @@ createMemoryRouter(routes, {
 
 ## 其他道具
 
-对于所有其他道具，请参阅[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)
+对于所有其他属性，请参阅[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)

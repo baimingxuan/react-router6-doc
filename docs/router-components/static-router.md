@@ -14,7 +14,7 @@ interface StaticRouterProps {
 }
 ```
 
-`<StaticRouter>`用于在[node](https://nodejs.org/)中呈现 React Router web 应用程序。`location`通过道具提供当前位置。
+`<StaticRouter>`用于在[node](https://nodejs.org/)中渲染 web 应用程序的 React Router。通过`location`属性提供当前位置。
 
 - `<StaticRouter location>`默认为`"/"`
 

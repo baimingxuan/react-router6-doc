@@ -94,4 +94,4 @@ createBrowserRouter(routes, {
 
 ## `window`
 
-对于浏览器devtool插件或测试使用与全局的`window`等环境非常有用。
+对于浏览器`devtool`插件或测试使用不同的窗口等环境比全局的`window`更有效。

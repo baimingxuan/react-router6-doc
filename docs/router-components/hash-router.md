@@ -1,4 +1,4 @@
-`<HashRouter>`
+# `<HashRouter>`
 
 类型声明
 
@@ -14,9 +14,9 @@ interface HashRouterProps {
 }
 ```
 
-`<HashRouter>`当 URL 由于某种原因不应（或不能）发送到服务器时，用于 Web 浏览器。这可能发生在您无法完全控制服务器的某些共享托管场景中。在这些情况下，`<HashRouter>`可以将当前位置存储在`hash`当前 URL 的部分中，因此它永远不会发送到服务器。
+`<HashRouter>`用于在 Web 浏览器中使用，当 URL 由于某种原因不应（或无法）发送到服务器时。这可能发生在您无法完全控制服务器的某些共享托管场景中。在这些情况下，`<HashRouter>`可以将当前位置存储在当前 URL 的`hash`部分中，因此它永远不会发送到服务器。
 
-`<HashRouter window>`默认使用当前[文档的`defaultView`](https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView)，但它也可用于跟踪对另一个窗口 URL 的更改`<iframe>`，例如在 中。
+`<HashRouter window>`默认使用当前[文档的`defaultView`](https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView)，但它也可用于跟踪对另一个窗口 URL 的更改，在`<iframe>`中，例如。
 
 ```javascript
 import * as React from "react";
@@ -31,4 +31,4 @@ ReactDOM.render(
 );
 ```
 
-`HashRouter`除非绝对必要，否则我们强烈建议您不要使用。
+> `HashRouter`除非绝对必要，否则我们强烈建议您不要使用。

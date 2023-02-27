@@ -1,6 +1,6 @@
 # `<RouterProvider>`
 
-所有路由器对象都传递给此组件以呈现您的应用程序并启用其余 API。
+所有路由对象都会传递给这个组件，以渲染您的应用程序并启用其余的 API。
 
 ```javascript
 import {
@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ## `fallbackElement`
 
-如果您不是服务器渲染您的应用程序，`DataBrowserRouter`将在安装时启动所有匹配的路由加载器。在此期间，您可以提供一个`fallbackElement`给用户一些表明该应用程序正在运行的指示。使静态托管 TTFB 计数！
+如果您不是服务端渲染您的应用程序，`DataBrowserRouter`将在加载时启动所有匹配的路由加载器。在此期间，您可以提供`fallbackElement`给用户一些应用程序正在工作的指示。使静态托管 TTFB 计数！
 
 ```javascript
 <RouterProvider
