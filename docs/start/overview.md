@@ -2,15 +2,15 @@
 
 React Router 启用“客户端路由”。
 
-在传统网站中，浏览器从 Web 服务器请求文档，下载和评估 CSS 和 JavaScript 资产，并呈现从服务器发送的 HTML。当用户单击链接时，它会为新页面重新开始该过程。
+在传统网站中，浏览器从 Web 服务器请求文档，下载和解析 CSS 和 JavaScript 资源，并渲染从服务器发送的 HTML。当用户单击链接时，它会为新页面重新开始这个过程。
 
-客户端路由允许您的应用通过链接点击更新 URL，而无需从服务器再次请求另一个文档。相反，您的应用程序可以立即呈现一些新的 UI 并发出数据请求以`fetch`使用新信息更新页面。
+客户端路由允许您的应用通过链接点击更新 URL，而无需从服务器再次请求另一个文档。相反，您的应用程序可以立即渲染一些新的 UI ，并使用`fetch`进行数据请求，用新数据更新页面。
 
-这可以实现更快的用户体验，因为浏览器不需要请求全新的文档或为下一页重新评估 CSS 和 JavaScript 资产。它还通过动画等方式实现更动态的用户体验。
+这可以实现更快的用户体验，因为浏览器不需要请求全新的文档，也不用重新解析 CSS 和 JavaScript 资源。它还通过动画等方式实现更动态的用户体验。
 
-`Router`通过创建一个并链接/提交到带有`Link`和的页面来启用客户端路由`<Form>`：
+客户端路由是通过创建`Router`来实现的，并使用`Link`和`<Form>`来链接/提交页面：
 
-```javascript
+```jsx
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -44,14 +44,14 @@ createRoot(document.getElementById("root")).render(
 
 ## 嵌套路由
 
-嵌套路由是将 URL 段耦合到组件层次结构和数据的一般思想。React Router 的嵌套路由的灵感来自于 2014 年左右的 Ember.js 中的路由系统。Ember 团队意识到，几乎在每种情况下，URL 的片段都会确定：
+嵌套路由是将 URL 片段耦合到组件层次结构和数据的一种思想。React Router 的嵌套路由的灵感来自于 2014 年左右的 Ember.js 中的路由系统。Ember 团队意识到，几乎在每种情况下，URL 的片段都会确定：
 
-- 要在页面上呈现的布局
-- 这些布局的数据依赖
+- 要在页面上渲染的布局
+- 这些布局的数据依赖关系
 
 React Router 将此约定与 API 结合起来，用于创建与 URL 段和数据耦合的嵌套布局。
 
-```javascript
+```jsx
 // Configure nested routes with JSX
 createBrowserRouter(
   createRoutesFromElements(
@@ -117,17 +117,17 @@ createBrowserRouter([
 
 这种[可视化](https://remix.run/_docs/routing)可能会有所帮助。
 
-## 动态细分
+## 动态片段
 
 URL 的片段可以是被解析并提供给各种 api 的动态占位符。
 
-```javascript
+```jsx
 <Route path="projects/:projectId/tasks/:taskId" />
 ```
 
-这两个段`:`是动态的，并提供给以下 API：
+这两个带`:`的片段是动态的，并提供给以下 API：
 
-```javascript
+```jsx
 // If the current location is /projects/abc/tasks/3
 <Route
   // sent to loaders
@@ -159,7 +159,7 @@ function Random() {
 }
 ```
 
-看：
+查看：
 
 - [`<Route path>`](https://reactrouter.com/en/main/route/route#path)
 - [`<Route loader>`](https://reactrouter.com/en/main/route/loader)
@@ -167,22 +167,22 @@ function Random() {
 - [`useParams`](https://reactrouter.com/en/main/hooks/use-params)
 - [`useMatch`](https://reactrouter.com/en/main/hooks/use-match)
 
-##  排名路线匹配
+##  分级路由匹配
 
-在将 URL 匹配到路由时，React Router 会根据段数、静态段、动态段、splats 等对路由进行排序，并选择*最具体*的匹配项。
+在将 URL 匹配到路由时，React Router 会根据片段数、静态段、动态段、分段等对路由进行分级，并选择*最具体*的匹配项。
 
-例如，考虑这两条路线：
+例如，思考这两条路由：
 
-```javascript
+```jsx
 <Route path="/teams/:teamId" />
 <Route path="/teams/new" />
 ```
 
-现在考虑 URL 是http://example.com/teams/new。
+现在思考的 URL 是http://example.com/teams/new。
 
-即使两条路由在技术上都匹配 URL（`new`可能是`:teamId`），您凭直觉知道我们希望选择第二条路由（`/teams/new`）。React Router 的匹配算法也知道这一点。
+即使两条路由在技术上都匹配 URL（`new`可能是`:teamId`），但您直观地知道我们希望选择第二条路由（`/teams/new`）。React Router 的匹配算法也知道这一点。
 
-使用排名路线，您不必担心路线顺序。
+使用分级路由，您就不必担心路由排序了。
 
 ##  活动链接
 
