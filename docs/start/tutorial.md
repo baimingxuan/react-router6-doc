@@ -1383,13 +1383,13 @@ export default function Edit() {
 
 ## URL 搜索参数和 GET 提交
 
-到目前为止，我们所有的交互式 UI 要么是更改 URL 的链接，要么是将数据发布到操作的表单。搜索字段很有趣，因为它是两者的混合体：它是一个表单，但它只更改 URL，不更改数据。
+到目前为止，我们所有的交互式`UI`都是改变`URL`的链接或将数据发布到操作的表单。搜索字段很有趣，因为它是两者的混合:它是一个表单，但它只改变`URL`，不改变数据。
 
-现在它只是一个普通的 HTML `<form>`，而不是 React Router `<Form>`。让我们看看默认情况下浏览器对它做了什么：
+现在它只是一个普通的 HTML `<form>`，而不是 React Router `<Form>`。让我们看看浏览器在默认情况下对它做了什么：
 
 👉**在搜索字段中输入名称，然后按回车键**
 
-请注意浏览器的 URL 现在包含您在 URL 中的查询作为[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
+请注意浏览器的 URL 现在包含您在 URL 中的查询作为 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
 
 ```sh
 http://127.0.0.1:5173/?q=ryan
@@ -1399,7 +1399,7 @@ http://127.0.0.1:5173/?q=ryan
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 <form id="search-form" role="search">
   <input
     id="q"
@@ -1413,19 +1413,19 @@ http://127.0.0.1:5173/?q=ryan
 </form>
 ```
 
-正如我们之前所见，浏览器可以通过`name`输入元素的属性来序列化表单。此输入的名称是`q`，这就是 URL 具有 的原因`?q=`。如果我们将其命名，`search`则 URL 将是`?search=`.
+正如我们之前所见，浏览器可以通过输入元素的`name`属性来序列化表单。此输入的名称是`q`，这就是`URL`有`?q=`的原因。如果我们将其命名为`search`，则 URL 将是`?search=`。
 
 请注意，此表单与我们使用的其他表单不同，它没有`<form method="post">`. 默认`method`值为`"get"`。这意味着当浏览器创建对下一个文档的请求时，它不会将表单数据放入请求 POST 正文中，而是放入[`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)GET 请求中。
 
 ## 使用客户端路由获取提交
 
-让我们使用客户端路由来提交此表单并在我们现有的加载程序中过滤列表。
+让我们使用客户端路由来提交这个表单，并在现有的加载器中过滤列表。
 
 👉**更改`<form>`为`<Form>`**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 <Form id="search-form" role="search">
   <input
     id="q"
@@ -1439,11 +1439,11 @@ http://127.0.0.1:5173/?q=ryan
 </Form>
 ```
 
-👉**过滤列表是否有URLSearchParams**
+👉**如果有`URLSearchParams`，则过滤列表**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
@@ -1454,24 +1454,24 @@ export async function loader({ request }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/21.webp)
 
-因为这是 GET 而不是 POST，React Router*不会*调用`action`. 提交 GET 表单与单击链接相同：只是 URL 发生了变化。这就是为什么我们为过滤添加的代码是在 中`loader`，而不是`action`这条路由的。
+因为这是 GET 而不是 POST，React Router*不会*调用`action`。提交 GET 表单与单击链接相同：只是 URL 发生了变化。这就是为什么我们为过滤添加的代码是在`loader`中，而不是在此路由的`action`中。
 
-这也意味着它是一个正常的页面导航。您可以单击后退按钮返回到您所在的位置。
+这也意味着它是一个正常的页面导航。你可以点击后退按钮回到刚才的位置。
 
 ## 将 URL 同步到表单状态
 
 这里有几个用户体验问题，我们可以快速解决。
 
 1. 如果您在搜索后单击返回，即使列表不再被过滤，表单字段仍具有您输入的值。
-2. 如果您在搜索后刷新页面，即使列表被过滤，表单字段中也不再有值
+2. 如果您在搜索后刷新页面，即使列表被过滤，表单字段中也不再有该值
 
 换句话说，URL 和我们的表单状态不同步。
 
-👉从你的加载器**返回`q`并将其设置为搜索字段默认值**
+👉**从你的 `loader`返回 `q` 并将其设置为搜索字段默认值**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 // existing code
 
 export async function loader({ request }) {
@@ -1515,13 +1515,13 @@ export default function Root() {
 
 ![img](https://reactrouter.com/_docs/tutorial/21.webp)
 
-现在对于问题 (1)，单击后退按钮并更新输入。我们可以`useEffect`从 React 中引入，直接在 DOM 中操作表单的状态。
+现在对于问题 (1)，单击后退按钮并更新输入。我们可以从`React`中引入`useEffect`来直接在`DOM`中操作表单的状态。
 
-👉 将**输入值与 URL 搜索参数同步**
+👉 **将输入值与 URL 搜索参数同步**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 import { useEffect } from "react";
 
 // existing code
@@ -1538,15 +1538,15 @@ export default function Root() {
 }
 ```
 
-> 🤔 你不应该为此使用受控组件和 React State 吗？
+> 🤔难道你不应该使用受控组件和React State吗?
 
-您当然可以将此作为一个受控组件来执行，但是对于相同的行为，您最终会变得更加复杂。您不控制 URL，用户使用后退/前进按钮来控制。受控组件会有更多的同步点。
+您当然可以将此作为一个受控组件来执行，但是对于相同的行为，最终会变得更加复杂。您不控制 URL，用户使用后退/前进按钮来控制。受控组件会有更多的同步点。
 
-注意控制输入现在需要三个同步点而不是一个。行为相同，但代码更复杂。
+注意控制输入需要三个同步点，而不是一个。行为是相同的，但代码更复杂。
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 import { useEffect, useState } from "react";
 // existing code
 
@@ -1589,13 +1589,13 @@ export default function Root() {
 
 ##  提交表格`onChange`
 
-我们要在这里做出产品决策。对于此 UI，我们可能更愿意在每次击键时进行过滤，而不是在显式提交表单时进行过滤。
+我们要做一个产品决策。对于这个UI，我们可能更希望在每次击键时进行过滤，而不是在表单显式提交时进行过滤。
 
-我们已经看到，为此`useNavigate`我们将使用它的表亲。[`useSubmit`](https://reactrouter.com/en/main/hooks/use-submit)
+我们已经见过`useNavigate`了，我们会用它的表亲`useSubmit`。https://reactrouter.com/en/main/hooks/use-submit)
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 // existing code
 import {
   // existing code
@@ -1636,21 +1636,21 @@ export default function Root() {
 }
 ```
 
-现在，当您键入时，表单会自动提交！
+现在，当您输入时，表单会自动提交！
 
-注意 的参数[`submit`](https://reactrouter.com/en/main/hooks/use-submit)。我们路过`event.currentTarget.form`。`currentTarget`是事件附加到的 DOM 节点，是`currentTarget.form`输入的父表单节点。该`submit`函数将序列化并提交您传递给它的任何表单。
+注意参数[`submit`](https://reactrouter.com/en/main/hooks/use-submit)。我们通过`event.currentTarget.form`。`currentTarget`是事件附加到的 DOM 节点，而`currentTarget.form`是输入的父表单节点。该`submit`函数将序列化并提交您传递给它的任何表单。
 
-## 添加搜索微调器
+## 添加搜索旋转器
 
-在生产应用程序中，此搜索可能会在太大而无法一次发送所有内容的数据库中查找记录并过滤客户端。这就是为什么这个演示有一些伪造的网络延迟。
+在生产应用程序中，这种搜索可能会在数据库中寻找太大而无法一次性发送的记录，并过滤客户端。这就是为什么这个演示有一些虚假的网络延迟。
 
-没有任何加载指示器，搜索感觉有点迟钝。即使我们可以使我们的数据库更快，我们也总是会遇到用户的网络延迟问题，并且超出我们的控制范围。为了获得更好的用户体验，让我们为搜索添加一些即时 UI 反馈。为此，我们将[`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)再次使用。
+没有任何加载指示器，搜索感觉有点迟钝。即使我们可以使我们的数据库更快，用户的网络延迟总是会超出我们的控制范围。为了获得更好的用户体验，让我们为搜索添加一些即时 UI 反馈。为此，我们将再次使用[`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)。
 
-👉**添加搜索微调器**
+👉**添加搜索旋转器**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 // existing code
 
 export default function Root() {
@@ -1698,21 +1698,21 @@ export default function Root() {
 
 ![img](https://reactrouter.com/_docs/tutorial/22.webp)
 
-当`navigation.location`应用程序导航到新 URL 并为其加载数据时，将显示。当不再有挂起的导航时，它就会消失。
+当应用程序导航到新 URL 并为其加载数据时，`navigation.location`将显示。当不再有挂起的导航时，它就会消失。
 
 ## 管理历史栈
 
-现在每次击键都会提交表单，如果我们输入字符“seba”然后用退格键删除它们，我们最终会在堆栈中得到 7 个新条目 😂。我们绝对不想要这个
+现在，每个按键都提交了表单，如果我们输入字符“seba”，然后用退格删除它们，我们最终在堆栈中有7个新条目😂。我们绝对不想这样。
 
 ![img](https://reactrouter.com/_docs/tutorial/23.webp)
 
-我们可以通过用下一页*替换*历史堆栈中的当前条目来避免这种情况，而不是推入它。
+我们可以通过将历史堆栈中的当前条目*替换*为下一页来避免这种情况，而不是将其推入。
 
-👉**使用`replace`于`submit`**
+👉**在`submit`中使用`replace`**
 
 `src/routes/root.jsx`
 
-```javascript
+```jsx
 // existing code
 
 export default function Root() {
@@ -1746,23 +1746,23 @@ export default function Root() {
 }
 ```
 
-我们只想替换搜索结果，而不是我们开始搜索之前的页面，所以我们快速检查这是否是第一次搜索，然后决定替换。
+我们只想替换搜索结果，而不是开始搜索之前的页面，因此我们会快速检查这是否是第一次搜索，然后决定替换。
 
 每次击键不再创建新条目，因此用户可以从搜索结果中单击返回，而无需单击 7 次 😀。
 
-## 没有导航的突变
+## 没有导航的`mutations`
 
-到目前为止，我们所有的突变（我们更改数据的时间）都使用导航的形式，在历史堆栈中创建新条目。虽然这些用户流很常见，但想要在*不*引起导航的情况下更改数据也同样常见。
+到目前为止，我们所有的`mutations`（我们更改数据的时间）都使用导航表单，在历史堆栈中创建新条目。虽然这些用户流很常见，但想要在*不*引起导航的情况下更改数据也同样常见。
 
-对于这些情况，我们有[`useFetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)办法。它允许我们在不引起导航的情况下与加载程序和操作进行通信。
+对于这些情况，我们有[`useFetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)钩子。它允许我们在不引起导航的情况下与加载程序和操作进行通信。
 
 联系页面上的 ★ 按钮对此很有意义。我们不是在创建或删除新记录，我们不想更改页面，我们只是想更改我们正在查看的页面上的数据。
 
-👉**将表单更改为fetcher`<Favorite>`表单**
+👉**将`<Favorite>`表单更改为`fetcher`表单**
 
 `src/routes/contact.jsx`
 
-```javascript
+```jsx
 import {
   useLoaderData,
   Form,
@@ -1793,13 +1793,13 @@ function Favorite({ contact }) {
 }
 ```
 
-我们来的时候可能想看看那个表格。与往常一样，我们的表单具有带有`name`道具的字段。此表单将发送[`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)一个`favorite`密钥，该密钥是`"true" | "false"`. 因为它有`method="post"`它会调用操作。由于没有`<fetcher.Form action="...">`道具，它将发布到呈现表单的路线。
+我们来的时候，可能想看看那张表格。与往常一样，我们的表单具有带有`name`属性的字段。该表单将发送带有一个`favorite`的[`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)密钥，该密钥可以是`"true" | "false"`. 因为它有`method="post"`，会调用`action`。由于没有`<fetcher.Form action="...">`属性，它将发布到表单渲染的路由。。
 
-👉**创建动作**
+👉**创建`action`**
 
 `src/routes/contact.jsx`
 
-```javascript
+```jsx
 // existing code
 import { getContact, updateContact } from "../contacts";
 
@@ -1815,13 +1815,13 @@ export default function Contact() {
 }
 ```
 
-很简单。从请求中提取表单数据并将其发送到数据模型。
+很简单。从请求中提取表单数据并将其发送给数据模型。
 
-👉**配置路由的新动作**
+👉**配置路由的新`action`**
 
 `src/main.jsx`
 
-```javascript
+```jsx
 // existing code
 import Contact, {
   loader as contactLoader,
@@ -1853,23 +1853,23 @@ const router = createBrowserRouter([
 
 ![img](https://reactrouter.com/_docs/tutorial/24.webp)
 
-检查一下，两颗星都会自动更新。我们的新功能`<fetcher.Form method="post">`几乎与`<Form>`我们一直使用的功能完全相同：它调用操作，然后自动重新验证所有数据——甚至您的错误也会以相同的方式被捕获。
+检查一下，两颗星都会自动更新。我们的新功能`<fetcher.Form method="post">`几乎与我们一直使用的`<Form>`功能基本相同：它调用`action`，然后自动重新验证所有数据--甚至您的错误也会以相同的方式被捕获到。
 
-但有一个关键区别，它不是导航——URL 不会改变，历史堆栈不受影响。
+但有一个关键的区别，它不是导航--URL 不会改变，历史堆栈不受影响。
 
-## 乐观的用户界面
+## 乐观的UI
 
-您可能注意到当我们单击上一节中的收藏按钮时，该应用感觉有点反应迟钝。再一次，我们添加了一些网络延迟，因为您将在现实世界中遇到它！
+你可能注意到，当我们点击最后一部分的收藏按钮时，应用程序感觉没有响应。再一次，我们添加了一些网络延迟，因为在现实世界中你会遇到它!
 
-为了给用户一些反馈，我们可以将星星置于加载状态[`fetcher.state`](https://reactrouter.com/en/main/hooks/use-fetcher#fetcherstate)（与之前非常相似`navigation.state`），但这次我们可以做得更好。我们可以使用一种称为“乐观 UI”的策略
+为了给用户一些反馈，我们可以用[`fetcher.state`](https://reactrouter.com/en/main/hooks/use-fetcher#fetcherstate)将星星置于加载状态（与之前的`navigation.state`非常相似），但这次我们可以做得更好。我们可以使用一种称为“乐观 UI”的策略。
 
-提取器知道提交给操作的表单数据，因此您可以在 上使用它`fetcher.formData`。我们将使用它来立即更新星星的状态，即使网络尚未完成。如果更新最终失败，UI 将恢复为真实数据。
+`fetcher`知道提交给`action`的表单数据，因此您可以在`fetcher.formData`上使用它。我们将使用它来立即更新星星的状态，即使网络尚未完成。如果更新最终失败，UI 将恢复为实际数据。
 
-👉从中**读取乐观值`fetcher.formData`**
+👉**从`fetcher.formData`中读取乐观值**
 
 `src/routes/contact.jsx`
 
-```javascript
+```jsx
 // existing code
 
 function Favorite({ contact }) {
@@ -1898,7 +1898,7 @@ function Favorite({ contact }) {
 }
 ```
 
-如果您现在单击该按钮，您应该会看到星星*立即*更改为新状态。我们不是总是渲染实际数据，而是检查 fetcher 是否有任何`formData`提交，如果有，我们将使用它。操作完成后，`fetcher.formData`将不再存在，我们将返回使用实际数据。所以即使你在乐观的 UI 代码中写了错误，它最终也会回到正确的状态🥹
+如果你现在点击按钮，您应该会看到星星*立即*更改为新的状态。我们不总是渲染实际数据，而是检查`fetcher`是否有`formData`提交，如果有，我们将使用它。当动作完成时，`fetcher.formData`将不再存在，我们将返回使用实际数据。所以即使你在乐观的 UI 代码中写了错误，它最终也会回到正确的状态。
 
 ## 未找到数据
 
@@ -1906,15 +1906,15 @@ function Favorite({ contact }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/25.webp)
 
-[`errorElement`](https://reactrouter.com/en/main/route/error-element)当我们尝试呈现`null`联系人时，我们的根源是捕捉到这个意外错误。很高兴错误得到了妥善处理，但我们可以做得更好！
+当我们尝试渲染`null`联系人时，我们的根[`errorElement`](https://reactrouter.com/en/main/route/error-element)会捕捉到这个意外错误。很高兴错误得到了妥善处理，但我们可以做得更好！
 
-每当您在加载程序或操作中遇到预期的错误情况时（例如数据不存在），您都可以`throw`. 调用堆栈将中断，React Router 将捕获它，并呈现错误路径。我们甚至不会尝试提供`null`联系方式。
+每当您在加载程序或操作中遇到预期的错误情况时（例如数据不存在），您都可以`throw`。 调用堆栈将中断，React Router 将捕获它，并展示错误路径。我们甚至不会尝试渲染`null`联系人。
 
 👉**在加载程序中抛出 404 响应**
 
 `src/routes/contact.jsx`
 
-```javascript
+```jsx
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
   if (!contact) {
@@ -1929,13 +1929,13 @@ export async function loader({ params }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/27.webp)
 
-我们没有使用 遇到渲染错误`Cannot read properties of null`，而是完全避免组件并渲染错误路径，告诉用户更具体的事情。
+我们没有使用`Cannot read properties of null`遇到渲染错误，而是完全避免组件渲染错误路径，告诉用户更具体的事情。
 
 这会让你的快乐之路保持快乐。你的路由元素不需要关心错误和加载状态。
 
 ## 无路径路线
 
-最后一件事。我们看到的最后一个错误页面如果呈现在根插座内而不是整个页面内会更好。事实上，我们所有子路由中的每一个错误在 outlet 中都会更好，这样用户就有了比点击刷新更多的选择。
+最后一件事。我们看到的最后一个错误页面如果在根出口中展示，而不是整个页面，效果会更好。事实上，所有子路由中的每一个错误都应该放在 outlet 中，这样用户就有了比点击刷新更多的选项。
 
 我们希望它看起来像这样：
 
@@ -1943,13 +1943,13 @@ export async function loader({ params }) {
 
 我们可以将错误元素添加到每个子路由中，但由于它们都是相同的错误页面，因此不推荐这样做。
 
-有一种更清洁的方法。路由可以在*没有*路径的情况下使用，这让它们可以参与 UI 布局，而不需要 URL 中的新路径段。看看这个：
+有一种更简洁的方法。路由可以在*没有*路径的情况下使用，这使得它们可以参与 UI 布局，而不需要 URL 中添加新的路径。看看这个：
 
 👉**将子路由包裹在无路径路由中**
 
 `src/main.jsx`
 
-```javascript
+```jsx
 createBrowserRouter([
   {
     path: "/",
@@ -1976,13 +1976,13 @@ createBrowserRouter([
 ]);
 ```
 
-当子路由中抛出任何错误时，我们新的无路径路由将捕获它并呈现，保留根路由的 UI！
+当在子路由中抛出任何错误时，我们新的无路径路由将捕获它并展示，保留根路由的UI！
 
-## JSX 路线
+## JSX 路由
 
-对于我们的最后一个技巧，许多人更喜欢使用 JSX 配置他们的路由。你可以用`createRoutesFromElements`. 在配置路由时，JSX 或对象在功能上没有区别，这只是一种风格偏好。
+对于我们的最后一个技巧，许多人更喜欢使用 JSX 配置他们的路由。你可以用`createRoutesFromElements`来做。 在配置路由时，JSX 或对象在功能上没有区别，这只是一种风格偏好。
 
-```javascript
+```jsx
 import {
   createRoutesFromElements,
   createBrowserRouter,
@@ -2023,4 +2023,4 @@ const router = createBrowserRouter(
 
 ------
 
-就是这样！感谢您尝试 React Router。我们希望本教程能为您提供一个坚实的开端，以构建出色的用户体验。你可以用 React Router 做更多的事情，所以一定要检查所有的 API 😀
+就是这样！感谢您尝试 React Router。我们希望本教程能为您提供一个坚实的开端，以构建出色的用户体验。你可以用 React Router 做更多的事情，所以一定要查看所有的 API 😀
