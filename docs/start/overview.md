@@ -186,9 +186,9 @@ function Random() {
 
 ##  活动链接
 
-大多数 Web 应用程序在 UI 顶部、侧边栏和通常的多个级别都有持久的导航部分。使用可以轻松设置活动导航项的样式，以便用户知道它们在应用程序中的位置 ( `isActive`) 或它们要去的位置 ( ) 。`isPending``<NavLink>`
+大多数 Web 应用程序在 UI 顶部、侧边栏和通常的多个级别都有持久的导航部分。样式化活动导航项，使用`<NavLink>`可以很容易让用户知道它们在应用程序中的位置 ( `isActive`) 或它们要去的位置 ( `isPending`) 。
 
-```javascript
+```jsx
 <NavLink
   style={({ isActive, isPending }) => {
     return {
@@ -201,27 +201,27 @@ function Random() {
 />
 ```
 
-您还可以[`useMatch`](https://reactrouter.com/en/main/hooks/use-match)针对链接之外的任何其他“活动”指示。
+您还可以使用[`useMatch`](https://reactrouter.com/en/main/hooks/use-match)针对链接之外的任何其他`"active"`指示。
 
-```javascript
+```jsx
 function SomeComp() {
   const match = useMatch("/messages");
   return <li className={Boolean(match) ? "active" : ""} />;
 }
 ```
 
-看：
+查看：
 
 - [`NavLink`](https://reactrouter.com/en/main/components/nav-link)
 - [`useMatch`](https://reactrouter.com/en/main/hooks/use-match)
 
-##  相关链接
+##  相对链接
 
-与 HTML 一样`<a href>`，可以采用相对路径，`<Link to>`并`<NavLink to>`具有嵌套路由的增强行为。
+与 HTML 的`<a href>`一样，`<Link to>`和`<NavLink to>`也可以采用相对路径，并具有嵌套路由的增强行为。
 
 给定以下路由配置：
 
-```javascript
+```jsx
 <Route path="home" element={<Home />}>
   <Route path="project/:projectId" element={<Project />}>
     <Route path=":taskId" element={<Task />} />
@@ -229,26 +229,26 @@ function SomeComp() {
 </Route>
 ```
 
-考虑 url https://example.com/home/project/123，它呈现以下路由组件层次结构：
+思考 https://example.com/home/project/123，它渲染以下路由组件层次结构：
 
-```javascript
+```jsx
 <Home>
   <Project />
 </Home>
 ```
 
-如果`<Project />`呈现以下链接，链接的 hrefs 将像这样解析：
+如果`<Project />`渲染以下链接，链接的 hrefs 将像这样解析：
 
-| 在`<Project>`@`/home/project/123` | 解决`<a href>`          |
+| In`<Project>`@`/home/project/123` | Resolved`<a href>`      |
 | --------------------------------- | ----------------------- |
 | `<Link to="abc">`                 | `/home/project/123/abc` |
 | `<Link to=".">`                   | `/home/project/123`     |
 | `<Link to="..">`                  | `/home`                 |
 | `<Link to=".." relative="path">`  | `/home/project`         |
 
-请注意，第一个删除路线`..`的两个部分。`project/:projectId`默认情况下，`..`相对链接遍历路由层次结构，而不是 URL 段。在下一个示例中添加`relative="path"`允许您改为遍历路径段。
+请注意，第一个`..`删除`project/:projectId`路由的两个片段。默认情况下，`..`相对链接遍历路由层次结构，而不是 URL 段。在下一个示例中添加`relative="path"`可以让您遍历路径段。
 
-相对链接总是相对于它们在 中*呈现*的路由路径，而不是完整的 URL。这意味着如果用户在 URL中使用`<Link to="abc">`to进行更深入的导航，则 hrefs in将不会改变（与 plain 相反，这是客户端路由器的常见问题）。`<Task />``/home/project/123/abc``<Project>``<a href>`
+相对链接总是相对于*展示*它们的路由路径，而不是完整的 URL。这意味着如果用户在 URL中使用`<Link to="abc">`to进行更深入的导航，则 hrefs in将不会改变（与 plain 相反，这是客户端路由器的常见问题）。`<Task />``/home/project/123/abc``<Project>``<a href>`
 
 ## 数据加载
 
