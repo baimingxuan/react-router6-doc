@@ -1,29 +1,29 @@
 #  主要概念
 
-> 此文档需要针对 6.4 数据 API 进行更新
+> 该文档需要针对 6.4 数据 API 进行更新
 >
-> 本文档深入探讨了在 React Router 中实现的路由背后的核心概念。它很长，所以如果您正在寻找更实用的指南，请查看我们的[快速入门教程](https://reactrouter.com/en/main/start/tutorial)。
+> 本文档深入介绍了在 React Router 中实现的路由背后的核心概念。它有点长，所以如果您需要寻找更实用的指南，请查看我们的[快速入门教程](https://reactrouter.com/en/main/start/tutorial)。
 >
 
-你可能想知道 React Router 究竟做了什么。它如何帮助您构建应用程序？到底什么是**路由器**？
+你可能想知道 React Router 究竟是做了什么的。它如何帮助您构建应用程序？到底什么是**路由**？
 
-如果您曾经有过这些问题，或者您只是想深入了解路由的基本部分，那么您来对地方了。本文档详细解释了在 React Router 中实现的路由背后的所有核心概念。
+如果您曾经有过这些问题，或者您想深入了解路由的基本部分，那么您就来对地方了。本文档详细解释了在 React Router 中实现的路由背后的所有核心概念。
 
-请不要让这份文件压垮你！对于日常使用，React Router 非常简单。您无需深入了解即可使用它。
+请不要让这份文件压垮你！对于日常使用，React Router 是相当简单的。你不需要这么深了解就能使用它。
 
-React Router 不仅仅是将 url 与函数或组件匹配：它是关于构建一个映射到 URL 的完整用户界面，因此它可能包含比您习惯的更多概念。我们将详细介绍 React Router 的三个主要工作：
+React Router 不仅仅是将 url 与函数或组件匹配：它是关于构建一个映射到 URL 的完整用户界面，因此它可能包含比您常用有更多概念。我们将详细介绍 React Router 的三个主要功能：
 
 1. 订阅和操作[历史栈](https://reactrouter.com/en/main/start/concepts#history-stack)
-2. [将URL](https://reactrouter.com/en/main/start/concepts#url)与您的[路线](https://reactrouter.com/en/main/start/concepts#route-config)匹配
+2. [将URL](https://reactrouter.com/en/main/start/concepts#url)与您的[路由](https://reactrouter.com/en/main/start/concepts#route-config)匹配
 3. 从[路由匹配中渲染一个嵌套的 UI](https://reactrouter.com/en/main/start/concepts#matches)
 
 ## 定义
 
-但首先，一些定义！关于后端和前端框架的路由有很多不同的想法。有时，一个词在一种语境中的含义可能与另一种语境中的含义不同。
+但首先，一些定义！关于后端和前端框架的路由有很多不同的看法。有时候，一个词在一个上下文中的含义可能与另一个词不同。
 
-以下是我们在谈论 React Router 时经常使用的一些词。本指南的其余部分将对每一个进行更详细的介绍。
+以下是我们在谈论 React Router 时经常使用的一些词。本指南的其余部分将对每个进行更详细的介绍。
 
-- **URL** - 地址栏中的 URL。很多人互换使用术语“URL”和“路由”，但这不是 React Router 中的路由，它只是一个 URL。
+- **URL** - 地址栏中的 URL。很多人交替使用“URL”和“路由”这两个词，但这不是 React Router 中的路由，它只是一个 URL。
 - **Location** - 这是一个基于内置浏览器对象的 React Router 特定`window.location`对象。它代表“用户所在的位置”。它主要是 URL 的对象表示，但还不止于此。
 - **Location State** - 一个持续存在于[未在URL](https://reactrouter.com/en/main/start/concepts#url)中编码[的位置](https://reactrouter.com/en/main/start/concepts#location)的值。很像散列或搜索参数（在 URL 中编码的数据），但不可见地存储在浏览器的内存中。
 - **历史堆栈**——当用户导航时，浏览器会跟踪堆栈中的每个[位置](https://reactrouter.com/en/main/start/concepts#location)。如果您在浏览器中单击并按住后退按钮，您可以在那里看到浏览器的历史堆栈。
