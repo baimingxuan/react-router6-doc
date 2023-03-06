@@ -36,7 +36,7 @@ function withRouter(Component) {
 
 对于初学者，我们看到 React 本身在`<Suspense fallback={<Spinner />}>`API 方面处于领先地位。`fallback` 属性接受一个 React **元素**，而不是**组件**。这使得您可以轻松地从渲染它的组件向您的 `<Spinner>` 传递任何 props。
 
-使用元素而不是组件意味着我们不必提供 `passProps` 风格的 API，因此您可以获得您的元素所需的 props。例如，在基于组件的 API 中，没有很好的方法将 props 传递给当 `<Route path=":userId" component={Profile} />` 匹配时呈现的 `<Profile>` 元素。大多数采用这种方法的 React 库最终会使用类似于 `<Route component={Profile} passProps={{ animate: true }} />` 的 API，或者使用渲染 prop 或高阶组件。
+使用元素而不是组件意味着我们不必提供 `passProps` 风格的 API，因此您可以获得您的元素所需的 props。例如，在基于组件的 API 中，没有很好的方法将 props 传递给当 `<Route path=":userId" component={Profile} />` 匹配时呈现的 `<Profile>` 元素。大多数采用这种方法的 React 库最终会使用类似于 `<Route component={Profile} passProps={animate: true}/>` 的 API，或者使用渲染 prop 或高阶组件。
 
 此外， `Route` 在 v5 中的渲染 API 相当大。当我们在 v4/5 上工作时，对话大致如下：
 
