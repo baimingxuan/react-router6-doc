@@ -33,7 +33,7 @@ module.exports = {
                         path: '/start/faqs'
                     },
                     {
-                        title: '核心概念',
+                        title: '主要概念',
                         path: '/start/concepts'
                     }
                 ]

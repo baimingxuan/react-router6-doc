@@ -1,14 +1,14 @@
 ## 客户端路由
 
-React Router 启用“客户端路由”。
+React Router 实现了“客户端路由”。
 
-在传统网站中，浏览器从 Web 服务器请求文档，下载和解析 CSS 和 JavaScript 资源，并渲染从服务器发送的 HTML。当用户单击链接时，它会为新页面重新开始这个过程。
+在传统的网站中，浏览器从 Web 服务器请求文档，下载并评估 CSS 和 JavaScript 资源，并呈现服务器发送的 HTML。当用户单击链接时，它会为新页面重新开始整个过程。
 
-客户端路由允许您的应用通过链接点击更新 URL，而无需从服务器再次请求另一个文档。相反，您的应用程序可以立即渲染一些新的 UI ，并使用`fetch`进行数据请求，用新数据更新页面。
+客户端路由允许您的应用程序在不从服务器请求另一个文档的情况下从链接单击更新 URL。相反，您的应用程序可以立即呈现一些新的 UI 并使用 `fetch` 进行数据请求，以使用新信息更新页面。
 
-这可以实现更快的用户体验，因为浏览器不需要请求全新的文档，也不用重新解析 CSS 和 JavaScript 资源。它还通过动画等方式实现更动态的用户体验。
+这使得用户体验更快，因为浏览器不需要为下一页请求完全新的文档或重新评估 CSS 和 JavaScript 资源。它还可以通过动画等方式实现更动态的用户体验。
 
-客户端路由是通过创建`Router`来实现的，并使用`Link`和`<Form>`来链接/提交页面：
+通过创建 `Router` 并使用 `Link` 和 `<Form>` 链接/提交页面，可以启用客户端路由：
 
 ```jsx
 import React from "react";
@@ -44,12 +44,12 @@ createRoot(document.getElementById("root")).render(
 
 ## 嵌套路由
 
-嵌套路由是将 URL 片段耦合到组件层次结构和数据的一种思想。React Router 的嵌套路由的灵感来自于 2014 年左右的 Ember.js 中的路由系统。Ember 团队意识到，几乎在每种情况下，URL 的片段都会确定：
+嵌套路由是将 URL 的片段与组件层次结构和数据耦合的一般思想。React Router 的嵌套路由受到了 Ember.js 2014 年左右的路由系统的启发。Ember 团队意识到，在几乎所有情况下，URL 的片段决定了：
 
-- 要在页面上渲染的布局
+- 在页面上呈现的布局
 - 这些布局的数据依赖关系
 
-React Router 将此约定与 API 结合起来，用于创建与 URL 段和数据耦合的嵌套布局。
+React Router 使用 API 来创建与 URL 片段和数据耦合的嵌套布局，支持这种约定。
 
 ```jsx
 // Configure nested routes with JSX
@@ -115,17 +115,17 @@ createBrowserRouter([
 ]);
 ```
 
-这种[可视化](https://remix.run/_docs/routing)可能会有所帮助。
+这个可视化可能会有所帮助。
 
 ## 动态片段
 
-URL 的片段可以是被解析并提供给各种 api 的动态占位符。
+URL 的片段可以是动态占位符，可以被解析并提供给各种 API。
 
 ```jsx
 <Route path="projects/:projectId/tasks/:taskId" />
 ```
 
-这两个带`:`的片段是动态的，并提供给以下 API：
+两个带有 `:` 的片段是动态的，并提供给以下 API：
 
 ```jsx
 // If the current location is /projects/abc/tasks/3
@@ -167,26 +167,26 @@ function Random() {
 - [`useParams`](https://reactrouter.com/en/main/hooks/use-params)
 - [`useMatch`](https://reactrouter.com/en/main/hooks/use-match)
 
-##  分级路由匹配
+##  排序路由匹配
 
-在将 URL 匹配到路由时，React Router 会根据片段数、静态段、动态段、分段等对路由进行分级，并选择*最具体*的匹配项。
+在将 URL 与路由匹配时，React Router 会根据片段数、静态片段、动态片段、通配符等对路由进行排序，并选择最具体的匹配。
 
-例如，思考这两条路由：
+例如，考虑以下两个路由：
 
 ```jsx
 <Route path="/teams/:teamId" />
 <Route path="/teams/new" />
 ```
 
-现在思考的 URL 是http://example.com/teams/new。
+现在考虑 URL 是 http://example.com/teams/new 。
 
-即使两条路由在技术上都匹配 URL（`new`可能是`:teamId`），但您直观地知道我们希望选择第二条路由（`/teams/new`）。React Router 的匹配算法也知道这一点。
+即使两个路由在技术上都匹配 URL（ `new` 可以是 `:teamId` ），你直觉上也知道我们想要选择第二个路由（ `/teams/new` ）。React Router 的匹配算法也知道这一点。
 
-使用分级路由，您就不必担心路由排序了。
+有了排序路由，您就不必担心路由顺序。
 
 ##  活动链接
 
-大多数 Web 应用程序在 UI 顶部、侧边栏和通常的多个级别都有持久的导航部分。样式化活动导航项，使用`<NavLink>`可以很容易让用户知道它们在应用程序中的位置 ( `isActive`) 或它们要去的位置 ( `isPending`) 。
+大多数 Web 应用程序在 UI 顶部、侧边栏和多个级别上都有持久的导航部分。使用 `<NavLink>` 轻松地为活动导航项设置样式，以便用户知道他们在应用程序中的位置（ `isActive` ）或将要去哪里（ `isPending` ）。
 
 ```jsx
 <NavLink
@@ -201,7 +201,7 @@ function Random() {
 />
 ```
 
-您还可以使用[`useMatch`](https://reactrouter.com/en/main/hooks/use-match)针对链接之外的任何其他`"active"`指示。
+您还可以使用[`useMatch`](https://reactrouter.com/en/main/hooks/use-match)针对链接之外的其他`"active"`指示。
 
 ```jsx
 function SomeComp() {
@@ -217,7 +217,7 @@ function SomeComp() {
 
 ##  相对链接
 
-与 HTML 的`<a href>`一样，`<Link to>`和`<NavLink to>`也可以采用相对路径，并具有嵌套路由的增强行为。
+与 HTML 的`<a href>`一样，`<Link to>`和`<NavLink to>`也可以采用相对路径，嵌套路由可以增强其行为。
 
 给定以下路由配置：
 
@@ -229,7 +229,7 @@ function SomeComp() {
 </Route>
 ```
 
-思考 https://example.com/home/project/123，它渲染以下路由组件层次结构：
+考虑以下 URL https://example.com/home/project/123 ，它渲染了以下路由组件层次结构：
 
 ```jsx
 <Home>
@@ -237,7 +237,7 @@ function SomeComp() {
 </Home>
 ```
 
-如果`<Project />`渲染以下链接，链接的超链接将像这样解析：
+如果 `<Project />` 渲染以下链接，则链接的 href 将解析如下：
 
 | In`<Project>`@`/home/project/123` | Resolved`<a href>`      |
 | --------------------------------- | ----------------------- |
@@ -246,13 +246,13 @@ function SomeComp() {
 | `<Link to="..">`                  | `/home`                 |
 | `<Link to=".." relative="path">`  | `/home/project`         |
 
-请注意，第一个`..`删除`project/:projectId`路由的两个片段。默认情况下，`..`相对链接遍历路由层次结构，而不是 URL 段。在下一个示例中添加`relative="path"`可以让您遍历路径段。
+请注意，第一个 `..` 删除 `project/:projectId` 路由的两个段。默认情况下，相对链接中的 `..` 遍历路由层次结构，而不是 URL 段。在下一个示例中添加 `relative="path"` 允许您遍历路径段。
 
-相对链接总是相对于*展示*它们的路由路径，而不是完整的 URL。这意味着如果用户在 URL `/home/project/123/abc` 中使用`<Link to="abc">`到`<Task />`更深的导航，则在`<Project>`的超链接将不会改变（与普通的`<a href>`相反，这是客户端路由的常见问题）。
+相对链接始终相对于它们渲染的路由路径，而不是完整的 URL。这意味着，如果用户通过 `<Link to="abc">` 导航到 `<Task />` ，在 URL `/home/project/123/abc` 中， `<Project>` 中的 href 不会改变（与纯 `<a href>` 相反，这是客户端路由器的常见问题）。
 
 ## 数据加载
 
-由于 URL 片段通常映射到您应用程序的持久数据，因此 React Router 提供了传统的数据加载钩子以在导航期间启动数据加载。结合嵌套路由，在特定`URL`上的多个布局的所有数据都可以并行加载。
+因为 URL 段通常映射到应用程序的持久数据，React Router 提供了传统的数据加载钩子来在导航期间启动数据加载。结合嵌套路由，可以并行加载特定 URL 上多个布局的所有数据。
 
 ```jsx
 <Route
@@ -288,7 +288,7 @@ function SomeComp() {
 </Route>
 ```
 
-数据通过`useLoaderData`提供给您的组件。
+数据通过 `useLoaderData` 提供给您的组件。
 
 ```jsx
 function Root() {
@@ -307,11 +307,11 @@ function Game() {
 }
 ```
 
-当用户访问或单击指向https://example.com/real-salt-lake/45face3的链接时，将在该 URL 的 UI 渲染之前并行调用和加载所有三个路由加载器。
+当用户访问或点击 https://example.com/real-salt-lake/45face3 的链接时，所有三个路由加载器都将被调用并并行加载，直到该URL的UI渲染完成。
 
 ##  重定向
 
-在加载或更改数据时，通常会将用户[重定向](https://reactrouter.com/en/main/fetch/redirect)到不同的路径。
+在加载或更改数据时，通常会将用户[重定向](https://reactrouter.com/en/main/fetch/redirect)到不同的路由。
 
 ```jsx
 <Route
@@ -353,7 +353,7 @@ function Game() {
 
 ##  待定导航UI
 
-当用户在应用程序中导航时，下一页的数据会在页面渲染之前加载。在此期间提供用户反馈很重要，这样应用程序才不会感觉没有响应。
+当用户在应用程序中导航时，下一页的数据会在页面呈现之前加载。在此期间提供用户反馈非常重要，以便应用程序不会感觉不响应。请在此期间提供用户反馈，以免用户感到不适。
 
 ```jsx
 function Root() {
@@ -373,9 +373,9 @@ function Root() {
 
 - [`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)
 
-##  使用`<Suspense>`的骨架UI
+##  带有`<Suspense>`的骨架屏UI
 
-不必等待下一页的数据，您可以 [`defer`](https://reactrouter.com/en/main/utils/defer) 数据，以便UI在数据加载时立即切换到带有占位符UI的下一个屏幕。
+不必等待下一页的数据，您可以 `defer` 数据，这样 UI 就会立即跳转到下一个屏幕，同时加载数据的同时显示占位符 UI。
 
 ```jsx
 <Route
@@ -433,13 +433,13 @@ function IssueComments() {
 - [`Await`](https://reactrouter.com/en/main/components/await)
 - [`useAsyncValue`](https://reactrouter.com/en/main/hooks/use-async-value)
 
-##  数据突变
+##  数据变异
 
-HTML 表单是导航事件，就像链接一样。React Router 支持带有客户端路由的 HTML 表单工作流。
+HTML表单是导航事件，就像链接一样。React Router 支持使用客户端路由的HTML表单工作流程。
 
-提交表单时，将阻止正常的浏览器导航事件，并创建一个包含[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)提交内容的正文的[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)。此请求将发送到`<Route action>`与表单的匹配的`<Form action>`。
+当表单被提交时，阻止了正常的浏览器导航事件，并创建了一个[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)，其中包含提交的[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)的主体。该请求被发送到与表单的 `<Form action>` 匹配的 `<Route action>` 。
 
-表单元素的`name`属性被提交给 action：
+表单元素的 `name` 属性将被提交到操作：
 
 ```jsx
 <Form action="/project/new">
@@ -457,7 +457,7 @@ HTML 表单是导航事件，就像链接一样。React Router 支持带有客�
 </Form>
 ```
 
-正常的 HTML 文档请求被阻止，并发送到匹配路由的操作（匹配`<form action>`的`<Route path>`），包括`request.formData`.
+阻止正常的 HTML 文档请求，并将其发送到匹配路由的操作（ `<Route path>` ，它匹配 `<form action>` ），包括 `request.formData` 。
 
 ```jsx
 <Route
@@ -475,9 +475,9 @@ HTML 表单是导航事件，就像链接一样。React Router 支持带有客�
 
 ##  数据重新验证
 
-几十年的`web`惯例表明，当一个表单被提交到服务器时，数据会发生变化，并渲染一个新页面。React Router的基于html的数据突变api遵循了这个约定。
+几十年来的网络惯例表明，当表单提交到服务器时，数据正在更改并且会呈现新页面。React Router的基于HTML的数据突变API遵循这种惯例。
 
-在调用路由操作之后，将再次调用页面上所有数据的加载器，以确保UI自动与数据保持最新。没有要过期的缓存键，没有要重新加载的上下文提供程序。
+调用路由操作后，页面上所有数据的加载器会再次调用，以确保 UI 自动与数据保持最新。无需过期缓存键，无需重新加载上下文提供程序。
 
 查看：
 
@@ -485,7 +485,7 @@ HTML 表单是导航事件，就像链接一样。React Router 支持带有客�
 
 ## 繁忙的指示器
 
-将表单提交给路由操作时，您可以访问导航状态以显示忙碌指示器、禁用字段集等。
+当表单提交到路由操作时，您可以访问导航状态以显示繁忙指示器、禁用字段集等。
 
 ```jsx
 function NewProjectForm() {
@@ -518,9 +518,9 @@ function NewProjectForm() {
 
 - [`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)
 
-##  乐观的UI
+##  乐观UI
 
-知道发送给[action](https://reactrouter.com/en/main/route/action)的[`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)通常足以跳过忙碌指示器，并立即渲染下一个状态的UI，即使异步工作仍未完成。这就是所谓的“乐观UI”。
+知道发送给 [action](https://reactrouter.com/en/main/route/action) 的[`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)通常足以跳过繁忙指示器并立即在下一个状态中渲染 UI，即使您的异步工作仍在进行中。这被称为“乐观 UI”。
 
 ```jsx
 function LikeButton({ tweet }) {
@@ -545,17 +545,17 @@ function LikeButton({ tweet }) {
 }
 ```
 
-（是的，HTML 按钮可以有一个`name`和`value`）。
+（是的，HTML 按钮可以有 `name` 和 `value` ）。
 
-虽然使用[`fetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)来实现乐观 UI 更为常见，但您也可以使用[`navigation.formData`](https://reactrouter.com/en/main/hooks/use-navigation#navigationformdata)对普通表单进行同样的操作。
+虽然使用[`fetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)更常见进行乐观 UI，但您也可以使用普通表单使用[`navigation.formData`](https://reactrouter.com/en/main/hooks/use-navigation#navigationformdata)进行相同的操作。
 
 ##  数据获取器
 
-HTML 表单是突变的模型，但它们有一个主要限制：一次只能有一个表单，因为表单提交是一种导航。
+HTML 表单是变异的模型，但它们有一个主要限制：您一次只能有一个，因为表单提交是一种导航。
 
-大多数web应用程序需要允许多个突变同时发生，就像一个记录列表，每个记录都可以被独立删除、标记完成、点赞等。
+大多数 Web 应用程序需要允许同时发生多个变异，例如记录列表，其中每个记录都可以独立删除、标记为完成、喜欢等。
 
-[Fetcher](https://reactrouter.com/en/main/hooks/use-fetcher)允许您与路由[action](https://reactrouter.com/en/main/route/action)和[loader](https://reactrouter.com/en/main/route/loader)交互，而不会在浏览器中引起导航，但仍然可以获得所有传统的好处，如错误处理、重新验证、中断处理和竞争条件处理。
+[Fetcher](https://reactrouter.com/en/main/hooks/use-fetcher) 允许您与路由 [action](https://reactrouter.com/en/main/route/action) 和 [loader](https://reactrouter.com/en/main/route/loader) 进行交互，而不会在浏览器中引起导航，但仍然获得所有传统的好处，如错误处理、重新验证、中断处理和竞争条件处理。
 
 想象一下任务列表：
 
@@ -571,7 +571,7 @@ function Tasks() {
 }
 ```
 
-每个任务都可以独立于其他任务标记为完成，具有自己的挂起状态，并且不需要使用[fetcher](https://reactrouter.com/en/main/hooks/use-fetcher)进行导航：
+每个任务都可以独立完成，具有自己的待处理状态，而不会使用 [fetcher](https://reactrouter.com/en/main/hooks/use-fetcher) 进行导航：
 
 ```jsx
 function ToggleCompleteButton({ task }) {
@@ -603,11 +603,11 @@ function ToggleCompleteButton({ task }) {
 
 ## 竞争条件处理
 
-React Router 将取消过时的操作，只自动提交新数据。
+React Router 将取消过时的操作并自动提交新数据。
 
-任何时候你使用异步 UI，你都有竞争条件的风险：当一个异步操作开始后，但在一个更早的操作之前完成。结果是一个显示错误状态的用户界面。
+任何时候，您都有异步 UI 的风险：当异步操作在早期操作之后开始但在其之前完成时。结果是用户界面显示错误的状态。
 
-考虑一个在用户键入时更新列表的搜索字段：
+考虑一个搜索字段，当用户输入时更新列表：
 
 ```
 ?q=ry    |---------------|
@@ -616,9 +616,9 @@ React Router 将取消过时的操作，只自动提交新数据。
                      ^ lose correct state
 ```
 
-尽管`q?=ryan`的查询开始较晚，但它较早完成。如果处理不当，结果将暂时是`?q=ryan`的正确值，但随后会推翻`?q=ry`的错误结果。节流和防抖是不够的（你仍然可以中断通过的请求）。你需要取消。
+即使 `q?=ryan` 的查询稍后才发出，但它却更早地完成了。如果处理不当，结果将短暂地成为 `?q=ryan` 的正确值，然后翻转为 `?q=ry` 的错误结果。防抖和节流是不够的（您仍然可以中断通过的请求）。您需要取消操作。
 
-如果你使用 React Router 的数据约定，你可以完全自动地避免这个问题。
+如果您使用React Router的数据约定，您可以完全自动地避免这个问题。
 
 ```
 ?q=ry    |-----------X
@@ -628,19 +628,19 @@ React Router 将取消过时的操作，只自动提交新数据。
                      ^ commit correct state
 ```
 
-React Router 不仅像这样处理导航的竞争条件，它还处理许多其他情况，例如使用[`fetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)自动完成加载结果或执行多个并发突变（及其自动化的、并发的重新验证）。
+React Router 不仅处理像这样的导航的竞争条件，还处理许多其他情况，例如使用[`fetcher`](https://reactrouter.com/en/main/hooks/use-fetcher) 加载自动完成的结果或执行多个并发变异（及其自动并发重新验证）。
 
 ## 错误处理
 
-绝大多数应用程序错误都由 React Router 自动处理。它将捕获在以下情况下抛出的任何错误：
+React Router 会自动处理大部分应用程序错误。它会捕获在以下情况下抛出的任何错误：
 
 - 渲染
-- 加载数据中
+- 加载数据
 - 更新数据
 
-实际上，这几乎是应用程序中的所有错误，除了事件处理程序 ( `<button onClick>`) 或`useEffect`抛出的错误。React Router 应用程序往往很少有这两种功能。
+实际上，这几乎包括您的应用程序中的每个错误，除了在事件处理程序 ( `<button onClick>` ) 或 `useEffect` 中抛出的错误。React Router 应用程序往往两者都很少。
 
-当一个错误被抛出时，不会渲染路由的[`element`](https://reactrouter.com/en/main/route/route#element)，而是渲染[`errorElement`](https://reactrouter.com/en/main/route/error-element) 。
+当出现错误时，不会呈现路由的[`element`](https://reactrouter.com/en/main/route/route#element)，而是渲染[`errorElement`](https://reactrouter.com/en/main/route/error-element) 。
 
 ```jsx
 <Route
@@ -655,7 +655,7 @@ React Router 不仅像这样处理导航的竞争条件，它还处理许多其�
 />
 ```
 
-如果路由没有`errorElement`，错误将冒泡到最近的父路由，并带有一个`errorElement`：
+如果一个路由没有 `errorElement` ，错误会冒泡到最近的具有 `errorElement` 的父级路由：
 
 ```jsx
 <Route
@@ -675,9 +675,9 @@ React Router 不仅像这样处理导航的竞争条件，它还处理许多其�
 
 ##  滚动恢复
 
-React Router 会在导航时模拟浏览器的滚动还原，等待数据加载后再滚动。这确保滚动位置恢复到正确的位置。
+React Router 将在导航时模拟浏览器的滚动恢复，等待数据加载完成后再滚动。这确保了滚动位置恢复到正确的位置。
 
-您还可以通过基于位置以外的其他内容（如 url 路径名）恢复并防止滚动发生在某些链接（如页面中间的选项卡）来自定义行为。
+您还可以通过基于其他内容（如URL路径名）进行还原并防止在某些链接（如页面中间的选项卡）上发生滚动来自定义行为。
 
 查看：
 
@@ -685,6 +685,6 @@ React Router 会在导航时模拟浏览器的滚动还原，等待数据加载�
 
 ## Web标准 API
 
-React Router 基于 Web 标准 API 构建的。[loader](https://reactrouter.com/en/main/route/loader)和[action](https://reactrouter.com/en/main/route/action)接收标准的 Web Fetch API[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)对象，也可以返回[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)对象。取消是通过[Abort Signals](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)完成的，搜索参数是通过[`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)处理的，数据突变是通过[HTML Forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)处理的。
+React Router 基于 Web 标准 API 建立的。[loader](https://reactrouter.com/en/main/route/loader) 和 [action](https://reactrouter.com/en/main/route/action) 接收标准的 Web Fetch API[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)对象，并且也可以返回[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)对象。取消操作是通过 [Abort Signals](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)完成的，搜索参数是通过[`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)处理的，数据变更是通过[HTML Forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)处理的。
 
-当你在 React Router 上做得更好时，你在 Web 平台上也会做得更好。
+当你变得更擅长React Router时，你也变得更擅长Web平台。
