@@ -1,8 +1,8 @@
 # `<RouterProvider>`
 
-所有路由对象都会传递给这个组件，以渲染您的应用程序并启用其余的 API。
+所有路由对象都会传递到此组件以呈现您的应用程序并启用其余的 API。
 
-```javascript
+```jsx
 import {
   createBrowserRouter,
   RouterProvider,
@@ -35,9 +35,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ## `fallbackElement`
 
-如果您不是服务端渲染您的应用程序，`DataBrowserRouter`将在加载时启动所有匹配的路由加载器。在此期间，您可以提供`fallbackElement`给用户一些应用程序正在工作的指示。使静态托管 TTFB 计数！
+如果您没有对您的应用进行服务器渲染， `DataBrowserRouter` 将在挂载时启动所有匹配的路由加载器。在此期间，您可以提供一个 `fallbackElement` 来向用户提供一些指示，表明应用正在工作。让静态托管的 TTFB 有所作为！
 
-```javascript
+```jsx
 <RouterProvider
   router={router}
   fallbackElement={<SpinnerOfDoom />}

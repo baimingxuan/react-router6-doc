@@ -1,8 +1,8 @@
 # `createMemoryRouter`
 
-内存路由在内存中管理自己的历史堆栈，而不是使用浏览器的历史记录。它主要用于测试和组件开发工具，如 Storybook，但也可以用于在任何非浏览器环境中运行React Router。
+不使用浏览器的历史记录，内存路由在内存中管理自己的历史记录堆栈。它主要用于测试和组件开发工具，如 Storybook，但也可用于在任何非浏览器环境中运行 React Router。
 
-```javascript
+```jsx
 import {
   RouterProvider,
   createMemoryRouter,
@@ -42,7 +42,7 @@ test("event route", async () => {
 
 ## 类型声明
 
-```javascript
+```jsx
 function createMemoryRouter(
   routes: RouteObject[],
   opts?: {
@@ -56,9 +56,9 @@ function createMemoryRouter(
 
 ## `initialEntries`
 
-历史堆栈中的初始条目。这允许您启用具有历史堆栈中已存在的多个位置的测试（或应用程序）（用于测试后退导航等）
+历史堆栈中的初始条目。这使您可以在历史堆栈中启动测试（或应用程序），并已经有多个位置（用于测试后退导航等）。
 
-```javascript
+```jsx
 createMemoryRouter(routes, {
   initialEntries: ["/", "/events/123"],
 });
@@ -66,9 +66,9 @@ createMemoryRouter(routes, {
 
 ## `initialIndex`
 
-要渲染的历史堆栈中的初始索引。这允许您在特定条目处开始测试。它默认为`initialEntries`中的最后一个条目。
+要渲染的历史堆栈中的初始索引。这使您可以从特定条目开始测试。默认为`initialEntries`中的最后一个条目。
 
-```javascript
+```jsx
 createMemoryRouter(routes, {
   initialEntries: ["/", "/events/123"],
   initialIndex: 1, // start at "/events/123"
