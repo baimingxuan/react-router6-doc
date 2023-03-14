@@ -2,7 +2,7 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function NativeRouter(
   props: NativeRouterProps
 ): React.ReactElement;
@@ -10,12 +10,12 @@ declare function NativeRouter(
 interface NativeRouterProps extends MemoryRouterProps {}
 ```
 
-`<NativeRouter>`[是在React Native](https://reactnative.dev/)应用程序中运行 React Router 的推荐接口。
+`<NativeRouter>`是在[React Native](https://reactnative.dev/)应用中运行 React Router 的推荐接口。
 
-- `<NativeRouter initialEntries>`默认为`["/"]`（在根`/`URL 中的单入口）
+- `<NativeRouter initialEntries>`默认为`["/"]`（在根`/`URL 中的单个条目）
 - `<NativeRouter initialIndex>`默认为`initialEntries`最后一个索引
 
-```javascript
+```jsx
 import * as React from "react";
 import { NativeRouter } from "react-router-native";
 

@@ -2,7 +2,7 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function BrowserRouter(
   props: BrowserRouterProps
 ): React.ReactElement;
@@ -14,11 +14,11 @@ interface BrowserRouterProps {
 }
 ```
 
-`<BrowserRouter>`使用干净的 URL 将当前位置存储在浏览器的地址栏中，并使用浏览器的内置历史堆栈进行导航。
+`<BrowserRouter>`使用干净的URL存储浏览器地址栏中的当前位置，并使用浏览器内置的历史记录堆栈进行导航。
 
-`<BrowserRouter window>`默认使用当前[文档的`defaultView`](https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView)，但它也可用于跟踪对另一个窗口 URL 的更改，在`<iframe>`中，例如 。
+`<BrowserRouter window>`默认使用当前[文档的`defaultView`](https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView)，但也可以用于跟踪另一个窗口的URL更改，例如在 `<iframe>` 中。
 
-```javascript
+```jsx
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
