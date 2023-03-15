@@ -1,10 +1,11 @@
 # `action`
 
-路由操作是路由[加载程序](https://reactrouter.com/en/main/route/loader)“读取”的“写入”。它们为应用程序提供了一种使用简单的 HTML 和 HTTP 语义执行数据突变的方法，而 React Router 抽象出异步 UI 和重新验证的复杂性。这为您提供了具有现代 SPA 的行为和 UX 功能的 HTML + HTTP（浏览器处理异步和重新验证）的简单心智模型。
+路由操作是对路由[加载器](https://reactrouter.com/en/main/route/loader)“读取”的“写入”。它们为应用程序提供了一种使用简单的HTML和HTTP语义执行数据变异的方法，而React Router则抽象了异步UI和重新验证的复杂性。这为您提供了HTML + HTTP的简单心理模型（其中浏览器处理异步性和重新验证），同时具有现代SPAs的行为和UX功能。
 
-此功能仅在使用数据路由器时有效[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)
+> 此功能仅在使用数据路由器（如[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)）时才有效。
+>
 
-```javascript
+```jsx
 <Route
   path="/song/:songId/edit"
   element={<EditSong />}
@@ -18,9 +19,9 @@
 />
 ```
 
-每当应用程序向您的路线发送非获取提交（“post”、“put”、“patch”、“delete”）时，都会调用操作。这可以通过几种方式发生：
+当应用程序向您的路由发送非获取提交（“post”，“put”，“patch”，“delete”）时，将调用操作。这可以通过以下几种方式实现：
 
-```javascript
+```jsx
 // forms
 <Form method="post" action="/songs" />;
 <fetcher.Form method="put" action="/songs/123/edit" />;
@@ -39,9 +40,9 @@ fetcher.submit(data, {
 
 ## `params`
 
-路由参数从[动态段](https://reactrouter.com/en/main/route/route#dynamic-segments)中解析并传递给您的操作。这对于确定要改变的资源很有用：
+路由参数从[动态段](https://reactrouter.com/en/main/route/route#dynamic-segments)中解析并传递给您的操作。这对于确定要突变的资源非常有用：
 
-```javascript
+```jsx
 <Route
   path="/projects/:projectId/delete"
   action={({ params }) => {
@@ -52,9 +53,9 @@ fetcher.submit(data, {
 
 ## `request`
 
-这是一个发送到您的路线的[获取请求实例。](https://developer.mozilla.org/en-US/docs/Web/API/Request)最常见的用例是从请求中解析[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+这是一个[Fetch请求](https://developer.mozilla.org/en-US/docs/Web/API/Request)实例，正在发送到您的路由。最常见的用例是从请求中解析[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
 
-```javascript
+```jsx
 <Route
   action={async ({ request }) => {
     let formData = await request.formData();
@@ -63,11 +64,9 @@ fetcher.submit(data, {
 />
 ```
 
-> 一个要求？！
+起初，操作接收“请求”可能看起来很奇怪。您是否曾经编写过这行代码？
 
-起初，操作收到“请求”似乎很奇怪。你写过这行代码吗？
-
-```javascript
+```jsx
 <form
   onSubmit={(event) => {
     event.preventDefault();
@@ -76,13 +75,13 @@ fetcher.submit(data, {
 />
 ```
 
-你到底在阻止什么？
+您到底在防止什么？
 
-没有 JavaScript，只有纯 HTML 和 HTTP Web 服务器，被阻止的默认事件实际上非常棒。浏览器会将表单中的所有数据序列化[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)，并将其作为新请求的主体发送到您的服务器。像上面的代码一样，React Router[``](https://reactrouter.com/en/main/components/form)会阻止浏览器发送该请求，而是将请求发送到您的路由操作！这使得具有简单 HTML 和 HTTP 模型的高度动态的 Web 应用成为可能。
+没有JavaScript，只有纯HTML和HTTP Web服务器，那个默认事件实际上非常好。浏览器将表单中的所有数据序列化为[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)并将其作为新请求的正文发送到您的服务器。与上面的代码一样，React Router[`Form`](https://reactrouter.com/en/main/components/form)防止浏览器发送该请求，而是将请求发送到您的路由操作！这使高度动态的Web应用程序具有HTML和HTTP的简单模型。
 
-请记住，中的值`formData`是从表单提交中自动序列化的，因此您的输入需要一个`name`.
+请记住， `formData` 中的值会自动从表单提交中序列化，因此您的输入需要 `name` 。
 
-```javascript
+```jsx
 <Form method="post">
   <input name="songTitle" />
   <textarea name="lyrics" />
@@ -94,19 +93,19 @@ formData.get("songTitle");
 formData.get("lyrics");
 ```
 
-有关更多信息，`formData`请参阅[使用 FormData](https://reactrouter.com/en/main/guides/form-data)。
+有关 `formData` 的更多信息，请参见[使用FormData](https://reactrouter.com/en/main/guides/form-data)。
 
 ## 返回响应
 
-虽然您可以从操作中返回任何您想要的内容并从中访问它[`useActionData`](https://reactrouter.com/en/main/hooks/use-action-data)，但您也可以返回一个 Web [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)。
+虽然您可以从操作中返回任何您想要的内容并从 [`useActionData`](https://reactrouter.com/en/main/hooks/use-action-data)，中访问它，但您还可以返回Web[响应](https://developer.mozilla.org/en-US/docs/Web/API/Response)。
 
-有关详细信息，请参阅[加载程序文档](https://reactrouter.com/en/main/route/loader#returning-responses)。
+有关更多信息，请参见[加载器文档](https://reactrouter.com/en/main/route/loader#returning-responses)。
 
-## 投入行动
+## 在操作中抛出
 
-您可以`throw`在操作中中断当前调用堆栈（停止运行当前代码），React Router 将沿着“错误路径”重新开始。
+您可以在您的操作中使用 `throw` 来跳出当前调用栈（停止运行当前代码），React Router 将会重新开始“错误路径”。
 
-```javascript
+```jsx
 <Route
   action={async ({ params, request }) => {
     const res = await fetch(
@@ -122,4 +121,4 @@ formData.get("lyrics");
 />
 ```
 
-有关更多详细信息和扩展用例，请阅读[errorElement](https://reactrouter.com/en/main/route/error-element)文档。
+更多细节和扩展用例，请阅读[errorElement](https://reactrouter.com/en/main/route/error-element)文档。
