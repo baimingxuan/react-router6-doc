@@ -1,8 +1,8 @@
 ## `<Await>`
 
-用于通过自动错误处理呈现[延迟值。](https://reactrouter.com/en/main/utils/defer)请务必查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)，因为有一些 API 可与此组件一起使用。
+用于呈现具有自动错误处理的[延迟值](https://reactrouter.com/en/main/utils/defer)。请确保查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)，因为有一些 API 与此组件一起使用。
 
-```javascript
+```jsx
 import { Await, useLoaderData } from "react-router-dom";
 
 function Book() {
@@ -27,11 +27,11 @@ function Book() {
 }
 ```
 
-**注意：** 期望在 a或parent`<Await>`内部呈现以启用后备 UI。`<React.Suspense>``<React.SuspenseList>`
+**注意：** `<Await>` 期望在 `<React.Suspense>` 或 `<React.SuspenseList>` 父级中呈现，以启用回退用户界面。
 
 ## 类型声明
 
-```javascript
+```tsx
 declare function Await(
   props: AwaitProps
 ): React.ReactElement;
@@ -49,19 +49,19 @@ interface AwaitResolveRenderFunction {
 
 ## `children`
 
-可以是 React 元素或函数。
+可以是React元素或函数。
 
-使用函数时，该值作为唯一参数提供。
+使用函数时，值作为唯一参数提供。
 
-```javascript
+```jsx
 <Await resolve={reviewsPromise}>
   {(resolvedReviews) => <Reviews items={resolvedReviews} />}
 </Await>
 ```
 
-使用 React 元素时，[`useAsyncValue`](https://reactrouter.com/en/main/hooks/use-async-value)将提供数据：
+使用React元素时，[`useAsyncValue`](https://reactrouter.com/en/main/hooks/use-async-value)将提供数据：
 
-```javascript
+```jsx
 <Await resolve={reviewsPromise}>
   <Reviews />
 </Await>;
@@ -74,11 +74,11 @@ function Reviews() {
 
 ## `errorElement`
 
-当 promise 被拒绝时，error 元素代替子元素呈现。您可以使用访问错误[`useAsyncError`](https://reactrouter.com/en/main/hooks/use-async-error)。
+当Promise被拒绝时，错误元素将呈现而不是子元素。您可以使用[`useAsyncError`](https://reactrouter.com/en/main/hooks/use-async-error)访问错误。
 
-如果 promise 被拒绝，您可以提供一个选项来通过挂钩`errorElement`在上下文 UI 中处理该错误。`useAsyncError`
+如果Promise被拒绝，您可以通过 `useAsyncError` 钩子提供可选的 `errorElement` 来处理上下文UI中的错误。
 
-```javascript
+```jsx
 <Await
   resolve={reviewsPromise}
   errorElement={<ReviewsError />}
@@ -92,13 +92,13 @@ function ReviewsError() {
 }
 ```
 
-如果您不提供 errorElement，则被拒绝的值将冒泡到最近的路由级别[`errorElement`](https://reactrouter.com/en/main/route/error-element)，并可通过[`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)挂钩访问。
+如果您不提供 errorElement，被拒绝的值将会冒泡到最近的路由级别[`errorElement`](https://reactrouter.com/en/main/route/error-element)，并可通过[`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)挂钩访问。
 
 ## `resolve`
 
-[接受从延迟](https://reactrouter.com/en/main/utils/defer) [加载程序](https://reactrouter.com/en/main/route/loader)值返回的承诺，以进行解析和呈现。
+接受从[延迟](https://reactrouter.com/en/main/utils/defer) [加载器](https://reactrouter.com/en/main/route/loader)值返回的 promise，以便解决和渲染。
 
-```javascript
+```jsx
 import {
   defer,
   Route,

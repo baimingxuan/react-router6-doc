@@ -1,10 +1,11 @@
 # `<Form>`
 
-Form 组件是一个纯 HTML[表单](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)的包装器，它模拟客户端路由和数据突变的浏览器。它*不是*您在 React 生态系统中可能习惯的表单验证/状态管理库（为此，我们建议在您的后端服务器上使用浏览器内置的[HTML 表单验证和数据验证）。](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+orm 组件是一个包装器，它包装了一个普通的 HTML [form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)，模拟浏览器进行客户端路由和数据变更。它不是像你在 React 生态系统中习惯的表单验证/状态管理库（对于这个，我们建议使用浏览器内置的[HTML 表单验证](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)和后端服务器上的数据验证）。
 
-此功能仅在使用数据路由器时有效，请参阅[选择路由器](https://reactrouter.com/en/main/routers/picking-a-router)
+> 仅当使用数据路由器时，此功能才有效，请参见[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)。
+>
 
-```javascript
+```jsx
 import { Form } from "react-router-dom";
 
 function NewEvent() {
@@ -18,19 +19,20 @@ function NewEvent() {
 }
 ```
 
-确保您的输入有名称，否则`FormData`将不包含该字段的值。
+> 确保你的输入框有名称，否则 `FormData` 将不包括该字段的值。
+>
 
-所有这些都会触发对任何呈现的[`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)挂钩的状态更新，因此您可以在异步操作进行时构建挂起的指示器和乐观的 UI。
+所有这些都会触发状态更新到任何渲染的[`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)钩子，因此您可以在异步操作正在进行时构建挂起指示器和乐观 UI。
 
-如果表单*不像*导航，您可能需要[`useFetcher`](https://reactrouter.com/en/main/hooks/use-fetcher).
+如果表单不像导航，您可能想要 [`useFetcher`](https://reactrouter.com/en/main/hooks/use-fetcher) 。
 
 ## `action`
 
-表单将提交到的 url，就像[HTML 表单操作](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action)一样。唯一的区别是默认操作。对于 HTML 表单，它默认为完整 URL。对于`<Form>`，它默认为上下文中最近路由的相对 URL。
+表单将提交到的 URL，就像[HTML 表单操作](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action)一样。唯一的区别是默认操作。唯一的区别是默认操作。对于 HTML 表单，默认为完整 URL。对于 `<Form>` ，默认为上下文中最接近的路由的相对 URL。
 
-考虑以下路线和组件：
+考虑以下路由和组件：
 
-```javascript
+```jsx
 function ProjectsLayout() {
   return (
     <>
@@ -52,38 +54,38 @@ function ProjectsPage() {
   >
     <Route
       path=":projectId"
-      element={<ProjectPage />}
+      element={<ProjectsPage />}
       action={ProjectsPage.action}
     />
   </Route>
 </DataBrowserRouter>;
 ```
 
-如果当前 URL 是`"/projects/123"`，则子路由内的表单`ProjectsPage`将具有您可能期望的默认操作：`"/projects/123"`。在这种情况下，路由是最深的匹配路由，`<Form>`和纯 HTML 表单具有相同的结果。
+如果当前 URL 是 `"/projects/123"` ，则子路由 `ProjectsPage` 中的表单将具有默认操作，就像您所期望的那样： `"/projects/123"` 。在这种情况下，路由是最深匹配路由， `<Form>` 和普通 HTML 表单具有相同的结果。
 
-但是里面的表单`ProjectsLayout`将指向`"/projects"`，而不是完整的 URL。换句话说，它指向呈现表单的路径的 URL 的匹配段。
+但是， `ProjectsLayout` 中的表单将指向 `"/projects"` ，而不是完整的 URL。换句话说，它指向在表单呈现的路由的匹配段。
 
-如果您在路由模块周围添加一些约定，这有助于提高可移植性以及表单及其操作处理程序的协同定位。
+这有助于可移植性以及表单和它们的操作处理程序的协同位置，当您在路由模块周围添加一些约定时。
 
-如果您需要发布到不同的路线，请添加一个动作道具：
+如果您需要发布到不同的路由，则添加一个操作属性：
 
-```javascript
+```jsx
 <Form action="/projects/new" method="post" />
 ```
 
-**也可以看看：**
+**另请参阅：**
 
-- [Index Search Param](https://reactrouter.com/en/main/guides/index-search-param)（索引vs父路由消歧）
+- [索引搜索参数](https://reactrouter.com/en/main/guides/index-search-param)（索引与父路由消歧）
 
 ## `method`
 
-这决定了要使用的[HTTP 动词。](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)与纯 HTML[表单方法](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method)相同，除了它还支持“get”和“post”之外的“put”、“patch”和“delete”。默认值为“获取”。
+这确定要使用的[HTTP 动词](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)。与纯 HTML[表单方法](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method)相同，除了它还支持“put”、“patch”和“delete”以外，还支持“get”和“post”。默认值为“get”。
 
-### 获取提交
+### GET提交
 
-默认方法是“获取”。获取提交*不会调用操作*。获取提交与普通导航（用户单击链接）相同，除了用户可以提供从表单转到 URL 的搜索参数。
+默认方法为“get”。Get 提交不会调用操作。Get 提交与正常导航相同（用户单击链接），除了用户可以提供到表单的 URL 的搜索参数。
 
-```javascript
+```jsx
 <Form method="get" action="/products">
   <input
     aria-label="search products"
@@ -94,11 +96,11 @@ function ProjectsPage() {
 </Form>
 ```
 
-假设用户输入“跑鞋”并提交表单。React Router 模拟浏览器并将表单序列化为[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)，然后将用户导航到`"/products?q=running+shoes"`. 就好像您`<Link to="/products?q=running+shoes">`以开发人员的身份呈现了一个，而是让用户动态提供查询字符串。
+假设用户键入“running shoes”并提交表单。React Router 模拟浏览器，将表单序列化为[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)，然后将用户导航到 `"/products?q=running+shoes"` 。就像您作为开发人员呈现了 `<Link to="/products?q=running+shoes">` 一样，但是您让用户动态提供查询字符串。
 
-[`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL)您的路由加载器可以通过创建一个新的`request.url`然后加载数据来最方便地访问这些值。
+您的路由加载器可以通过从 `request.url` 创建新的[`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL)加载数据来最方便地访问这些值。
 
-```javascript
+```jsx
 <Route
   path="/products"
   loader={async ({ request }) => {
@@ -111,13 +113,13 @@ function ProjectsPage() {
 
 ### 突变提交
 
-所有其他方法都是“突变提交”，这意味着您打算使用 POST、PUT、PATCH 或 DELETE 更改有关数据的某些内容。请注意，纯 HTML 表单仅支持“post”和“get”，我们也倾向于坚持使用这两个。
+所有其他方法都是“突变提交”，这意味着您打算使用 POST、PUT、PATCH 或 DELETE 更改有关数据的某些内容。请注意，纯 HTML 表单仅支持“post”和“get”，我们也倾向于坚持这两个。
 
-当用户提交表单时，React Router 会将 匹配`action`到应用程序的路由并调用`<Route action>`序列化的[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)。操作完成后，页面上的所有加载程序数据将自动重新生效，以使您的 UI 与您的数据保持同步。
+当用户提交表单时，React Router将匹配 `action` 到应用程序的路由，并使用序列化的[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)调用 `<Route action>` 。当操作完成时，页面上的所有加载器数据将自动重新验证，以使您的UI与数据保持同步。
 
-该方法将在[`request.method`](https://developer.mozilla.org/en-US/docs/Web/API/Request/method)被调用的路由操作内部可用。您可以使用它来指示有关提交意图的数据抽象。
+该方法将在调用的路由操作内部的[`request.method`](https://developer.mozilla.org/en-US/docs/Web/API/Request/method)上可用。您可以使用此功能指示数据抽象有关提交意图的信息。
 
-```javascript
+```jsx
 <Route
   path="/projects/:id"
   element={<Project />}
@@ -163,61 +165,49 @@ function Project() {
 }
 ```
 
-如您所见，两种形式都提交到相同的路线，但您可以使用`request.method`to 分支来处理您打算做的事情。操作完成后，`loader`将重新生效，UI 将自动与新数据同步。
+正如您所看到的，两个表单都提交到同一个路由，但您可以使用 `request.method` 来分支处理您的意图。操作完成后， `loader` 将被重新验证，UI将自动与新数据同步。
 
 ## `replace`
 
 指示表单替换历史堆栈中的当前条目，而不是推送新条目。
 
-```javascript
+```jsx
 <Form replace />
 ```
 
 默认行为取决于表单行为：
 
-- `method=get`表格默认为`false`
+- `method=get`表单默认为`false`
 
-- 提交方法取决于
+- 提交方法取决于 `formAction` 和 `action` 的行为：
 
-  ```javascript
-  formAction
-  ```
+  - 如果您的 `action` 抛出异常，则默认为 `false`
+  - 如果您的 `action` 重定向到当前位置，则默认为 `true`
+  - 如果您的 `action` 重定向到其他位置，则默认为 `false`
+- 如果您的 `formAction` 是当前位置，则默认为 `true`
+  - 否则默认为 `false`
 
-  和
+我们发现在 `get` 中，通常希望用户能够点击“返回”以查看先前的搜索结果/筛选等。但是对于其他方法，默认情况下是 `true` ，以避免“您确定要重新提交表单吗？”提示。请注意，即使 `replace={false}` ，当单击后退按钮并且方法为post、put、patch或delete时，React Router*也不会*重新提交表单。
 
-  ```javascript
-  action
-  ```
-
-  行为：
-
-  - 如果你`action`抛出，那么它将默认为`false`
-  - 如果您`action`重定向到当前位置，则默认为`true`
-  - 如果您`action`重定向到其他地方，则默认为`false`
-  - 如果您`formAction`是当前位置，则默认为`true`
-  - 否则默认为`false`
-
-我们发现`get`你经常希望用户能够点击“后退”以查看以前的搜索结果/过滤器等。但是对于其他方法，默认情况下是`true`避免“你确定要重新提交表单吗？ ？” 迅速的。请注意，即使`replace={false}`React Router在单击后退按钮且方法为 post、put、patch 或 delete 时*也不会重新提交表单。*
-
-换句话说，这实际上只对 GET 提交有用，并且您希望避免后退按钮显示以前的结果。
+换句话说，这只对GET提交有用，您希望避免后退按钮显示先前的结果。
 
 ## `relative`
 
-默认情况下，路径是相对于路由层次结构的，因此`..`会上升`Route`一层。有时，您可能会发现匹配的 URL 模式没有嵌套的意义，并且您更喜欢使用相对*路径*路由。您可以选择加入此行为`<Form to="../some/where" relative="path">`
+默认情况下，路径相对于路由层次结构，因此 `..` 将上升一个 `Route` 级别。偶尔，您可能会发现您有匹配的URL模式，这些模式不适合嵌套，并且您更喜欢使用相对*路径*路由。您可以使用 `<Form to="../some/where" relative="path">` 选择此行为。
 
 ## `reloadDocument`
 
-指示表单跳过 React Router 并使用浏览器的内置行为提交表单。
+指示表单跳过React Router并使用浏览器的内置行为提交表单。
 
-```javascript
+```jsx
 <Form reloadDocument />
 ```
 
-这是推荐的，`<form>`因此您可以获得 default 和 relative 的好处`action`，但在其他方面与纯 HTML 表单相同。
+这比 `<form>` 更推荐，因此您可以获得默认和相对 `action` 的好处，但除此之外与普通HTML表单相同。
 
-如果没有像[Remix](https://remix.run/)这样的框架，或者您自己的服务器处理路由的帖子，这不是很有用。
+如果没有像[Remix](https://remix.run/)这样的框架，或者您自己的服务器处理路由的帖子，那么这并没有什么用处。
 
-也可以看看：
+**另请参阅：**
 
 - [`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)
 - [`useActionData`](https://reactrouter.com/en/main/hooks/use-action-data)
@@ -225,23 +215,23 @@ function Project() {
 
 ## `preventScrollReset`
 
-如果您正在使用[``](https://reactrouter.com/en/main/components/scroll-restoration)，这可以防止在表单操作重定向到新位置时将滚动位置重置为窗口顶部。
+如果您正在使用[`<ScrollRestoration>`](https://reactrouter.com/en/main/components/scroll-restoration)，则可以防止表单操作重定向到新位置时滚动位置重置为窗口顶部。
 
-```javascript
+```jsx
 <Form method="post" preventScrollReset={true} />
 ```
 
-也可以看看：[``](https://reactrouter.com/en/main/components/link#preventscrollreset)
+**另请参阅：**
 
-# 例子
+[`<Link preventScrollReset>`](https://reactrouter.com/en/main/components/link#preventscrollreset)
 
-TODO：更多示例
+# 示例
 
-## 大列表过滤
+## 大型列表过滤
 
-GET 提交的一个常见用例是过滤大型列表，例如电子商务和旅游预订网站。
+GET提交的常见用例是过滤大型列表，例如电子商务和旅行预订网站。
 
-```javascript
+```jsx
 function FilterForm() {
   return (
     <Form method="get" action="/slc/hotels">
@@ -296,15 +286,15 @@ function FilterForm() {
 }
 ```
 
-当用户提交此表单时，表单将被序列化为 URL，具体取决于用户的选择：
+当用户提交此表单时，表单将被序列化到URL中，类似于以下内容，具体取决于用户的选择：
 
-```javascript
+```jsx
 /slc/hotels?sort=price&stars=4&amenities=pool&amenities=exercise
 ```
 
-您可以从访问这些值`request.url`
+您可以从 `request.url` 中访问这些值。
 
-```javascript
+```jsx
 <Route
   path="/:city/hotels"
   loader={async ({ request }) => {
@@ -317,6 +307,6 @@ function FilterForm() {
 />
 ```
 
-**也可以看看：**
+**另请参阅：**
 
-- [使用提交](https://reactrouter.com/en/main/hooks/use-submit)
+- [useSubmit](https://reactrouter.com/en/main/hooks/use-submit)
