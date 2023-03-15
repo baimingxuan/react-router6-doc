@@ -114,6 +114,10 @@ module.exports = {
                         path: '/route/error-element'
                     },
                     {
+                        title: 'lazy',
+                        path: '/route/lazy'
+                    },
+                    {
                         title: 'Loader',
                         path: '/route/loader'
                     },
