@@ -2,7 +2,7 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function Navigate(props: NavigateProps): null;
 
 interface NavigateProps {
@@ -13,11 +13,11 @@ interface NavigateProps {
 }
 ```
 
-元素在`<Navigate>`呈现时会更改当前位置。它是围绕 的组件包装器[`useNavigate`](https://reactrouter.com/en/main/hooks/use-navigate)，并接受与 props 相同的所有参数。
+当渲染时， `<Navigate>` 元素会改变当前位置。它是 `useNavigate`[`useNavigate`](https://reactrouter.com/en/main/hooks/use-navigate)的组件包装器，并接受与 props 相同的所有参数。
 
-> 拥有基于组件的`useNavigate`钩子版本可以更轻松地在[`React.Component`](https://reactjs.org/docs/react-component.html)无法使用钩子的子类中使用此功能。
+> 拥有基于组件的 `useNavigate` 钩子版本使得在无法使用钩子的[`React.Component`](https://reactjs.org/docs/react-component.html)子类中更容易使用此功能。
 
-```javascript
+```jsx
 import * as React from "react";
 import { Navigate } from "react-router-dom";
 

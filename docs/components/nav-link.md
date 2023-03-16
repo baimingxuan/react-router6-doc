@@ -1,128 +1,117 @@
 `<NavLink>`
 
-类型声明
+ `<NavLink>` 是一种特殊的 `<Link>` ，它知道自己是否处于“活动”或“挂起”状态。在构建导航菜单（如面包屑导航或选项卡集合）时非常有用，可以显示当前选中的选项。它还为屏幕阅读器等辅助技术提供有用的上下文信息。
 
-```javascript
-declare function NavLink(
-  props: NavLinkProps
-): React.ReactElement;
-
-interface NavLinkProps
-  extends Omit<
-    LinkProps,
-    "className" | "style" | "children"
-  > {
-  caseSensitive?: boolean;
-  children?:
-    | React.ReactNode
-    | ((props: { isActive: boolean }) => React.ReactNode);
-  className?:
-    | string
-    | ((props: {
-        isActive: boolean;
-      }) => string | undefined);
-  end?: boolean;
-  style?:
-    | React.CSSProperties
-    | ((props: {
-        isActive: boolean;
-      }) => React.CSSProperties);
-}
-```
-
-`<NavLink>`是一种特殊的，[``](https://reactrouter.com/en/main/components/link)它知道它是否是“活跃的”。这在构建导航菜单（例如面包屑或一组选项卡）时非常有用，您希望在其中显示当前选中的选项卡。它还为屏幕阅读器等辅助技术提供有用的上下文。
-
-默认情况下，类会在组件处于活动状态时`active`添加到组件中。`<NavLink>`这为大多数从 v5 升级的用户提供了相同的简单样式机制。一个不同之`v6.0.0-beta.3`处在于`activeClassName`和`activeStyle`已从`NavLinkProps`. 相反，您可以将一个函数传递给其中一个，`style`或者`className`允许您根据组件的活动状态自定义内联样式或类字符串。您还可以将函数作为子项传递，以根据`<NavLink>`组件的活动状态自定义组件的内容，这对于更改内部元素的样式特别有用。
-
-```javascript
-import * as React from "react";
+```jsx
 import { NavLink } from "react-router-dom";
 
-function NavList() {
-  // This styling will be applied to a <NavLink> when the
-  // route that it links to is currently selected.
-  let activeStyle = {
-    textDecoration: "underline",
-  };
+<NavLink
+  to="/messages"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "active" : ""
+  }
+>
+  Messages
+</NavLink>;
+```
 
-  let activeClassName = "underline";
+## 默认 `active` 类
 
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink
-            to="messages"
-            style={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }
-          >
-            Messages
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="tasks"
-            className={({ isActive }) =>
-              isActive ? activeClassName : undefined
-            }
-          >
-            Tasks
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="tasks">
-            {({ isActive }) => (
-              <span
-                className={
-                  isActive ? activeClassName : undefined
-                }
-              >
-                Tasks
-              </span>
-            )}
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  );
+默认情况下，当一个 `<NavLink>` 组件处于活动状态时，会添加一个 `active` 类，因此您可以使用 CSS 对其进行样式设置。
+
+```jsx
+<nav id="sidebar">
+  <NavLink to="/messages" />
+</nav>
+```
+
+```css
+#sidebar a.active {
+  color: red;
 }
 ```
 
-如果您更喜欢 v5 API，您可以创建自己`<NavLink />`的包装器组件：
+## `className`
 
-```javascript
-import * as React from "react";
-import { NavLink as BaseNavLink } from "react-router-dom";
+`className` ” 属性的作用类似于普通的 className，但您还可以传递一个函数来自定义应用于链接的类名，基于链接的活动状态和挂起状态。
 
-const NavLink = React.forwardRef(
-  ({ activeClassName, activeStyle, ...props }, ref) => {
-    return (
-      <BaseNavLink
-        ref={ref}
-        {...props}
-        className={({ isActive }) =>
-          [
-            props.className,
-            isActive ? activeClassName : null,
-          ]
-            .filter(Boolean)
-            .join(" ")
-        }
-        style={({ isActive }) => ({
-          ...props.style,
-          ...(isActive ? activeStyle : null),
-        })}
-      />
-    );
+```jsx
+<NavLink
+  to="/messages"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "active" : ""
   }
-);
+>
+  Messages
+</NavLink>
 ```
 
-如果`end`使用该道具，它将确保该组件在其后代路径匹配时不会被匹配为“活动”。例如，要呈现仅在网站根目录而不是任何其他 URL 处处于活动状态的链接，您可以使用：
+## `style`
 
-```javascript
+“ `style` ” 属性的作用类似于普通的样式属性，但您还可以传递一个函数来自定义应用的样式，基于链接的活动状态和挂起状态。
+
+```jsx
+<NavLink
+  to="/messages"
+  style={({ isActive, isPending }) => {
+    return {
+      fontWeight: isActive ? "bold" : "",
+      color: isPending ? "red" : "black",
+    };
+  }}
+>
+  Messages
+</NavLink>
+```
+
+## `children`
+
+您可以将渲染属性作为子元素传递，以根据活动和挂起状态自定义 `<NavLink>` 的内容，这对于更改内部元素的样式非常有用。
+
+```jsx
+<NavLink to="/tasks">
+  {({ isActive, isPending }) => (
+    <span className={isActive ? "active" : ""}>Tasks</span>
+  )}
+</NavLink>
+```
+
+## `end`
+
+ `end` 属性更改了匹配逻辑，使得 `active` 和 `pending` 状态只匹配到 NavLink 的 `to` 路径的“结尾”。如果 URL 长度超过 `to` ，则不再被视为活动状态。
+
+如果没有 end 属性，这个链接总是活动的，因为每个 URL 都匹配 `/` 。
+
+```jsx
+<NavLink to="/">Home</NavLink>
+```
+
+要将 URL “匹配到结尾” 的 `to` ，请使用 `end` ：
+
+```jsx
 <NavLink to="/" end>
   Home
 </NavLink>
 ```
+
+现在这个链接只在 `"/"` 处活动。这也适用于具有更多段的路径：
+
+| Link                          | URL          | isActive |
+| ----------------------------- | ------------ | -------- |
+| `<NavLink to="/tasks" />`     | `/tasks`     | true     |
+| `<NavLink to="/tasks" />`     | `/tasks/123` | true     |
+| `<NavLink to="/tasks" end />` | `/tasks`     | true     |
+| `<NavLink to="/tasks" end />` | `/tasks/123` | false    |
+
+## `caseSensitive`
+
+添加 `caseSensitive` 属性会改变匹配逻辑，使其区分大小写。
+
+| Link                                         | URL           | isActive |
+| -------------------------------------------- | ------------- | -------- |
+| `<NavLink to="/SpOnGe-bOB" />`               | `/sponge-bob` | true     |
+| `<NavLink to="/SpOnGe-bOB" caseSensitive />` | `/sponge-bob` | false    |
+
+## `aria-current`
+
+当 `NavLink` 处于活动状态时，它会自动应用于底层锚点标记 `<a aria-current="page">` 。请参阅 MDN 上的 [aria-current](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current)。

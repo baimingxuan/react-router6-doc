@@ -1,8 +1,10 @@
 # `<Link>` `(React Native)`
 
+这是 `<Link>` 的 React Native 版本。要查看Web版，[请前往此处](https://reactrouter.com/en/main/components/link)。
+
 类型声明
 
-```javascript
+```tsx
 declare function Link(props: LinkProps): React.ReactElement;
 
 interface LinkProps extends TouchableHighlightProps {
@@ -14,9 +16,9 @@ interface LinkProps extends TouchableHighlightProps {
 }
 ```
 
-`<Link>`是一种元素，允许用户通过点击它导航到另一个视图，类似于`<a>`元素在 Web 应用程序中的工作方式。在`react-router-native`中，a`<Link>`呈现 a `TouchableHighlight`。要覆盖默认样式和行为，请参阅[Props 参考`TouchableHighlight`](https://reactnative.dev/docs/touchablehighlight#props)。
+`<Link>` 是一个元素，用户可以通过点击它导航到另一个视图，类似于网页应用中 `<a>` 元素的工作方式。在 `react-router-native` 中， `<Link>` 渲染一个 `TouchableHighlight` 。要覆盖默认样式和行为，请参阅[`TouchableHighlight`的Props参考文档](https://reactnative.dev/docs/touchablehighlight#props)。
 
-```javascript
+```jsx
 import * as React from "react";
 import { View, Text } from "react-native";
 import { Link } from "react-router-native";
