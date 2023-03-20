@@ -1,8 +1,8 @@
 # `useAsyncValue`
 
-从最近的`<Await>`祖先组件返回已解析的数据。
+从最近的 `<Await>` 祖先组件返回已解析的数据。
 
-```javascript
+```jsx
 function ProductVariants() {
   const variants = useAsyncValue();
   return <div>{/* ... */}</div>;
@@ -14,4 +14,4 @@ function ProductVariants() {
 </Await>;
 ```
 
-有关更多信息，请参阅[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)和[``文档](https://reactrouter.com/en/main/components/await)。
+请查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)和[`<Await>`](https://reactrouter.com/en/main/components/await)文档以获取更多信息。

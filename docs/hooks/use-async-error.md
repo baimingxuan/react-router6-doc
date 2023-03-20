@@ -1,8 +1,8 @@
 # `useAsyncError`
 
-从最近的 [ `<Await>`][await] 组件返回拒绝值。
+从最近的 `<Await>` [await] 组件返回拒绝值。
 
-```javascript
+```jsx
 import { useAsyncError, Await } from "react-router-dom";
 
 function ErrorElement() {
@@ -18,4 +18,4 @@ function ErrorElement() {
 />;
 ```
 
-有关更多信息，请参阅[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)和[``文档](https://reactrouter.com/en/main/components/await)。
+请查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)和[`<Await>`](https://reactrouter.com/en/main/components/await)文档以获取更多信息。

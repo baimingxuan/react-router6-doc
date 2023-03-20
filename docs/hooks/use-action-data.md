@@ -1,8 +1,8 @@
 # `useActionData`
 
-此挂钩提供先前导航`action`结果的返回值，或者`undefined`如果没有提交。
+此钩子提供了上一次导航的 `action` 结果的返回值，如果没有提交，则为 `undefined` 。
 
-```javascript
+```jsx
 import { useActionData } from "react-router-dom";
 
 function SomeComponent() {
@@ -11,9 +11,9 @@ function SomeComponent() {
 }
 ```
 
-此挂钩最常见的用例是表单验证错误。如果表单不正确，您可以返回错误并让用户重试：
+此钩子最常见的用例是表单验证错误。如果表单不正确，您可以返回错误并让用户重试：
 
-```javascript
+```jsx
 import {
   useActionData,
   Form,
