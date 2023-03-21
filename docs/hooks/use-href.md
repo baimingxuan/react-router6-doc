@@ -2,15 +2,15 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useHref(
   to: To,
   options?: { relative?: RelativeRoutingType }
 ): string;
 ```
 
-该`useHref`钩子返回一个 URL，该 URL 可用于链接到给定`to`位置，甚至在 React Router 之外。
+`useHref`钩子返回一个 URL，可用于链接到给定的 ``` `to` ``` 位置，即使在 React Router 之外也可以。
 
 > **提示：**
 >
-> 您可能有兴趣查看`<Link>` 组件的源代码，`react-router-dom`了解它如何在`useHref`内部使用来确定其自身的`href`值。
+> 您可能会对查看 `react-router-dom` 中 `<Link>` 组件的源代码感兴趣，以了解它如何在内部使用 `useHref` 来确定自己的 `href` 值。

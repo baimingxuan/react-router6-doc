@@ -1,10 +1,11 @@
 # `useFetchers`
 
-返回所有不带,或属性的[飞行](https://reactrouter.com/en/main/hooks/use-fetcher)中获取器的数组（不能让父组件试图控制其子组件的行为！我们从 IRL 经验中知道这是徒劳的。）`load``submit``Form`
+返回所有正在进行的 [fetchers](https://reactrouter.com/en/main/hooks/use-fetcher) 数组，但不包括它们的 `load` ， `submit` 或 `Form` 属性（不能让父组件试图控制其子组件的行为！从现实生活经验中我们知道这是徒劳的。
 
-此功能仅在使用数据路由器时有效，请参阅[选择路由器](https://reactrouter.com/en/main/routers/picking-a-router)
+> 仅当使用数据路由器时，此功能才有效，请参见[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)
+>
 
-```javascript
+```jsx
 import { useFetchers } from "react-router-dom";
 
 function SomeComp() {
@@ -13,11 +14,11 @@ function SomeComp() {
 }
 ```
 
-这对于整个应用程序中未创建提取器但希望使用其提交参与乐观 UI 的组件很有用。
+这对于整个应用程序中的组件非常有用，这些组件没有创建获取器，但希望使用它们的提交来参与乐观的UI。
 
-例如，想象一个 UI，其中边栏列出项目，主视图显示当前项目的复选框列表。侧边栏可以显示每个项目的已完成任务数和总任务数。
+例如，想象一个UI，侧边栏列出项目，主视图显示当前项目的复选框列表。侧边栏可以显示每个项目的已完成和总任务数。
 
-```
+```sh
 +-----------------+----------------------------+
 |                 |                            |
 |   Soccer  (8/9) | [x] Do the dishes          |
@@ -33,9 +34,9 @@ function SomeComp() {
 +-----------------+----------------------------┘
 ```
 
-当用户单击复选框时，提交将转到更改任务状态的操作。我们不想创建“加载状态”，而是想创建一个“乐观的 UI”，即使服务器尚未处理它，它也会**立即更新复选框以显示为已选中。**在复选框组件中，我们可以使用`fetcher.submission`：
+当用户单击复选框时，提交将发送到更改任务状态的操作。我们不想创建“加载状态”，而是要创建“乐观的UI”，即使服务器尚未处理它，它也会**立即**更新复选框以显示已选中。在复选框组件中，我们可以使用 `fetcher.formData` ：
 
-```javascript
+```jsx
 function Task({ task }) {
   const { projectId, id } = task;
   const toggle = useFetcher();
@@ -62,9 +63,9 @@ function Task({ task }) {
 }
 ```
 
-这对复选框来说很棒，但是当用户点击它们时，侧边栏会显示 2/4 而复选框显示 3/4！
+这对于复选框非常棒，但是当用户点击其中一个时，侧边栏将显示2/4，而复选框将显示3/4！
 
-```
+```sh
 +-----------------+----------------------------+
 |                 |                            |
 |   Soccer  (8/9) | [x] Do the dishes          |
@@ -80,17 +81,17 @@ function Task({ task }) {
 +-----------------+----------------------------┘
 ```
 
-由于路线会自动重新验证，因此侧边栏会快速更新并保持正确。但有那么一刻，它会觉得有点好笑。
+因为路由会自动重新验证，所以侧边栏将快速更新并正确。但是在某一时刻，它会感觉有点奇怪。
 
-这就是`useFetchers`进来的地方。在侧边栏上方，我们可以从复选框访问所有飞行中的提取器状态——即使它不是创建它们的组件。
+这就是 `useFetchers` 的作用。在侧边栏中，我们可以访问复选框中所有正在进行的获取器状态，即使它不是创建它们的组件。
 
-该策略分为三个步骤：
+该策略有三个步骤：
 
-1. 查找特定项目中任务的提交
-2. 使用`fetcher.formData`立即更新计数
-3. 如果它不是飞行中的，则使用正常任务的状态
+1. 找到特定项目中任务的提交
+2. 使用 `fetcher.formData` 立即更新计数
+3. 如果不是inflight，则使用正常任务状态
 
-```javascript
+```jsx
 function ProjectTaskCount({ project }) {
   let completedTasks = 0;
   const fetchers = useFetchers();
@@ -131,4 +132,4 @@ function ProjectTaskCount({ project }) {
 }
 ```
 
-这是一些工作，但它主要只是向 React Router 询问它正在跟踪的状态并根据它进行乐观计算。
+这需要一些工作，但主要是向React Router询问它正在跟踪的状态，并根据它进行乐观的计算。
