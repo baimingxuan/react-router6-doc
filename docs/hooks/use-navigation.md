@@ -1,16 +1,17 @@
 # `useNavigation`
 
-这个钩子告诉你关于页面导航你需要知道的一切，以构建挂起的导航指示器和数据突变的乐观 UI。像：
+这个钩子告诉您关于页面导航的一切，以构建挂起导航指示器和在数据变化时进行乐观 UI。例如：
 
-- 全局加载指标
-- 发生突变时禁用表单
-- 添加忙指示器以提交按钮
-- 在服务器上创建时乐观地显示新记录
-- 在记录更新时乐观地显示记录的新状态
+- 全局加载指示器
+- 在发生突变时禁用表单
+- 在提交按钮上添加忙碌指示器
+- 在服务器上创建新记录时乐观地显示新记录
+- 在更新记录时乐观地显示记录的新状态
 
-此功能仅在使用数据路由器时有效，请参阅[选择路由器](https://reactrouter.com/en/main/routers/picking-a-router)
+> 仅当使用数据路由器时，此功能才有效，请参阅[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)。
+>
 
-```javascript
+```jsx
 import { useNavigation } from "react-router-dom";
 
 function SomeComponent() {
@@ -25,25 +26,25 @@ function SomeComponent() {
 
 ## `navigation.state`
 
-- **idle** - 没有导航挂起。
-- **提交**- 由于使用 POST、PUT、PATCH 或 DELETE 提交表单，正在调用路由操作
-- **loading** - 正在调用下一个路由的加载器以呈现下一个页面
+- **idle** - 没有待处理的导航。
+- **submitting**- 由于使用POST、PUT、PATCH或DELETE提交表单而调用路由操作
+- **loading** - 下一个路由的加载器正在调用以呈现下一页
 
-正常导航和 GET 表单提交通过这些状态转换：
+正常导航和GET表单提交通过这些状态转换：
 
-```
+```sh
 idle → loading → idle
 ```
 
-通过这些状态转换带有 POST、PUT、PATCH 或 DELETE 的表单提交：
+使用POST、PUT、PATCH或DELETE的表单提交通过这些状态转换：
 
-```
+```sh
 idle → submitting → loading → idle
 ```
 
-这是一个简单的提交按钮，当导航状态发生变化时，它会更改其文本：
+这是一个简单的提交按钮，当导航状态正在更改时更改其文本：
 
-```javascript
+```jsx
 function SubmitButton() {
   const navigation = useNavigation();
 
@@ -58,9 +59,9 @@ function SubmitButton() {
 }
 ```
 
-在`navigation.state`提供活动导航的高级状态的同时，您可以通过将其与其他`navigation`方面相结合来推断出更细粒度的信息：
+虽然 `navigation.state` 提供了活动导航的高级状态，但您可以通过将其与其他 `navigation` 方面相结合来推断更细粒度的信息：
 
-```javascript
+```jsx
 // Is this just a normal load?
 let isNormalLoad =
   navigation.state === "loading" &&
@@ -81,12 +82,12 @@ let isRedirecting =
 
 ## `navigation.formData`
 
-任何从 a 开始的 POST、PUT、PATCH 或 DELETE 导航`<Form>`将`useSubmit`附加表单的提交数据。这主要用于使用`submission.formData` [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)对象构建“乐观 UI”。
+从 `<Form>` 或 `useSubmit` 开始的任何POST、PUT、PATCH或DELETE导航都将附加到您的表单提交数据。这主要用于使用 `submission.formData` [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)对象构建“乐观UI”。
 
-在 GET 表单提交的情况下，`formData`将为空，数据将反映在`navigation.location.search`.
+在GET表单提交的情况下， `formData` 将为空，并且数据将反映在 `navigation.location.search` 中。
 
 ## `navigation.location`
 
-这会告诉您下一个[位置](https://reactrouter.com/en/main/utils/location)是什么。
+这告诉您下一个[位置](https://reactrouter.com/en/main/utils/location)将是什么。
 
-请注意，如果表单正在提交到链接指向的 URL，则此链接不会显示为“待处理”，因为我们只在“加载”状态下这样做。当状态为“正在提交”时，表单将包含待处理的 UI，一旦操作完成，链接将变为待处理状态。
+请注意，如果表单正在提交到链接指向的URL，则此链接不会显示为“待定”，因为我们仅对“加载”状态执行此操作。表单将包含“提交”状态下的待定UI，一旦操作完成，链接将变为待定状态。

@@ -2,8 +2,8 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useOutlet(): React.ReactElement | null;
 ```
 
-返回路由层次结构这一级别的子路由的元素。这个钩子在内部被[``](https://reactrouter.com/en/main/components/outlet)用来渲染子路由。
+返回路由层次结构中此级别的子路由元素。此钩子由[`<Outlet>`](https://reactrouter.com/en/main/components/outlet)内部用于呈现子路由。

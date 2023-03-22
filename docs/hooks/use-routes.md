@@ -2,18 +2,18 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useRoutes(
   routes: RouteObject[],
   location?: Partial<Location> | string;
 ): React.ReactElement | null;
 ```
 
-钩子在`useRoutes`功能上等同于[``](https://reactrouter.com/en/main/components/routes)，但它使用 JavaScript 对象而不是``元素来定义您的路由。[``这些对象具有与普通元素](https://reactrouter.com/en/main/components/route)相同的属性，但它们不需要 JSX。
+ `useRoutes`钩子是功能上等同于 [`<Routes>`](https://reactrouter.com/en/main/components/routes)的钩子，但它使用 JavaScript 对象而不是 [`<Route>元素`](https://reactrouter.com/en/main/components/route)来定义您的路由。这些对象具有与普通的 `<Route>` 元素相同的属性，但它们不需要 JSX。
 
-的返回值`useRoutes`是可用于呈现路由树的有效 React 元素，或者`null`没有匹配项。
+`useRoutes` 的返回值可以是一个有效的 React 元素，您可以使用它来渲染路由树，或者如果没有匹配到任何内容，则为 `null` 。
 
-```javascript
+```jsx
 import * as React from "react";
 import { useRoutes } from "react-router-dom";
 

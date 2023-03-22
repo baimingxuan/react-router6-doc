@@ -2,15 +2,15 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useOutletContext<
   Context = unknown
 >(): Context;
 ```
 
-通常，父路由管理状态或您希望与子路由共享的其他值。如果你愿意，你可以创建自己的[上下文提供者](https://reactjs.org/docs/context.html)，但这是一种常见的情况，它是内置的`<Outlet />`：
+通常，父级路由会管理状态或其他您希望与子路由共享的值。如果您愿意，可以创建自己的[上下文提供程序](https://reactjs.org/docs/context.html)，但这是一个常见的情况，已经内置在 `<Outlet />` 中：
 
-```javascript
+```jsx
 function Parent() {
   const [count, setCount] = React.useState(0);
   return <Outlet context={[count, setCount]} />;
@@ -24,9 +24,11 @@ function Child() {
 }
 ```
 
-如果您使用的是 TypeScript，我们建议父组件提供一个自定义挂钩来访问上下文值。这使消费者更容易获得良好的类型、控制消费者并了解谁在使用上下文值。这是一个更现实的例子：
+如果您正在使用TypeScript，我们建议父组件提供一个自定义钩子来访问上下文值。这使得消费者更容易获得良好的类型定义，控制消费者，并知道谁在使用上下文值。以下是一个更现实的例子：
 
-```javascript
+`src/routes/dashboard.tsx`
+
+```jsx
 import * as React from "react";
 import type { User } from "./types";
 import { Outlet, useOutletContext } from "react-router-dom";
@@ -47,6 +49,11 @@ export default function Dashboard() {
 export function useUser() {
   return useOutletContext<ContextType>();
 }
+```
+
+`src/routes/dashboard/messages.tsx`
+
+```jsx
 import { useUser } from "../dashboard";
 
 export default function DashboardMessages() {

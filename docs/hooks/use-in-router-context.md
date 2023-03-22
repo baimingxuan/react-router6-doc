@@ -2,8 +2,8 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useInRouterContext(): boolean;
 ```
 
-如果组件正在 a 的上下文中呈现，则挂钩`useInRouterContext`返回，否则。这对于需要知道它们是否在 React Router 应用程序的上下文中呈现的某些 3rd 方扩展很有用。`true``<Router>``false`
+如果组件在 `<Router>` 的上下文中呈现，则 `useInRouterContext` 钩子返回 `true` ，否则返回 `false` 。这对于某些第三方扩展非常有用，它们需要知道它们是否在 React Router 应用程序的上下文中呈现。

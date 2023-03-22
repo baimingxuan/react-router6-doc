@@ -2,7 +2,7 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useLocation(): Location;
 
 interface Location extends Path {
@@ -11,9 +11,9 @@ interface Location extends Path {
 }
 ```
 
-这个钩子返回当前[`location`](https://reactrouter.com/en/main/utils/location)对象。如果您想在当前位置更改时执行一些副作用，这将很有用。
+这个钩子返回当前的[`location`](https://reactrouter.com/en/main/utils/location)对象。如果您想在当前位置更改时执行一些副作用，这可能会很有用。
 
-```javascript
+```jsx
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 

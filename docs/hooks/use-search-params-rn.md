@@ -1,10 +1,10 @@
 # `useSearchParams`（React Native）
 
-> 这是`useSearchParams`. 对于网络版本，[请转到此处](https://reactrouter.com/en/main/hooks/use-search-params)。
+> 这是 `useSearchParams` 的 React Native 版本。要查看Web版，[请点击此处](https://reactrouter.com/en/main/hooks/use-search-params)。
 
 类型声明
 
-```javascript
+```tsx
 declare function useSearchParams(
   defaultInit?: URLSearchParamsInit
 ): [URLSearchParams, SetURLSearchParams];
@@ -31,9 +31,9 @@ interface NavigateOptions {
 }
 ```
 
-该`useSearchParams`钩子用于读取和修改当前位置的 URL 中的查询字符串。像 React 自己的[`useState`hook](https://reactjs.org/docs/hooks-reference.html#usestate)一样，`useSearchParams`返回一个包含两个值的数组：当前位置的[搜索参数](https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams)和一个可用于更新它们的函数。正如 React 的[`useState`hook](https://reactjs.org/docs/hooks-reference.html#usestate)一样，`setSearchParams`也支持[功能更新](https://reactjs.org/docs/hooks-reference.html#functional-updates)。因此，您可以提供一个接受`searchParams`并返回更新版本的函数。
+`useSearchParams`钩子用于读取和修改当前位置URL中的查询字符串。与React自己的[`useState`钩子](https://reactjs.org/docs/hooks-reference.html#usestate)一样，`useSearchParams`返回一个包含两个值的数组：当前位置的[搜索参数](https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams)和一个可用于更新它们的函数。就像React的[`useState`钩子](https://reactjs.org/docs/hooks-reference.html#usestate)一样，`setSearchParams`也支持[函数式更新](https://reactjs.org/docs/hooks-reference.html#functional-updates)。因此，您可以提供一个接受`searchParams`并返回更新版本的函数。
 
-```javascript
+```jsx
 import * as React from "react";
 import { View, SearchForm, TextInput } from "react-native";
 import { useSearchParams } from "react-router-native";

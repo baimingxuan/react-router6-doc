@@ -2,7 +2,7 @@
 
 快捷方式：
 
-```javascript
+```jsx
 new Response(JSON.stringify(someValue), {
   headers: {
     "Content-Type": "application/json; utf-8",
@@ -10,9 +10,9 @@ new Response(JSON.stringify(someValue), {
 });
 ```
 
-通常用于装载机：
+通常用于加载器：
 
-```javascript
+```jsx
 import { json } from "react-router-dom";
 
 const loader = async () => {
@@ -23,4 +23,4 @@ const loader = async () => {
 
 也可以看看：
 
-- [从装载机返回响应](https://reactrouter.com/en/main/route/loader#returning-responses)
+- [从加载器返回响应](https://reactrouter.com/en/main/route/loader#returning-responses)

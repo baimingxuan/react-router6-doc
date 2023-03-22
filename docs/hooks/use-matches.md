@@ -1,8 +1,8 @@
 # `useMatches`
 
-返回页面上的当前路由匹配项。这对于在父布局中创建抽象以访问其子路由数据最有用。
+返回页面上当前路由匹配项。这对于在父布局中创建抽象以访问其子路由的数据非常有用。
 
-```javascript
+```jsx
 import { useMatches } from "react-router-dom";
 
 function SomeComponent() {
@@ -11,9 +11,9 @@ function SomeComponent() {
 }
 ```
 
-A`match`具有以下形状：
+ `match` 具有以下形状：
 
-```javascript
+```jsx
 {
   // route id
   id,
@@ -32,15 +32,17 @@ A`match`具有以下形状：
 };
 ```
 
-配对变得非常强大`<Route handle>`，`useMatches`因为您可以将任何您想要的东西放在路线上`handle`并可以访问`useMatches`任何地方。
+将 `<Route handle>` 与 `useMatches` 配对非常强大，因为您可以在路由 `handle` 上放置任何您想要的内容，并随时访问 `useMatches` 。
 
-`useMatches`只适用于像 的数据路由器[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)，因为他们预先知道完整的路由树并且可以提供所有当前匹配项。此外，`useMatches`不会匹配到任何后代路由树，因为路由器不知道后代路由。
+`useMatches` 仅适用于像[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)这样的数据路由，因为它们事先知道完整的路由树，并且可以提供所有当前匹配项。此外， `useMatches` 不会匹配到任何后代路由树中，因为路由器不知道后代路由。
 
 ## 面包屑
 
-这里众所周知的用例是将面包屑添加到使用子路由数据的父布局。
+这里的谚语用例是向使用子路由数据的父布局添加面包屑。
 
-```javascript
+`app.jsx`
+
+```jsx
 <Route element={<Root />}>
   <Route
     path="messages"
@@ -51,7 +53,7 @@ A`match`具有以下形状：
       // here we use "crumb" and return some elements,
       // this is what we'll render in the breadcrumbs
       // for this route
-      crumb: () => <Link to="/message">Messages</Link>,
+      crumb: () => <Link to="/messages">Messages</Link>,
     }}
   >
     <Route
@@ -70,9 +72,11 @@ A`match`具有以下形状：
 </Route>
 ```
 
-现在我们可以创建一个`Breadcrumbs`组件，利用我们自己开发的`crumb`抽象`useMatches`和`handle`。
+现在，我们可以创建一个 `Breadcrumbs` 组件，利用我们自己开发的 `crumb` 抽象，使用 `useMatches` 和 `handle` 。
 
-```javascript
+`components/breadcrumbs.jsx`
+
+```jsx
 function Breadcrumbs() {
   let matches = useMatches();
   let crumbs = matches
@@ -92,4 +96,4 @@ function Breadcrumbs() {
 }
 ```
 
-现在你可以渲染`<Breadcrumbs/>`任何你想要的地方，可能是在根组件中。
+现在，您可以在任何您想要的地方呈现 `<Breadcrumbs/>` ，可能是在根组件中。

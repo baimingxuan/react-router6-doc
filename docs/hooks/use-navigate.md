@@ -1,10 +1,11 @@
 # `useNavigate`
 
-通常[`redirect`](https://reactrouter.com/en/main/fetch/redirect)在加载器和动作中使用比这个钩子更好
+> 通常在加载器和操作中使用[`redirect`](https://reactrouter.com/en/main/fetch/redirect)要比使用此钩子更好。
+>
 
-该`useNavigate`挂钩返回一个函数，让您以编程方式导航，例如在效果中：
+`useNavigate` 钩子返回一个函数，让您可以以编程方式导航，例如在 effect 中：
 
-```javascript
+```jsx
 import { useNavigate } from "react-router-dom";
 
 function useLogoutTimer() {
@@ -22,7 +23,7 @@ function useLogoutTimer() {
 
 ## 类型声明
 
-```javascript
+```tsx
 declare function useNavigate(): NavigateFunction;
 
 interface NavigateFunction {
@@ -38,7 +39,7 @@ interface NavigateFunction {
 }
 ```
 
-该`navigate`函数有两个签名：
+`navigate` 函数有两个签名：
 
-- 使用可选的第二个参数传递一个`To`值（与 相同类型）或`<Link to>``{ replace, state }`
-- 在历史堆栈中传递你想要去的增量。例如，`navigate(-1)`相当于按下后退按钮。
+- 要么传递一个 `To` 值（与 `<Link to>` 相同的类型），带有可选的第二个 `{ replace, state }` 参数，要么
+- 传递您想要在历史堆栈中前进的增量。例如， `navigate(-1)` 等同于点击后退按钮。

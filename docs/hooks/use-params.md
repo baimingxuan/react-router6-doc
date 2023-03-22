@@ -6,15 +6,15 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function useParams<
   K extends string = string
 >(): Readonly<Params<K>>;
 ```
 
-该`useParams`挂钩从当前 URL 返回一个由`<Route path>`. 子路由继承父路由的所有参数。
+“ `useParams` ” 钩子返回一个键/值对对象，其中包含当前 URL 中由 “ `<Route path>` ” 匹配的动态参数。子路由继承其父路由的所有参数。
 
-```javascript
+```jsx
 import * as React from 'react';
 import { Routes, Route, useParams } from 'react-router-dom';
 
