@@ -2,10 +2,10 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function renderMatches(
   matches: RouteMatch[] | null
 ): React.ReactElement | null;
 ```
 
-`renderMatches`将结果渲染`matchRoutes()`到 React 元素中。
+`renderMatches` 将 `matchRoutes()` 的结果呈现为React元素。

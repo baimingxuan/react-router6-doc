@@ -2,7 +2,7 @@
 
 类型声明
 
-```javascript
+```tsx
 declare function generatePath<Path extends string>(
   path: Path,
   params?: {
@@ -11,9 +11,9 @@ declare function generatePath<Path extends string>(
 ): string;
 ```
 
-`generatePath`将一组参数插入到带有`:id`和`*`占位符的路由路径字符串中。当您想从路由路径中消除占位符以便它静态匹配而不是使用动态参数时，这会很有用。
+`generatePath` 将一组参数插入到路由路径字符串中，其中包含 `:id` 和 `*` 占位符。当您想要从路由路径中消除占位符以使其静态匹配而不是使用动态参数时，这可能非常有用。
 
-```javascript
+```jsx
 generatePath("/users/:id", { id: "42" }); // "/users/42"
 generatePath("/files/:type/*", {
   type: "img",

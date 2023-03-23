@@ -1,30 +1,30 @@
 #  服务器端渲染
 
-> 此文档需要 6.4 的更新并且仅适用于 <=6.3
+> 这个文档需要更新到6.4，并且仅适用于<=6.3
 
-React Router 中最基本的服务器渲染非常简单。然而，除了获得正确的渲染路线之外，还有很多需要考虑的事情。以下是您需要处理的事项的不完整列表：
+React Router中最基本的服务器渲染非常简单。但是，除了正确渲染路由之外，还有很多需要考虑的事情。以下是您需要处理的不完整列表：
 
-- 捆绑服务器和浏览器的代码
-- 不将仅限服务器的代码捆绑到浏览器包中
-- 适用于服务器和浏览器的代码拆分
-- 服务器端数据加载，所以你实际上有东西要渲染
-- 适用于客户端和服务器的数据加载策略
-- 处理服务器和客户端中的代码拆分
-- 正确的 HTTP 状态代码和重定向
-- 环境变量和秘密
+- 为服务器和浏览器捆绑代码
+- 不将仅适用于服务器的代码捆绑到浏览器捆绑包中
+- 在服务器和浏览器上工作的代码拆分
+- 服务器端数据加载，以便您实际上有东西可以渲染
+- 在客户端和服务器上工作的数据加载策略
+- 在服务器和客户端处理代码拆分
+- 适当的HTTP状态代码和重定向
+- 环境变量和机密信息
 - 部署
 
-将所有这些设置好可能会非常复杂，但值得获得只有在服务器渲染时才能获得的性能和用户体验特性。
+设置所有这些可能相当复杂，但是当服务器渲染时，您只能获得性能和UX特征，因此非常值得。
 
-如果你想服务器渲染你的 React Router 应用程序，我们强烈建议你使用[Remix](https://remix.run/)。这是我们的另一个项目，它构建在 React Router 之上并处理上面提到的所有事情以及更多。试一试！
+如果您想要服务器渲染React Router应用程序，我们强烈建议您使用[Remix](https://remix.run/)。这是我们的另一个项目，建立在React Router之上，处理上述所有事项以及更多内容。试试吧！
 
-如果您想自己解决它，则需要`<StaticRouter>`在服务器上使用。
+如果您想自己解决问题，您需要在服务器上使用 `<StaticRouter>` 。
 
-首先，您需要某种在服务器和浏览器中呈现的“应用程序”或“根”组件：
+首先，您需要一些在服务器和浏览器上都可以渲染的“应用程序”或“根”组件：
 
 `App.js`
 
-```javascript
+```jsx
 export default function App() {
   return (
     <html>
@@ -43,11 +43,11 @@ export default function App() {
 }
 ```
 
-这是一个在服务器上呈现应用程序的简单快速服务器。注意使用`StaticRouter`。
+这是一个简单的express服务器，它在服务器上呈现应用程序。请注意使用 `StaticRouter` 。
 
 `server.entry.js`
 
-```javascript
+```jsx
 import express from "express";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
@@ -67,11 +67,11 @@ app.get("*", (req, res) => {
 app.listen(3000);
 ```
 
-最后，您需要一个类似的文件来使用包含相同`App`组件的 JavaScript 包来“滋润”应用程序。注意使用`BrowserRouter`而不是`StaticRouter`。
+最后，您需要一个类似的文件来“注入”应用程序，其中包括完全相同的 `App` 组件的 JavaScript 捆绑包。请注意使用 `BrowserRouter` 而不是 `StaticRouter` 。
 
 `client.entry.js`
 
-```javascript
+```jsx
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
@@ -84,16 +84,16 @@ ReactDOM.hydrate(
 );
 ```
 
-与客户端条目的唯一真正区别是：
+与客户端入口的唯一真正区别是：
 
-- `StaticRouter`代替`BrowserRouter`
-- 将 URL 从服务器传递到`<StaticRouter url>`
-- 使用`ReactDOMServer.renderToString`而不是`ReactDOM.render`。
+- `StaticRouter`而不是`BrowserRouter`
+- 将 URL 从服务器传递给 `<StaticRouter url>`
+- 使用 `ReactDOMServer.renderToString` 而不是 `ReactDOM.render` 。
 
-有些部分你需要自己做才能工作：
+为使此工作，您需要自己完成一些部分：
 
-- 如何捆绑代码以在浏览器和服务器中工作
-- 如何知道客户端条目`<script>`在`<App>`组件中的位置。
-- 弄清楚数据加载（尤其是对于`<title>`）。
+- 如何将代码捆绑在浏览器和服务器中以使其工作
+- 如何知道 `<App>` 组件中 `<script>` 的客户端入口在哪里。
+- 弄清楚数据加载（特别是对于 `<title>` ）。
 
-同样，我们建议您看看[Remix](https://remix.run/)。这是服务器渲染 React Router 应用程序的最佳方式——也许是构建任何 React 应用程序的最佳方式😉。
+再次建议您查看[Remix](https://remix.run/)。这是服务端渲染 React Router 应用程序的最佳方法，也许是构建任何 React 应用程序的最佳方法😉。
