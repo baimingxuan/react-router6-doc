@@ -1,14 +1,14 @@
 #  索引查询参数
 
-提交表单时，您可能会发现`?index`应用程序的 URL 中出现乱码。
+当提交表单时，你可能会发现你的应用程序的 URL 中出现一个“?index”的参数。
 
-由于嵌套路由，路由层次结构中的多个路由可以匹配 URL。与调用所有匹配的路由加载器来构建 UI 的导航不同，提交表单时*仅调用一个操作*。
+由于嵌套路由，您路由层次结构中的多个路由可能匹配URL。与导航不同，导航时所有匹配的路由加载器都会被调用以构建UI，当提交表单时*只调用一个操作*。
 
-因为索引路由与其父路由共享相同的 URL，所以该`?index`参数可以让您消除两者之间的歧义。
+由于索引路由与其父路由共享相同的URL， `?index` 参数可让您在两者之间进行区分。
 
 例如，考虑以下路由器和表单：
 
-```javascript
+```jsx
 createBrowserRouter([
   {
     path: "/projects",
@@ -28,21 +28,21 @@ createBrowserRouter([
 <Form method="post" action="/projects?index" />;
 ```
 
-参数将`?index`提交到索引路由，没有索引参数的动作将提交到父路由。
+`?index` 参数将提交到索引路由，没有索引参数的操作将提交到父路由。
 
-当`<Form>`在没有 的索引路由中呈现a 时`action`，`?index`将自动附加参数，以便将表单发布到索引路由。以下表单在提交时将发布到，`/projects?index`因为它是在项目索引路由的上下文中呈现的：
+当一个 `<Form>` 在没有 `action` 的索引路由中呈现时， `?index` 参数将自动添加，以便表单发布到索引路由。当提交以下表单时，它将发布到 `/projects?index` ，因为它是在项目索引路由的上下文中呈现的：
 
-```javascript
+```jsx
 function ProjectsIndex() {
   return <Form method="post" />;
 }
 ```
 
-如果您将代码移动到`ProjectsLayout`路由，它会改为发布到`/projects`.
+如果您将代码移动到 `ProjectsLayout` 路由，则会将其发布到 `/projects` 。
 
-这适用于`<Form>`及其所有表亲：
+这适用于 `<Form>` 及其所有同类产品：
 
-```javascript
+```jsx
 let submit = useSubmit();
 submit({}, { action: "/projects" });
 submit({}, { action: "/projects?index" });
