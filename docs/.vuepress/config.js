@@ -39,6 +39,21 @@ module.exports = {
                 ]
             },
             {
+                title: '升级',
+                path: '/upgrading/v5',
+                collapsable: false,
+                children: [
+                    {
+                        title: '从v5升级',
+                        path: '/upgrading/v5'
+                    },
+                    {
+                        title: '从@reach/router迁移',
+                        path: '/upgrading/reach'
+                    }
+                ]
+            },
+            {
                 title: 'Router',
                 path: '/router/picking-a-router',
                 collapsable: false,
