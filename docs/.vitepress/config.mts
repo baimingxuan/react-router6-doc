@@ -5,9 +5,14 @@ export default defineConfig({
   title: 'React Router6 中文文档',
   description: '文档内容详细翻译自官方英文文档',
   base: '/react-router6-doc/',
-  lang: 'zh-CN',
+  head: [['link', { rel: 'icon', href: '/.vitepress/logo/favicon.ico' }]],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+
+    logo: {
+      light: '/.vitepress/logo/logo.svg',
+      dark: '/.vitepress/logo/logo_dark.svg'
+    },
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
@@ -25,36 +30,36 @@ export default defineConfig({
         text: '快速上手',
         collapsed: false,
         items: [
-            {
-              text: '功能概述',
-              link: '/start/overview'
-            },
-            {
-              text: '教程',
-              link: '/start/tutorial'
-            },
-            {
-              text: '常见问题',
-              link: '/start/faqs'
-            },
-            {
-              text: '主要概念',
-              link: '/start/concepts'
-            }
+          {
+            text: '功能概述',
+            link: '/start/overview'
+          },
+          {
+            text: '教程',
+            link: '/start/tutorial'
+          },
+          {
+            text: '常见问题',
+            link: '/start/faqs'
+          },
+          {
+            text: '主要概念',
+            link: '/start/concepts'
+          }
         ]
       },
       {
         text: '升级',
         collapsed: false,
         items: [
-            {
-              text: '从v5升级',
-              link: '/upgrading/v5'
-            },
-            {
-              text: '从@reach/router迁移',
-              link: '/upgrading/reach'
-            }
+          {
+            text: '从v5升级',
+            link: '/upgrading/v5'
+          },
+          {
+            text: '从@reach/router迁移',
+            link: '/upgrading/reach'
+          }
         ]
       },
       {
