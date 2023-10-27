@@ -14,11 +14,11 @@
 git clone https://github.com/baimingxuan/react-router6-doc.git
 
 # 安装依赖
-yarn install
+pnpm install
 
 # 开发
-yarn dev
+pnpm run docs:dev 
 ```
 
-项目基于 [vuepress](https://github.com/vuejs/vuepress)
+项目基于 [vitepress](https://github.com/vuejs/vitepress)
 
