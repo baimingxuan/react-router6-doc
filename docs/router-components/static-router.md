@@ -2,7 +2,7 @@
 
 类型声明
 
-```tsx
+```ts
 declare function StaticRouter(
   props: StaticRouterProps
 ): React.ReactElement;
@@ -14,7 +14,7 @@ interface StaticRouterProps {
 }
 ```
 
-`<StaticRouter>`用于在[node](https://nodejs.org/)中渲染 React Router Web 应用程序。通过`location`属性提供当前位置。
+`<StaticRouter>`用于在 [node](https://nodejs.org/) 中渲染 React Router Web 应用程序。通过`location`属性提供当前位置。
 
 - `<StaticRouter location>`默认为`"/"`
 

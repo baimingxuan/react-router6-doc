@@ -82,8 +82,20 @@ export default defineConfig({
             link: '/router/create-memory-router'
           },
           {
+            text: 'createStaticHandler',
+            link: '/router/create-static-handler'
+          },
+          {
+            text: 'createStaticRouter',
+            link: '/router/create-static-router'
+          },
+          {
             text: 'RouterProvider',
             link: '/router/router-provider'
+          },
+          {
+            text: 'staticRouterProvider',
+            link: '/router/static-router-provider'
           }
         ]
       },
