@@ -1,6 +1,6 @@
 # `<Routes>`
 
-在应用程序的任何位置， `<Routes>` 将匹配当前[位置](https://reactrouter.com/en/main/hook/location)的一组子路由。
+在应用程序中的任何地方， `<Routes>` 都会匹配当前[位置](https://reactrouter.com/en/main/hook/location)的一组子路由。
 
 ```tsx
 interface RoutesProps {
@@ -13,9 +13,11 @@ interface RoutesProps {
 </Routes>;
 ```
 
-> 如果您正在使用像 [`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)这样的数据路由，则不常使用此组件，因为它不参与数据加载。
+> NOTE
+>
+> 如果您使用的是[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)这样的数据路由器，使用该组件的情况并不常见，因为作为 `<Routes>` 树的后代的一部分定义的路由无法利用[`RouterProvider`](https://reactrouter.com/en/main/routers/router-provider)应用程序可用的[数据 API](https://reactrouter.com/en/main/routers/picking-a-router#data-apis)。[在迁移过程中](https://reactrouter.com/en/main/upgrading/v6-data)，您可以也应该在 `RouterProvider` 应用程序中使用该组件。
 
-每当位置发生变化时， `<Routes>` 会查找其所有子路由以找到最佳匹配并呈现该分支的 UI。 `<Route>` 元素可以嵌套以指示嵌套的 UI，这也对应于嵌套的 URL 路径。父路由通过呈现 [`<Outlet`](https://reactrouter.com/en/main/components/outlet)来呈现其子路由。
+每当位置发生变化时， `<Routes>` 就会查看其所有子路由，找出最匹配的路由，并渲染用户界面的该分支。 `<Route>` 元素可以嵌套，以表示嵌套的用户界面，这也与嵌套的 URL 路径相对应。父路由通过呈现 [`<Outlet`](https://reactrouter.com/en/main/components/outlet)来呈现其子路由。
 
 ```jsx
 <Routes>

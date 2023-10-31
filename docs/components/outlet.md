@@ -2,7 +2,7 @@
 
 类型声明
 
-```tsx
+```ts
 interface OutletProps {
   context?: unknown;
 }
@@ -11,7 +11,7 @@ declare function Outlet(
 ): React.ReactElement | null;
 ```
 
-应该在父路由元素中使用 `<Outlet>` 来渲染它们的子路由元素。这样可以在渲染子路由时显示嵌套的 UI。如果父路由完全匹配，则会渲染子索引路由，如果没有索引路由，则不会渲染任何内容。
+父路由元素中应使用 `<Outlet>` 来呈现其子路由元素。这样就可以在呈现子路由时显示嵌套用户界面。如果父路由完全匹配，则会呈现子索引路由；如果没有索引路由，则不会呈现任何内容。
 
 ```jsx
 function Dashboard() {

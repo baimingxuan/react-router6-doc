@@ -1,6 +1,6 @@
 ## `<Await>`
 
-用于呈现具有自动错误处理的[延迟值](https://reactrouter.com/en/main/utils/defer)。请确保查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)，因为有一些 API 与此组件一起使用。
+用于呈现具有自动错误处理的功能[延迟值](https://reactrouter.com/en/main/utils/defer)。请务必查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)，因为有一些 API 与此组件配合使用。
 
 ```jsx
 import { Await, useLoaderData } from "react-router-dom";
@@ -31,7 +31,7 @@ function Book() {
 
 ## 类型声明
 
-```tsx
+```ts
 declare function Await(
   props: AwaitProps
 ): React.ReactElement;
@@ -51,7 +51,7 @@ interface AwaitResolveRenderFunction {
 
 可以是React元素或函数。
 
-使用函数时，值作为唯一参数提供。
+使用函数时，值是唯一的参数。
 
 ```jsx
 <Await resolve={reviewsPromise}>
@@ -74,9 +74,9 @@ function Reviews() {
 
 ## `errorElement`
 
-当Promise被拒绝时，错误元素将呈现而不是子元素。您可以使用[`useAsyncError`](https://reactrouter.com/en/main/hooks/use-async-error)访问错误。
+当Promise被拒绝时，错误元素会渲染，而不是子元素。您可以通过[`useAsyncError`](https://reactrouter.com/en/main/hooks/use-async-error)访问错误。
 
-如果Promise被拒绝，您可以通过 `useAsyncError` 钩子提供可选的 `errorElement` 来处理上下文UI中的错误。
+如果Promise被拒绝，您可以提供一个可选的 `errorElement` ，通过 `useAsyncError` 钩子在上下文用户界面中处理该错误。
 
 ```jsx
 <Await
@@ -92,11 +92,11 @@ function ReviewsError() {
 }
 ```
 
-如果您不提供 errorElement，被拒绝的值将会冒泡到最近的路由级别[`errorElement`](https://reactrouter.com/en/main/route/error-element)，并可通过[`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)挂钩访问。
+如果不提供 errorElement，被拒绝的值将上升到最近的路由级[`errorElement`](https://reactrouter.com/en/main/route/error-element)，并可通过[`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)钩子访问。
 
 ## `resolve`
 
-接受从[延迟](https://reactrouter.com/en/main/utils/defer) [加载器](https://reactrouter.com/en/main/route/loader)值返回的 promise，以便解决和渲染。
+获取从[延迟](https://reactrouter.com/en/main/utils/defer) [加载器](https://reactrouter.com/en/main/route/loader)返回的 `promise`值，并进行解析和渲染。
 
 ```jsx
 import {
