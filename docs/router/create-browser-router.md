@@ -1,8 +1,10 @@
 # `createBrowserRouter`
 
-这是所有 React Router Web项目的推荐路由。它使用[DOM 历史记录 API](https://developer.mozilla.org/en-US/docs/Web/API/History)来更新 URL 并管理历史记录堆栈。
+这是所有 React Router Web 项目推荐使用的路由。它使用 [DOM 历史记录 API](https://developer.mozilla.org/en-US/docs/Web/API/History) 来更新 URL 和管理历史堆栈。
 
-它还可以启用v6.4数据API，如 [loaders](https://reactrouter.com/en/main/route/loader)、[actions](https://reactrouter.com/en/main/route/action)、[fetchers](https://reactrouter.com/en/main/hooks/use-fetcher) 等。
+它还支持 v6.4 数据 API，如 [loaders](https://reactrouter.com/en/main/route/loader)、[actions](https://reactrouter.com/en/main/route/action)、[fetchers](https://reactrouter.com/en/main/hooks/use-fetcher) 等。
+
+> 由于在数据 API 的设计中解耦了获取和呈现，因此您应该在 React 树之外创建路由，并使用静态定义的路由集。有关此设计的更多信息，请参阅 [Remixing React Router](https://remix.run/blog/remixing-react-router) 博文和 [When to Fetch](https://www.youtube.com/watch?v=95B8mnhzoCM) 会议演讲。
 
 ```jsx
 import * as React from "react";
@@ -37,11 +39,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ## 类型声明
 
-```jsx
+```ts
 function createBrowserRouter(
   routes: RouteObject[],
   opts?: {
     basename?: string;
+    future?: FutureConfig;
+    hydrationData?: HydrationState;
     window?: Window;
   }
 ): RemixRouter;
@@ -49,7 +53,7 @@ function createBrowserRouter(
 
 ## `routes`
 
-一个包含[`Route`](https://reactrouter.com/en/main/components/route)对象的数组，其中包含 `children` 属性上的嵌套路由。
+[`Route`](https://reactrouter.com/en/main/components/route) 对象的数组，在 `children` 属性上有嵌套路由。
 
 ```jsx
 createBrowserRouter([
@@ -70,7 +74,7 @@ createBrowserRouter([
 
 ## `basename`
 
-应用程序的基本名称，用于无法部署到域的根目录而是子目录的情况。
+应用程序的基名，用于无法部署到域根目录而只能部署到子目录的情况。
 
 ```jsx
 createBrowserRouter(routes, {
@@ -78,7 +82,7 @@ createBrowserRouter(routes, {
 });
 ```
 
-当链接到根路径时，将遵守尾部的斜杠：
+当链接到根目录时，尾部的斜线将得到尊重：
 
 ```jsx
 createBrowserRouter(routes, {
@@ -92,6 +96,19 @@ createBrowserRouter(routes, {
 <Link to="/" />; // results in <a href="/app/" />
 ```
 
+## `future`
+
+为路由器启用的一组可选的 [Future Flags](https://reactrouter.com/en/main/guides/api-development-strategy)。我们建议您尽早选择使用新发布的 future flags，以方便您最终迁移到 v7 版本。
+
+```jsx
+const router = createBrowserRouter(routes, {
+  future: {
+    // Normalize `useNavigation()`/`useFetcher()` `formMethod` to uppercase
+    v7_normalizeFormMethod: true,
+  },
+});
+```
+
 ## `window`
 
-对于像浏览器开发工具插件或测试这样的环境，使用不同于全局 `window` 的窗口很有用。
+对于浏览器 devtool 插件或测试等环境来说，使用与全局 `window` 不同的窗口非常有用。

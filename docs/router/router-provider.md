@@ -1,6 +1,8 @@
 # `<RouterProvider>`
 
-所有路由对象都会传递到此组件以呈现您的应用程序并启用其余的 API。
+所有[数据路由](https://reactrouter.com/en/main/routers/picking-a-router)对象都将传递给该组件，以渲染应用程序并启用其他数据 API。
+
+> 由于在数据 API 的设计中解耦了获取和呈现，因此您应该在 React 树之外创建路由，并使用静态定义的路由集。有关此设计的更多信息，请参阅 [Remixing React Router](https://remix.run/blog/remixing-react-router) 博文和 [When to Fetch](https://www.youtube.com/watch?v=95B8mnhzoCM) 会议演讲。
 
 ```jsx
 import {
@@ -35,11 +37,26 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ## `fallbackElement`
 
-如果您没有对您的应用进行服务器渲染， `DataBrowserRouter` 将在挂载时启动所有匹配的路由加载器。在此期间，您可以提供一个 `fallbackElement` 来向用户提供一些指示，表明应用正在工作。让静态托管的 TTFB 有所作为！
+如果您没有在服务器上渲染应用程序， `createBrowserRouter` 将在挂载时启动所有匹配的路由加载器。在此期间，您可以提供 `fallbackElement` ，向用户表明应用程序正在运行。将静态托管 TTFB 计算在内！
 
 ```jsx
 <RouterProvider
   router={router}
   fallbackElement={<SpinnerOfDoom />}
 />
+```
+
+## `future`
+
+一组可选的 [Future Flags](https://reactrouter.com/en/main/guides/api-development-strategy)。我们建议您尽早选择使用新发布的 future flags，以方便您最终迁移到 v7版本。
+
+```jsx
+function App() {
+  return (
+    <RouterProvider
+      router={router}
+      future={{ v7_startTransition: true }}
+    />
+  );
+}
 ```
