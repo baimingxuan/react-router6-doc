@@ -1,9 +1,10 @@
 # `loader`
 
-每个路由都可以定义一个“加载器”函数，在渲染路由元素之前提供数据。
+每个路由都可以定义一个 "`loader`"函数，以便在路由元素渲染前为其提供数据。
 
-> 仅当使用数据路由器时，此功能才有效，请参见[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)
+> IMPORTANT
 >
+> 此功能只有在使用数据路由器时才有效，请参阅 ["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)。
 
 ```jsx
 createBrowserRouter([
@@ -26,11 +27,11 @@ createBrowserRouter([
 ]);
 ```
 
-当用户在应用程序中导航时，将并行调用下一个匹配路由分支的加载器，并通过[`useLoaderData`](https://reactrouter.com/en/main/hooks/use-loader-data)将其数据提供给组件。
+当用户在应用程序中导航时，下一个匹配路由分支的加载器将被并行调用，其数据将通过[`useLoaderData`](https://reactrouter.com/en/main/hooks/use-loader-data)提供给组件。
 
 ## `params`
 
-路由参数从[动态段](https://reactrouter.com/en/main/route/route#dynamic-segments)中解析并传递给您的加载器。这对于确定要加载的资源非常有用：
+路由参数会[动态片段](https://reactrouter.com/en/main/route/route#dynamic-segments)中解析并传递给`loader`。这对于确定要加载的资源非常有用：
 
 ```jsx
 createBrowserRouter([
@@ -43,17 +44,17 @@ createBrowserRouter([
 ]);
 ```
 
-请注意，路径中的 `:teamId` 被解析为由相同名称提供的 `params.teamId` 。
+请注意，路径中的 `:teamId` 会被解析为同名的 `params.teamId` 。
 
 ## `request`
 
-这是一个[Fetch请求](https://developer.mozilla.org/en-US/docs/Web/API/Request)实例，正在向您的应用程序发出请求。
+这是向您的应用程序发出的[Fetch Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)实例。
 
-```javascript
+```jsx
 function loader({ request }) {}
 ```
 
-一开始，加载器接收“请求”可能看起来很奇怪。考虑 `<Link>` 执行以下代码并问自己，“这里防止了什么默认行为？”。
+一开始，`loader`接收 "请求"，这乍看起来可能有些奇怪。想想 `<Link>` 所做的类似下面的代码，然后问问自己："这里阻止了什么默认行为？
 
 ```jsx
 <a
@@ -65,9 +66,9 @@ function loader({ request }) {}
 />
 ```
 
-如果没有React Router，浏览器将向您的服务器发出请求，但React Router阻止了它！React Router将请求发送到您的加载器，而不是浏览器将请求发送到您的服务器。
+如果没有 React Router，浏览器本会向您的服务器发出请求，但 React Router 阻止了这一切！React 路由器不会让浏览器向服务器发送请求，而是将请求发送给`loader`。
 
-最常见的用例是创建[URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)并从中读取[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
+最常见的用例是创建一个 [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) 并从中读取 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
 
 ```jsx
 function loader({ request }) {
@@ -77,13 +78,13 @@ function loader({ request }) {
 }
 ```
 
-请注意，这里的API不是React Router特定的，而是标准的Web对象：[Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)、[URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)、[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)。
+请注意，这里的 API 并不是 React Router 专用的，而是标准的网络对象：[Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)、[URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)、[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)。
 
 ## 返回响应
 
-虽然您可以从加载器返回任何您想要的内容并从[`useLoaderData`](https://reactrouter.com/en/main/hooks/use-loader-data)访问它，但您也可以返回Web[响应](https://developer.mozilla.org/en-US/docs/Web/API/Response)。
+您可以从加载器返回任何想要的内容，并从[`useLoaderData`](https://reactrouter.com/en/main/hooks/use-loader-data)获取访问权限，也可以返回网络 Response。
 
-这可能一开始看起来并不是很有用，但考虑 `fetch` 。由于 `fetch` 的返回值是一个 Response，而加载器可以理解响应，因此许多加载器可以返回一个简单的 fetch！
+这似乎不会立即派上用场，但请考虑一下 `fetch` 。由于 `fetch` 的返回值是一个 Response，而`loader`能理解 Response，因此许多加载器都能返回一个简单的 fetch！
 
 ```jsx
 // an HTTP/REST API
@@ -120,7 +121,7 @@ function loader({ request, params }) {
 }
 ```
 
-React Router 将自动调用 `response.json()` ，因此您的组件在渲染时不需要解析它：
+React Router 会自动调用 `response.json()` ，因此您的组件无需在呈现时对其进行解析：
 
 ```jsx
 function SomeRoute() {
@@ -129,7 +130,7 @@ function SomeRoute() {
 }
 ```
 
-使用[`json`](https://reactrouter.com/en/main/fetch/json)工具可以简化这个过程，这样您就不必自己构建它们。下一个示例与上一个示例实际上是相同的：
+使用[`json`](https://reactrouter.com/en/main/fetch/json)工具简化了这一过程，因此您不必亲自构建它们。下一个示例实际上与上一个示例相同：
 
 ```jsx
 import { json } from "react-router-dom";
@@ -140,11 +141,11 @@ function loader({ request, params }) {
 }
 ```
 
-如果您计划升级到Remix，从每个加载器返回响应将使迁移更加顺畅。
+如果您计划升级到 Remix，返回每个`loader`的回复会让迁移更顺利。
 
-## 抛入加载器
+## 抛出`Loaders`
 
-您可以在加载器中使用 `throw` 来跳出当前调用堆栈（停止运行当前代码），React Router 将重新开始沿着“错误路径”进行。
+您可以通过 `throw` 在加载器中跳出当前调用栈（停止运行当前代码），然后 React Router 将沿着 "错误路径 "重新开始。
 
 ```jsx
 function loader({ request, params }) {
@@ -156,4 +157,4 @@ function loader({ request, params }) {
 }
 ```
 
-要了解更多详情，请阅读[`errorElement`](https://reactrouter.com/en/main/route/error-element)文档。
+有关详细信息，请阅读[`errorElement`](https://reactrouter.com/en/main/route/error-element)文档。
