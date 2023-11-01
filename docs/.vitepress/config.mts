@@ -52,6 +52,10 @@ export default defineConfig({
         collapsed: false,
         items: [
           {
+            text: '迁移到RouterProvider',
+            link: '/upgrading/v6-data'
+          },
+          {
             text: '从v5升级',
             link: '/upgrading/v5'
           },
