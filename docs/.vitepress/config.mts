@@ -342,6 +342,10 @@ export default defineConfig({
           {
             text: 'redirect',
             link: '/fetch/redirect'
+          },
+          {
+            text: 'redirectDocument',
+            link: '/fetch/redirect-document'
           }
         ]
       },

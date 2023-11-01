@@ -10,7 +10,7 @@ new Response(JSON.stringify(someValue), {
 });
 ```
 
-通常用于加载器：
+通常用于`loader`：
 
 ```jsx
 import { json } from "react-router-dom";
@@ -21,6 +21,6 @@ const loader = async () => {
 };
 ```
 
-也可以看看：
+另请参阅：
 
-- [从加载器返回响应](https://reactrouter.com/en/main/route/loader#returning-responses)
+- [从`loader`返回响应](https://reactrouter.com/en/main/route/loader#returning-responses)
