@@ -1,18 +1,18 @@
-#  数据库集成
+#  数据仓库集成
 
-自从发布了v6.4版本以来，有些人想知道React Router是否试图取代像[React Query](https://tanstack.com/query/v4/)、[useSwr](https://swr.vercel.app/)等库。
+自 v6.4 发布以来，有些人怀疑 React Router 是否试图取代[React Query](https://tanstack.com/query/v4/)、[useSwr](https://swr.vercel.app/)等库。
 
-答案是“不是！”。
+答案是“不！”。
 
-React Router的数据API是关于何时加载、改变和重新验证数据，而不是如何实现数据获取、改变、存储和缓存。它关注的是数据生命周期，而不是实际的数据获取、改变、存储和缓存的实现。
+React Router 的数据 API 是关于何时加载、变异和重新验证数据，而不是如何加载、变异和重新验证数据。它涉及的是数据生命周期，而不是数据获取、变异、存储和缓存的实际实现。
 
-考虑到 `<a href>` 和 `<form action>` 都是导航事件，都与数据耦合（显示哪些数据或更改哪些数据），使用客户端路由器来帮助您处理两个元素的导航状态是有意义的。但实际的数据实现取决于您。
+考虑到 `<a href>` 和 `<form action>` 都是导航事件，而且都与数据相关（显示哪些数据或更改哪些数据），因此客户端路由器可以帮助您处理这两个元素的导航状态。但实际的数据实现则取决于您。
 
-这里的示例是从[TkDodo 的博客](https://tkdodo.eu/blog/react-query-meets-react-router)中改编而来的，感谢他的优秀文章！
+此处的示例改编自[TkDodo 的博客](https://tkdodo.eu/blog/react-query-meets-react-router)，感谢您的精彩文章！
 
 ## 加载数据
 
-您可以在加载器中使用数据抽象，而不是在组件中加载数据。请注意，此加载发生在React渲染生命周期之外，因此您不能使用像React Query的 `useQuery` 这样的钩子，您需要直接使用查询客户端的方法。
+您可以在加载器中使用数据抽象，而不是在组件中加载数据。请注意，这种加载发生在 React 渲染生命周期之外，因此不能使用 React Query 的 `useQuery` 等钩子，而需要直接使用查询客户端的方法。
 
 ```jsx
 import { queryClient } from "./query-client";
@@ -24,17 +24,17 @@ export const loader = ({ params }) => {
 };
 ```
 
-如果查询客户端正确地抛出错误，则React Router的[`errorElement`](https://reactrouter.com/en/main/route/error-element)将起作用。
+如果查询客户端能正确抛出错误，那么 React Router 的[`errorElement`](https://reactrouter.com/en/main/route/error-element)也能正常工作。
 
-当然，您可以使用数据库的所有功能，例如缓存。缓存数据可以确保当用户点击返回按钮返回到您已经看过的页面时，数据会立即从缓存中加载。有时缓存是正确的选择，有时您总是希望它是新鲜的，但这不是React Router数据API范围内的决策。
+当然，您可以使用数据仓库的所有功能，例如缓存。缓存数据可以确保当用户点击返回按钮进入已经看过的页面时，数据会立即从缓存中加载。有时缓存是正确的选择，有时你总是希望数据是新鲜的，但这并不在 React Router 数据 API 的决定范围之内。
 
-React Router仅保留*当前页面的loaderData*。如果用户点击“返回”，则会再次调用所有加载器。如果没有像React Query这样的数据缓存库（或者在您的JSON API上使用HTTP缓存头来使用浏览器自己的HTTP缓存），则您的应用程序将再次获取所有数据。
+React Router 只保留*当前页面的 `loaderData`*。如果用户点击“返回”，所有加载器都会再次被调用。如果没有 React Query 这样的数据缓存库（或在 JSON API 上添加 HTTP 缓存头以使用浏览器自己的 HTTP 缓存），您的应用将再次重新获取所有数据。
 
-这样，React Router就是关于时间，而React Query则是关于*缓存*的。
+因此，React Router 与*时间*有关，而 React Query 与*缓存*有关。
 
-## 在组件中访问数据
+## 访问组件中的数据
 
-虽然React Router的 `useLoaderData` 返回您从加载器返回的任何内容，但您可以使用您的数据抽象的钩子来获取对该包的完整功能集的访问权限。
+虽然 React Router 的 `useLoaderData` 会返回您从`loader`返回的内容，但您可以使用数据抽象的钩子来访问该包的全部功能集。
 
 ```jsx
 export default function SomeRouteComponent() {
@@ -43,11 +43,11 @@ export default function SomeRouteComponent() {
 }
 ```
 
-## 在突变中的使数据无效
+## 使突变中的数据无效
 
-因为这些库中的大多数都有一些缓存机制，所以您需要在某个时候使这些缓存无效。
+由于这些库中的大多数都有某种缓存机制，因此您需要在某些时候使这些缓存失效。
 
-使这些缓存无效的完美位置是在 React Router[操作](https://reactrouter.com/en/main/route/action)中。
+React Router[操作](https://reactrouter.com/en/main/route/action)就是使缓存失效的最佳场所。
 
 ```jsx
 import { queryClient } from "./query-client";
@@ -61,9 +61,9 @@ export const action = async ({ request, params }) => {
 };
 ```
 
-## 与`defer`一起使用
+## 使用`defer`
 
-你同样可以利用延迟的 API：
+同样，您也可以利用延迟 API：
 
 ```jsx
 function loader() {
@@ -104,4 +104,4 @@ function SomeView() {
 
 ## 结论
 
-有了所有这些 API 共同工作，您现在可以使用 React Router 中的[`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)来构建挂起状态、乐观 UI 等。使用 React Router 来控制数据加载、突变和导航状态的时间，然后使用像 React Query 这样的库来实际实现加载、失效、存储和缓存。
+有了所有这些 API 的协同工作，您现在就可以使用来自 React Router 的[`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)来构建待处理状态、优化的用户界面等。使用 React Router 为数据加载、突变和导航状态计时，然后使用 React Query 等库实际实现加载、失效、存储和缓存。

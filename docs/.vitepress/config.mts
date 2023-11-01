@@ -412,7 +412,11 @@ export default defineConfig({
             link: '/guides/contributing'
           },
           {
-            text: '数据库整合',
+            text: 'API开发战略',
+            link: '/guides/api-development-strategy'
+          },
+          {
+            text: '数据仓库集成',
             link: '/guides/data-libs'
           },
           {
