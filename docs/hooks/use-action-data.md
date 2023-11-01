@@ -1,6 +1,6 @@
 # `useActionData`
 
-此钩子提供了上一次导航的 `action` 结果的返回值，如果没有提交，则为 `undefined` 。
+此钩子提供上一次导航 `action` 结果的返回值，如果没有提交，则提供 `undefined` 。
 
 ```jsx
 import { useActionData } from "react-router-dom";
@@ -11,7 +11,7 @@ function SomeComponent() {
 }
 ```
 
-此钩子最常见的用例是表单验证错误。如果表单不正确，您可以返回错误并让用户重试：
+这个钩子最常用的情况是表单验证错误。如果表单不正确，可以返回错误信息，让用户重试：
 
 ```jsx
 import {

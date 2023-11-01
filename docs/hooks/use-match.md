@@ -2,7 +2,7 @@
 
 类型声明
 
-```tsx
+```ts
 declare function useMatch<
   ParamKey extends ParamParseKey<Path>,
   Path extends string
@@ -11,6 +11,6 @@ declare function useMatch<
 ): PathMatch<ParamKey> | null;
 ```
 
-相对于当前位置，返回有关给定路径的路由匹配数据。
+返回给定路径上的路由相对于当前位置的匹配数据。
 
-查看[`matchPath`](https://reactrouter.com/en/main/utils/match-path)以获取更多信息。
+更多信息，请参阅[`matchPath`](https://reactrouter.com/en/main/utils/match-path)。

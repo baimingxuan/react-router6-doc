@@ -1,23 +1,24 @@
 # `useFetcher`
 
-在 HTML/HTTP 中，数据的变化和加载是通过导航进行建模的： `<a href>` 和 `<form action>` 。两者都会在浏览器中导致导航。React Router 的等效方式是 [`<Link>`](https://reactrouter.com/en/main/components/link) 和 [`<Form>`](https://reactrouter.com/en/main/components/form) 。
+在 HTML/HTTP 中，数据突变和加载是通过导航来模拟的： `<a href>` 和 `<form action>` 。两者都会在浏览器中引起导航。与 React Router 对应的是 `<Link>` 和 `<Form>` 。
 
-但有时您想在导航之外调用 [`loader`](https://reactrouter.com/en/main/route/loader) ，或者调用 [`action`](https://reactrouter.com/en/main/route/action) （并获取页面上的数据以重新验证），而不更改URL。或者您需要同时进行多个突变。
+但有时您需要在导航之外调用 [`loader`](https://reactrouter.com/en/main/route/loader) ，或者调用 [`action`](https://reactrouter.com/en/main/route/action)（并获取页面上的数据以重新验证），而无需更改 URL。或者您需要同时进行多个突变。
 
-许多与服务器的交互不是导航事件。这个钩子让你在不导航的情况下将你的 UI 插入到你的操作和加载器中。
+与服务器的许多交互都不是导航事件。此钩子可让你在不导航的情况下将用户界面插入操作和加载器。
 
-> 仅当使用数据路由器时，此功能才有效，请参见[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)。
+> IMPORTANT
 >
+> 此功能只有在使用数据路由器时才有效，请参阅[“选择路由”](https://reactrouter.com/en/main/routers/picking-a-router)。
 
-这在你需要时非常有用：
+这在需要时非常有用：
 
-- 获取与 UI 路由（弹出窗口、动态表单等）无关的数据。
-- 提交数据到操作而不导航（共享组件，如新闻通讯订阅）。
-- 在列表中处理多个并发提交（典型的“待办事项应用”列表，您可以单击多个按钮，所有按钮应同时处于待处理状态）。
+- 获取与用户界面路由（弹出窗口、动态表单等）无关的数据
+- 无需导航即可将数据提交至操作（共享组件，如即时通讯注册）
+- 在一个列表中处理多个并发提交（典型的 "待办事项应用程序 "列表，您可以点击多个按钮，所有按钮都应同时待处理）
 - 无限滚动容器
-- 和更多！
+- 以及更多！
 
-如果您正在构建高度交互式的“类似应用”的用户界面，您将经常 `useFetcher` 。
+如果您正在构建一个高度交互、"类似应用程序 "的用户界面，那么您将经常 `useFetcher` 。
 
 ```jsx
 import { useFetcher } from "react-router-dom";
@@ -34,6 +35,8 @@ function SomeComponent() {
   // build your UI with these properties
   fetcher.state;
   fetcher.formData;
+  fetcher.json;
+  fetcher.text;
   fetcher.formMethod;
   fetcher.formAction;
   fetcher.data;
@@ -43,28 +46,50 @@ function SomeComponent() {
 }
 ```
 
-获取器具有许多内置行为：
+`Fetchers`有很多内置行为：
 
-- 自动处理在获取过程中被中断的取消操作。
-- 当使用POST、PUT、PATCH、DELETE提交时，首先调用该操作。
-  - 操作完成后，页面上的数据将重新验证，以捕获可能发生的任何变化，自动将您的用户界面与服务器状态保持同步。
-- 当多个获取器同时运行时，它将会...
-  - 提交最新可用的数据，因为它们每个都到达。
-  - 确保没有陈旧的数据覆盖更新的数据，无论响应的顺序如何。
-- 通过渲染最近的 `errorElement` （就像从 `<Link>` 或 `<Form>` 进行正常导航一样），处理未捕获的错误。
-- 如果您的操作/加载程序返回重定向（就像从 `<Link>` 或 `<Form>` 进行正常导航一样），将重定向应用程序。
+- 自动处理获取中断时的取消操作
+- 使用 POST、PUT、PATCH、DELETE 提交时，首先调用操作
+  - 操作完成后，页面上的数据会重新验证，以捕捉可能发生的任何变化，从而自动保持用户界面与服务器状态同步
+- 当多个`fetchers`同时运行时，它会...
+  - 在每次登陆时提交最新的可用数据
+  - 确保无论响应返回的顺序如何，都不会有陈旧的负载覆盖较新的数据
+- 通过渲染最近的 `errorElement` 来处理未捕获的错误（就像从 `<Link>` 或 `<Form>` 进行正常导航一样）。
+- 如果调用的操作/加载器返回重定向，应用程序将重定向（就像从 `<Link>` 或 `<Form>` 进行普通导航一样）。
 
-## `fetcher.state`
+##  选项
 
-您可以使用 `fetcher.state` 了解获取器的状态。它将是以下之一：
+### `key`
 
-- **idle** - 没有任何内容被获取。
-- **submitting**- 由于使用POST、PUT、PATCH或DELETE提交获取器提交而调用路由操作
-- **loading** - 获取器正在调用加载程序（从 `fetcher.load` ）或在单独提交或 `useRevalidator` 调用后重新验证
+默认情况下， `useFetcher` 会生成一个唯一的`fetcher`，该`fetcher`的作用域为该组件（不过，在运行过程中，该`fetcher`可能会在 [`useFetchers()`](https://reactrouter.com/en/main/hooks/use-fetchers) 中查找）。如果你想用自己的 `key` 来识别一个 fetcher，以便从应用程序的其他地方访问它，可以使用 `key` 选项来实现：
 
-## `fetcher.Form`
+```jsx
+function AddToBagButton() {
+  const fetcher = useFetcher({ key: "add-to-bag" });
+  return <fetcher.Form method="post">...</fetcher.Form>;
+}
 
-就像 `<Form>` 一样，只是它不会导致导航。（您会在JSX中使用点...我们希望！）
+// Then, up in the header...
+function CartCount({ count }) {
+  const fetcher = useFetcher({ key: "add-to-bag" });
+  const inFlightCount = Number(
+    fetcher.formData?.get("quantity") || 0
+  );
+  const optimisticCount = count + inFlightCount;
+  return (
+    <>
+      <BagIcon />
+      <span>{optimisticCount}</span>
+    </>
+  );
+}
+```
+
+##  组件
+
+### `fetcher.Form`
+
+就像 `<Form>` 一样，只是它不会导致导航。(你会克服 JSX 中的圆点......我们希望！）。
 
 ```jsx
 function SomeComponent() {
@@ -77,9 +102,11 @@ function SomeComponent() {
 }
 ```
 
-## `fetcher.load()`
+## 方法
 
-从路由加载程序加载数据。
+### `fetcher.load()`
+
+从路由`loader`中加载数据。
 
 ```jsx
 import { useFetcher } from "react-router-dom";
@@ -97,18 +124,19 @@ function SomeComponent() {
 }
 ```
 
-尽管URL可能匹配多个嵌套路由，但 `fetcher.load()` 调用仅在叶匹配（或[索引路由](https://reactrouter.com/en/main/guides/index-search-param)的父级）上调用加载程序。
+虽然一个 URL 可能匹配多个嵌套路由，但 `fetcher.load()` 调用只会调用叶匹配（或[索引路](https://reactrouter.com/en/main/guides/index-search-param)由的父路由）上的`loader`。
 
-如果您发现自己在单击处理程序中调用此函数，您可以使用 `<fetcher.Form>` 来简化代码。
+如果您发现自己在点击处理程序中调用此函数，您可以使用 `<fetcher.Form>` 来简化代码。
 
-> 页面上任何活动的 `fetcher.load` 调用都将作为重新验证的一部分重新执行（在导航提交、另一个获取器提交或 `useRevalidator()` 调用后）。
+> NOTE
 >
+> 为重新验证的一部分，页面上激活的任何 `fetcher.load` 调用都将重新执行（在导航提交、另一个`fetcher`提交或 `useRevalidator()` 调用之后）。
 
 ## `fetcher.submit()`
 
-`<fetcher.Form>` 的命令版本。如果用户交互应该启动获取，则应使用 `<fetcher.Form>` 。但是，如果您，程序员正在启动获取（而不是响应用户单击按钮等），则使用此函数。
+`<fetcher.Form>` 的命令式版本。如果是由用户交互启动获取，则应使用 `<fetcher.Form>` 。但如果是由程序员启动获取（而不是响应用户点击按钮等），则应使用此函数。
 
-例如，您可能希望在一定的空闲时间后注销用户：
+例如，您可能希望在闲置一定时间后注销用户：
 
 ```jsx
 import { useFetcher } from "react-router-dom";
@@ -129,13 +157,25 @@ export function useIdleLogout() {
 }
 ```
 
-如果要提交到索引路由，请使用[`?index`参数](https://reactrouter.com/en/main/guides/index-search-param)。
+`fetcher.submit` 是 [`useSubmit`](https://reactrouter.com/en/main/hooks/use-submit)调用 fetcher 实例的包装器，因此也接受与`useSubmit`相同的选项。
 
-如果您发现自己在单击处理程序中调用此函数，您可以使用 `<fetcher.Form>` 来简化代码。
+如果要提交索引路由，请使用[`?index` 参数](https://reactrouter.com/en/main/guides/index-search-param)。
 
-## `fetcher.data`
+如果您发现自己在点击处理程序中调用此函数，您可以使用 `<fetcher.Form>` 来简化代码。
 
-从加载器或操作返回的数据存储在此处。一旦设置了数据，即使重新加载和重新提交，它也会在获取器上持久存在。
+## 属性
+
+### `fetcher.state`
+
+您可以通过 `fetcher.state` 了解 fetcher 的状态。它将是:
+
+- **空闲** --没有获取任何信息。
+- **提交** - 由于使用 POST、PUT、PATCH 或 DELETE 提交了取件，路由操作被调用
+- **加载** - fetcher 正在调用`loader`（来自 `fetcher.load` ），或在单独提交或调用 `useRevalidator` 后正在重新验证
+
+### `fetcher.data`
+
+加载器或操作返回的数据存储在这里。数据一旦设置完毕，即使重新加载和重新提交，也会在获取器上持续存在。
 
 ```jsx
 function ProductDetails({ product }) {
@@ -164,9 +204,9 @@ function ProductDetails({ product }) {
 }
 ```
 
-## `fetcher.formData`
+### `fetcher.formData`
 
-使用 `<fetcher.Form>` 或 `fetcher.submit()` 时，表单数据可用于构建乐观的UI。
+当使用 `<fetcher.Form>` 或 `fetcher.submit()` 时，表单数据可用于构建优化的用户界面。
 
 ```jsx
 function TaskCheckbox({ task }) {
@@ -188,18 +228,26 @@ function TaskCheckbox({ task }) {
       <button
         type="submit"
         name="status"
-        value={isComplete ? "incomplete" : "complete"}
+        value={isComplete ? "complete" : "incomplete"}
       >
-        {isComplete ? "Mark Incomplete" : "Mark Complete"}
+        {isComplete ? "Mark Complete" : "Mark Incomplete"}
       </button>
     </fetcher.Form>
   );
 }
 ```
 
-## `fetcher.formAction`
+### `fetcher.json`
 
-告诉您表单提交的操作URL。
+使用 `fetcher.submit(data, { formEncType: "application/json" })` 时，提交的 JSON 可通过 `fetcher.json` 获取。
+
+### `fetcher.text`
+
+使用 `fetcher.submit(data, { formEncType: "text/plain" })` 时，提交的文本可通过 `fetcher.text` 获取。
+
+### `fetcher.formAction`
+
+告诉您提交表单的操作`url`。
 
 ```jsx
 <fetcher.Form action="/mark-as-read" />;
@@ -208,9 +256,9 @@ function TaskCheckbox({ task }) {
 fetcher.formAction; // "mark-as-read"
 ```
 
-## `fetcher.formMethod`
+### `fetcher.formMethod`
 
-告诉您提交表单的方法：get、post、put、patch或delete。
+告诉您提交表单的方法：get、post、put、patch 或 delete。
 
 ```jsx
 <fetcher.Form method="post" />;
@@ -218,3 +266,8 @@ fetcher.formAction; // "mark-as-read"
 // when the form is submitting
 fetcher.formMethod; // "post"
 ```
+
+> IMPORTANT
+>
+> `fetcher.formMethod` 字段为小写，没有 `future.v7_normalizeFormMethod` [Future Flag](https://reactrouter.com/en/main/guides/api-development-strategy)。为了与 `fetch()` 在 v7 中的行为保持一致，我们正在将其规范化为大写，因此请升级 React Router v6 应用程序以采用大写 HTTP 方法。
+

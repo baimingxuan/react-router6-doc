@@ -2,7 +2,7 @@
 
 类型声明
 
-```tsx
+```ts
 declare function useLinkPressHandler(
   to: To,
   options?: {
@@ -12,7 +12,7 @@ declare function useLinkPressHandler(
 ): (event: GestureResponderEvent) => void;
 ```
 
-" `react-router-native` " 的对应项是 " `useLinkClickHandler` "， `useLinkPressHandler` 返回一个按下事件处理程序，用于自定义 `<Link>` 导航。"
+`react-router-native` 与 `useLinkClickHandler` 相对应， `useLinkPressHandler` 返回一个用于自定义 `<Link>` 导航的按压事件处理程序。
 
 ```jsx
 import { TouchableHighlight } from "react-native";

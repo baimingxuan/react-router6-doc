@@ -18,4 +18,4 @@ function ErrorElement() {
 />;
 ```
 
-请查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)和[`<Await>`](https://reactrouter.com/en/main/components/await)文档以获取更多信息。
+更多信息，请参阅[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)和[`<Await>`](https://reactrouter.com/en/main/components/await)文档。

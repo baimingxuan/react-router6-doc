@@ -1,15 +1,16 @@
 # `useNavigation`
 
-这个钩子告诉您关于页面导航的一切，以构建挂起导航指示器和在数据变化时进行乐观 UI。例如：
+该钩子会告诉你关于页面导航的一切信息，以便在数据突变时建立待定的导航指示器和优化的用户界面。例如：
 
 - 全局加载指示器
 - 在发生突变时禁用表单
-- 在提交按钮上添加忙碌指示器
-- 在服务器上创建新记录时乐观地显示新记录
-- 在更新记录时乐观地显示记录的新状态
+- 在提交按钮上添加繁忙指示器
+- 在服务器上创建新记录时优化的显示新记录
+- 在更新记录时优化的显示记录的新状态
 
-> 仅当使用数据路由器时，此功能才有效，请参阅[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)。
+> IMPORTANT
 >
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)。
 
 ```jsx
 import { useNavigation } from "react-router-dom";
@@ -19,30 +20,36 @@ function SomeComponent() {
   navigation.state;
   navigation.location;
   navigation.formData;
+  navigation.json;
+  navigation.text;
   navigation.formAction;
   navigation.formMethod;
 }
 ```
 
+> IMPORTANT
+>
+> `useNavigation().formMethod` 字段为小写，没有 `future.v7_normalizeFormMethod` [Future Flag](https://reactrouter.com/en/main/guides/api-development-strategy)。为了与 `fetch()` 在 v7 版本中的行为保持一致，我们正在将其规范化为大写，因此请升级 React Router v6 应用程序以采用大写 HTTP 方法。
+
 ## `navigation.state`
 
-- **idle** - 没有待处理的导航。
-- **submitting**- 由于使用POST、PUT、PATCH或DELETE提交表单而调用路由操作
-- **loading** - 下一个路由的加载器正在调用以呈现下一页
+- **idle** -- 没有待处理的导航。
+- **submitting**-- 由于使用 POST、PUT、PATCH 或 DELETE 提交表单，路由操作被调用
+- **loading** --下一个路由的加载器正在调用以呈现下一页
 
-正常导航和GET表单提交通过这些状态转换：
+正常导航和 GET 表单提交通过这些状态转换：
 
 ```sh
 idle → loading → idle
 ```
 
-使用POST、PUT、PATCH或DELETE的表单提交通过这些状态转换：
+通过 POST、PUT、PATCH 或 DELETE 提交的表单会在这些状态中转换：
 
 ```sh
 idle → submitting → loading → idle
 ```
 
-这是一个简单的提交按钮，当导航状态正在更改时更改其文本：
+下面是一个简单的提交按钮，当导航状态改变时，它的文本也会改变：
 
 ```jsx
 function SubmitButton() {
@@ -59,7 +66,7 @@ function SubmitButton() {
 }
 ```
 
-虽然 `navigation.state` 提供了活动导航的高级状态，但您可以通过将其与其他 `navigation` 方面相结合来推断更细粒度的信息：
+虽然 `navigation.state` 提供了主动导航的高级状态，但通过将其与其他 `navigation` 方面相结合，可以推断出更细粒度的信息：
 
 ```jsx
 // Is this just a normal load?
@@ -82,12 +89,20 @@ let isRedirecting =
 
 ## `navigation.formData`
 
-从 `<Form>` 或 `useSubmit` 开始的任何POST、PUT、PATCH或DELETE导航都将附加到您的表单提交数据。这主要用于使用 `submission.formData` [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)对象构建“乐观UI”。
+任何从 `<Form>` 或 `useSubmit` 开始的 POST、PUT、PATCH 或 DELETE 导航都会附加表单的提交数据。这对使用 `submission.formData` `FormData` 对象构建 "优化用户界面 "非常有用。
 
-在GET表单提交的情况下， `formData` 将为空，并且数据将反映在 `navigation.location.search` 中。
+如果提交的是 GET 表单， `formData` 将为空，数据将反映在 `navigation.location.search` 中。
+
+## `navigation.json`
+
+任何从 `useSubmit(payload, { encType: "application/json" })` 开始的 POST、PUT、PATCH 或 DELETE 导航都将在 `navigation.json` 中提供 JSON 值。
+
+## `navigation.text`
+
+任何从 `useSubmit(payload, { encType: "text/plain" })` 开始的 POST、PUT、PATCH 或 DELETE 导航都将在 `navigation.text` 中提供文本值。
 
 ## `navigation.location`
 
-这告诉您下一个[位置](https://reactrouter.com/en/main/utils/location)将是什么。
+这告诉您下一个[位置](https://reactrouter.com/en/main/utils/location)是什么。
 
-请注意，如果表单正在提交到链接指向的URL，则此链接不会显示为“待定”，因为我们仅对“加载”状态执行此操作。表单将包含“提交”状态下的待定UI，一旦操作完成，链接将变为待定状态。
+请注意，如果正在向链接指向的 URL 提交表单，该链接将不会显示为 "pending"，因为我们只在 "loading "状态下才这样做。当状态为 "submitting "时，表单将包含待处理用户界面，一旦操作完成，链接将转为待处理状态。

@@ -1,11 +1,12 @@
 # `useSubmit`
 
-让您作为程序员提交表单而不是用户的 `<Form>` 命令式版本。
+`<Form>` 的命令式版本，让程序员代替用户提交表单。
 
-> 仅当使用数据路由器时，此功能才有效，请参见[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)。
+> IMPORTANT
 >
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)。
 
-例如，每次表单内的值发生变化时提交表单：
+例如，每当表单内的值发生变化时就提交表单：
 
 ```jsx
 import { useSubmit, Form } from "react-router-dom";
@@ -25,7 +26,7 @@ function SearchField() {
 }
 ```
 
-如果您希望在一段时间的不活动后自动注销某人的网站，则这也可能很有用。 在这种情况下，我们将不活动定义为用户在5分钟内没有导航到任何其他页面。
+如果您想让某人在一段时间不活动后自动退出网站，这也很有用。在本例中，我们将 "不活动 "定义为用户在 5 分钟后没有浏览任何其他页面。
 
 ```jsx
 import { useSubmit, useLocation } from "react-router-dom";
@@ -52,7 +53,7 @@ function useSessionTimeout() {
 
 ## 提交目标
 
-submit的第一个参数接受许多不同的值。
+提交的第一个参数可接受多种不同的值。
 
 您可以提交任何表单或表单输入元素：
 
@@ -74,16 +75,84 @@ formData.append("cheese", "gouda");
 submit(formData);
 ```
 
+或者您也可以提交 `URLSearchParams` ：
+
+```jsx
+let searchParams = new URLSearchParams();
+searchParams.append("cheese", "gouda");
+submit(searchParams);
+```
+
+或 `URLSearchParams` 构造函数接受的任何内容：
+
+```jsx
+submit("cheese=gouda&toasted=yes");
+submit([
+  ["cheese", "gouda"],
+  ["toasted", "yes"],
+]);
+```
+
+为 POST 提交 JSON 对象时，默认行为是将数据编码为 `FormData` ：
+
+```jsx
+submit(
+  { key: "value" },
+  {
+    method: "post",
+    encType: "application/x-www-form-urlencoded",
+  }
+);
+// will serialize into request.formData() in your action
+// and will show up on useNavigation().formData during the navigation
+```
+
+或者您可以选择使用 JSON 编码：
+
+```jsx
+submit(
+  { key: "value" },
+  { method: "post", encType: "application/json" }
+);
+// will serialize into request.json() in your action
+// and will show up on useNavigation().json during the navigation
+
+submit('{"key":"value"}', {
+  method: "post",
+  encType: "application/json",
+});
+// will encode into request.json() in your action
+// and will show up on useNavigation().json during the navigation
+```
+
+或纯文本：
+
+```jsx
+submit("value", { method: "post", encType: "text/plain" });
+// will serialize into request.text() in your action
+// and will show up on useNavigation().text during the navigation
+```
+
 ## 提交选项
 
-第二个参数是一组选项，直接映射到表单提交属性：
+第二个参数是一组直接映射（大部分）表单提交属性的选项：
 
 ```jsx
 submit(null, {
-  action: "/logout",
   method: "post",
+  action: "/logout",
 });
 
 // same as
 <Form action="/logout" method="post" />;
 ```
+
+由于提交的是导航，因此选项还可能包含 [`Form`](https://reactrouter.com/en/main/components/form) 中与导航相关的其他属性，如：
+
+- `fetcherKey`
+- `navigate`
+- `preventScrollReset`
+- `relative`
+- `replace`
+- `state`
+- `unstable_viewTransition`

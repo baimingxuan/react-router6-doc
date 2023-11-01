@@ -2,7 +2,7 @@
 
 类型声明
 
-```tsx
+```ts
 declare function useLinkClickHandler<
   E extends Element = HTMLAnchorElement
 >(
@@ -16,7 +16,7 @@ declare function useLinkClickHandler<
 ): (event: React.MouseEvent<E, MouseEvent>) => void;
 ```
 
-当在 `react-router-dom` 中构建自定义 `<Link>` 时， `useLinkClickHandler` 钩子返回一个点击事件处理程序，用于导航。
+在 `react-router-dom` 中创建自定义 `<Link>` 时， `useLinkClickHandler` 钩子会返回一个用于导航的点击事件处理程序。
 
 ```jsx
 import {

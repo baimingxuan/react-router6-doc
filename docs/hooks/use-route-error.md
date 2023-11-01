@@ -1,9 +1,10 @@
 # `useRouteError`
 
-在 [`errorElement`](https://reactrouter.com/en/main/route/error-element) 内部，此钩子返回在操作、加载器或渲染期间抛出的任何内容。请注意，抛出的响应有特殊处理方式，请参见 [`isRouteErrorResponse`](https://reactrouter.com/en/main/utils/is-route-error-response) 了解更多信息。
+在 [`errorElement`](https://reactrouter.com/en/main/route/error-element) 中，该钩子会返回在操作、加载器或渲染过程中抛出的任何响应。请注意，抛出的响应有特殊处理方式，更多信息请参阅 [`isRouteErrorResponse`](https://reactrouter.com/en/main/utils/is-route-error-response)。
 
-> 仅当使用数据路由器时，此功能才有效，请参见[选择路由](https://reactrouter.com/en/main/routers/picking-a-router)。
+> IMPORTANT
 >
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)。
 
 ```jsx
 function ErrorBoundary() {

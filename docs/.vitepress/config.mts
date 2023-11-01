@@ -324,6 +324,10 @@ export default defineConfig({
           {
             text: 'useSubmit',
             link: '/hooks/use-submit'
+          },
+          {
+            text: 'unstable_useViewTransitionState',
+            link: '/hooks/use-view-transition-state'
           }
         ]
       },

@@ -6,13 +6,13 @@
 
 类型声明
 
-```tsx
+```ts
 declare function useParams<
   K extends string = string
 >(): Readonly<Params<K>>;
 ```
 
-“ `useParams` ” 钩子返回一个键/值对对象，其中包含当前 URL 中由 “ `<Route path>` ” 匹配的动态参数。子路由继承其父路由的所有参数。
+`useParams` 钩子会返回一个由 `<Route path>` 匹配的当前 URL 动态参数的键/值对组成的对象。子路由继承父路由的所有参数。
 
 ```jsx
 import * as React from 'react';
