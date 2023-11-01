@@ -1,6 +1,6 @@
 # `createRoutesFromElements`
 
-`createRoutesFromElements` 是一个帮助程序，它可以从 `<Route>` 元素创建路由对象。如果您更喜欢使用 JSX 而不是对象来创建路由，则它非常有用。
+`createRoutesFromElements` 是一个从`<Route>`元素创建路由对象的辅助工具。如果您更喜欢以 JSX 而不是对象的形式创建路由，那么它将非常有用。
 
 ```jsx
 import {
@@ -37,11 +37,11 @@ const router = createBrowserRouter([
 ]);
 ```
 
-它也被 [`<Routes>`](https://reactrouter.com/en/main/components/routes) 内部使用，从其 [`<Route>`](https://reactrouter.com/en/main/components/route) 子元素生成路由对象。
+[`<Routes>`](https://reactrouter.com/en/main/components/routes) 内部也使用它来从 [`<Route>`](https://reactrouter.com/en/main/components/route) 子路由生成路由对象。
 
 ## 类型声明
 
-```tsx
+```ts
 declare function createRoutesFromElements(
   children: React.ReactNode
 ): RouteObject[];

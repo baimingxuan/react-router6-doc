@@ -2,7 +2,7 @@
 
 类型声明
 
-```tsx
+```ts
 declare function matchPath<
   ParamKey extends string = string
 >(
@@ -23,6 +23,6 @@ interface PathPattern {
 }
 ```
 
-`matchPath` 将路由路径模式与 URL 路径名进行匹配，并返回有关匹配的信息。每当您需要手动运行路由器的匹配算法以确定路由路径是否匹配时，这非常有用。如果模式不匹配给定的路径名，则返回 `null` 。
+`matchPath` 将路由路径模式与 URL 路径名进行匹配，并返回匹配信息。当您需要手动运行路由器的匹配算法来确定路由路径是否匹配时，这个功能就非常有用。如果模式与给定路径名不匹配，则返回`null`。
 
-[`useMatch`钩子](https://reactrouter.com/en/main/hooks/use-match)在内部使用此函数来匹配相对于当前位置的路由路径。
+[`useMatch`钩子](https://reactrouter.com/en/main/hooks/use-match)内部使用此函数来匹配相对于当前位置的路径。
