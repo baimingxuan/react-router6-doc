@@ -61,7 +61,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ## 测试
 
-使用 [createMemoryRouter`](https://reactrouter.com/en/main/routers/create-memory-router) 或[`<MemoryRouter>`](https://reactrouter.com/en/main/router-components/memory-router)测试使用 React 路由器 API 的组件是最简单的，而不是在应用程序中使用需要 DOM 历史 API 的路由器。
+使用 [`createMemoryRouter`](https://reactrouter.com/en/main/routers/create-memory-router) 或[`<MemoryRouter>`](https://reactrouter.com/en/main/router-components/memory-router)测试使用 React 路由器 API 的组件是最简单的，而不是在应用程序中使用需要 DOM 历史 API 的路由器。
 
 某些 React Router API 在内部使用 `fetch` ，它仅从 Node.js v18 开始受支持。如果您的项目使用 v17 或更低版本，则应手动添加 `fetch` polyfill。一种方法是安装 [`whatwg-fetch`](https://www.npmjs.com/package/whatwg-fetch)并将其添加到 `jest.config.js` 文件中，如下所示：
 

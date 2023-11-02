@@ -1,4 +1,4 @@
-## `<Await>`
+# `<Await>`
 
 用于呈现具有自动错误处理的功能[延迟值](https://reactrouter.com/en/main/utils/defer)。请务必查看[延迟数据指南](https://reactrouter.com/en/main/guides/deferred)，因为有一些 API 与此组件配合使用。
 

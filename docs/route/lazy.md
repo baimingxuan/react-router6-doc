@@ -1,4 +1,4 @@
-## `lazy`
+# `lazy`
 
 为了保持应用程序捆绑包的小巧并支持路由的代码拆分，每个路由都可以提供一个异步函数，用于解析路由定义中与路由不匹配的部分（ `loader` , `action` , `Component` / `element` , `ErrorBoundary` / `errorElement` 等）。
 
