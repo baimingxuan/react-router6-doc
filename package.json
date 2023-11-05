@@ -1,10 +1,10 @@
 {
   "name": "react-router6-doc",
   "version": "1.0.0",
-  "description": "react router v6.x chinese document",
+  "description": "react router v6.17.0 chinese document",
   "repository": "https://github.com/baimingxuan/react-router6-doc.git",
   "author": "baimingxuan",
-  "license": "GNU GENERAL PUBLIC",
+  "license": "MIT License",
   "scripts": {
     "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
