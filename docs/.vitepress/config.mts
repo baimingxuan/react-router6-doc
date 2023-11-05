@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'React Router6 中文文档',
   description: '文档内容详细翻译自官方英文文档',
-  base: '/react-router6-doc/',
+  base: '/',
   head: [['link', { rel: 'icon', href: '/.vitepress/logo/favicon.ico' }]],
   themeConfig: {
 

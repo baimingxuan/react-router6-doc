@@ -2,58 +2,39 @@ name: deploy
 
 on:
   push:
-    branches: [main]
-
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
+    branches:
+      - main
 
 jobs:
-  build:
+  push-to-gh-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          fetch-depth: 0
-      
-      - name: Setup Node
+          version: 8
+          run_install: false
+
+      - name: use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: pnpm
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Install dependencies
-        run: pnpm install
+          node-version: '20.x'
 
       - name: Build
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
         run: |
+          pnpm install
           pnpm run docs:build
-          touch docs/.vitepress/dist/.nojekyll
 
-      - name: Upload
-        uses: actions/upload-pages-artifact@v2
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          path: docs/.vitepress/dist
-
-  deploy:
-    environment:
-      name: github-pages
-      url: https://github.com/baimingxuan/react-router6-doc/tree/gh-pages
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
+          BRANCH: gh-pages
+          FOLDER: docs/.vitepress/dist
