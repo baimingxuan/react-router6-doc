@@ -14,17 +14,10 @@ export default defineConfig({
 
     nav: [
       { text: '首页', link: '/' },
-      { text: '文档', link: '/markdown-examples' }
+      { text: '文档', link: '/start/overview' }
     ],
 
     sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      },
       {
         text: '快速上手',
         collapsed: false,
