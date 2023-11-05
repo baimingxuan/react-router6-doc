@@ -37,7 +37,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-[`<Routes>`](https://reactrouter.com/en/main/components/routes) 内部也使用它来从 [`<Route>`](https://reactrouter.com/en/main/components/route) 子路由生成路由对象。
+[`<Routes>`](https://baimingxuan.github.io/react-router6-doc/components/routes) 内部也使用它来从 [`<Route>`](https://baimingxuan.github.io/react-router6-doc/components/route) 子路由生成路由对象。
 
 ## 类型声明
 

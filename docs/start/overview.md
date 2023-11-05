@@ -163,11 +163,11 @@ function Random() {
 
 参阅：
 
-- [`<Route path>`](https://reactrouter.com/en/main/route/route#path)
-- [`<Route loader>`](https://reactrouter.com/en/main/route/loader)
-- [`<Route action>`](https://reactrouter.com/en/main/route/action)
-- [`useParams`](https://reactrouter.com/en/main/hooks/use-params)
-- [`useMatch`](https://reactrouter.com/en/main/hooks/use-match)
+- [`<Route path>`](https://baimingxuan.github.io/react-router6-doc/route/route#path)
+- [`<Route loader>`](https://baimingxuan.github.io/react-router6-doc/route/loader)
+- [`<Route action>`](https://baimingxuan.github.io/react-router6-doc/route/action)
+- [`useParams`](https://baimingxuan.github.io/react-router6-doc/hooks/use-params)
+- [`useMatch`](https://baimingxuan.github.io/react-router6-doc/hooks/use-match)
 
 ##  分级路由匹配
 
@@ -203,7 +203,7 @@ function Random() {
 />
 ```
 
-您还可以通过[`useMatch`](https://reactrouter.com/en/main/hooks/use-match)查看链接以外的任何其他 "活动 "指示。
+您还可以通过[`useMatch`](https://baimingxuan.github.io/react-router6-doc/hooks/use-match)查看链接以外的任何其他 "活动 "指示。
 
 ```jsx
 function SomeComp() {
@@ -214,8 +214,8 @@ function SomeComp() {
 
 参阅：
 
-- [`NavLink`](https://reactrouter.com/en/main/components/nav-link)
-- [`useMatch`](https://reactrouter.com/en/main/hooks/use-match)
+- [`NavLink`](https://baimingxuan.github.io/react-router6-doc/components/nav-link)
+- [`useMatch`](https://baimingxuan.github.io/react-router6-doc/hooks/use-match)
 
 ##  相对链接
 
@@ -313,7 +313,7 @@ function Game() {
 
 ##  重定向
 
-在加载或更改数据时，通常会将用户[重定向](https://reactrouter.com/en/main/fetch/redirect)到不同的路由。
+在加载或更改数据时，通常会将用户[重定向](https://baimingxuan.github.io/react-router6-doc/fetch/redirect)到不同的路由。
 
 ```jsx
 <Route
@@ -349,9 +349,9 @@ function Game() {
 
 参阅：
 
-- [`redirect`](https://reactrouter.com/en/main/fetch/redirect)
-- [Throwing in Loaders](https://reactrouter.com/en/main/route/loader#throwing-in-loaders)
-- [`useNavigate`](https://reactrouter.com/en/main/hooks/use-navigate)
+- [`redirect`](https://baimingxuan.github.io/react-router6-doc/fetch/redirect)
+- [Throwing in Loaders](https://baimingxuan.github.io/react-router6-doc/route/loader#throwing-in-loaders)
+- [`useNavigate`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigate)
 
 ##  待定导航用户界面
 
@@ -373,11 +373,11 @@ function Root() {
 
 参阅：
 
-- [`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)
+- [`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)
 
 ##  带有`<Suspense>`的骨架屏用户界面
 
-无需等待下一页的数据，您可以[`defer`](https://reactrouter.com/en/main/utils/defer) 数据，这样用户界面就可以在加载数据的同时立即翻转到下一个屏幕，并使用占位符用户界面。
+无需等待下一页的数据，您可以[`defer`](https://baimingxuan.github.io/react-router6-doc/utils/defer) 数据，这样用户界面就可以在加载数据的同时立即翻转到下一个屏幕，并使用占位符用户界面。
 
 ```jsx
 <Route
@@ -430,10 +430,10 @@ function IssueComments() {
 
 查看：
 
-- [延迟数据指南](https://reactrouter.com/en/main/guides/deferred)
-- [`defer`](https://reactrouter.com/en/main/utils/defer)
-- [`Await`](https://reactrouter.com/en/main/components/await)
-- [`useAsyncValue`](https://reactrouter.com/en/main/hooks/use-async-value)
+- [延迟数据指南](https://baimingxuan.github.io/react-router6-doc/guides/deferred)
+- [`defer`](https://baimingxuan.github.io/react-router6-doc/utils/defer)
+- [`Await`](https://baimingxuan.github.io/react-router6-doc/components/await)
+- [`useAsyncValue`](https://baimingxuan.github.io/react-router6-doc/hooks/use-async-value)
 
 ##  数据突变
 
@@ -483,7 +483,7 @@ HTML 表单是导航事件，就像链接一样。React Router 通过客户端�
 
 参阅：
 
-- [“创建联系人”教程](https://reactrouter.com/en/main/start/tutorial#creating-contacts)
+- [“创建联系人”教程](https://baimingxuan.github.io/react-router6-doc/start/tutorial#creating-contacts)
 
 ## 繁忙的指示器
 
@@ -518,11 +518,11 @@ function NewProjectForm() {
 
 参阅：
 
-- [`useNavigation`](https://reactrouter.com/en/main/hooks/use-navigation)
+- [`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)
 
 ##  优化用户界面
 
-即使异步工作仍处于待处理状态，了解发送到 [action](https://reactrouter.com/en/main/route/action) 的[`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)通常也足以跳过繁忙指示器，立即以下一状态渲染用户界面。这就是所谓的 "优化用户界面"。
+即使异步工作仍处于待处理状态，了解发送到 [action](https://baimingxuan.github.io/react-router6-doc/route/action) 的[`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)通常也足以跳过繁忙指示器，立即以下一状态渲染用户界面。这就是所谓的 "优化用户界面"。
 
 ```jsx
 function LikeButton({ tweet }) {
@@ -549,7 +549,7 @@ function LikeButton({ tweet }) {
 
 （是的，HTML 按钮可以有 `name` 和 `value` ）。
 
-虽然更常见的是使用[`fetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)来优化用户界面，但也可以使用[`navigation.formData`](https://reactrouter.com/en/main/hooks/use-navigation#navigationformdata) 对普通表单执行相同的操作。
+虽然更常见的是使用[`fetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)来优化用户界面，但也可以使用[`navigation.formData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation#navigationformdata) 对普通表单执行相同的操作。
 
 ##  数据 Fetchers
 
@@ -557,7 +557,7 @@ HTML 表单是突变的典范，但它有一个很大的局限性：一次只能
 
 大多数 Web 应用都需要允许同时发生多个突变，就像一个记录列表，每条记录都可以被独立删除、标记为完整、被收藏等。
 
-[Fetcher](https://reactrouter.com/en/main/hooks/use-fetcher) 允许您与路由 [action](https://reactrouter.com/en/main/route/action) 和 [loader](https://reactrouter.com/en/main/route/loader) 进行交互，而不会在浏览器中导致导航，同时还能获得所有传统优势，如错误处理、重新验证、中断处理和竞争条件处理。
+[Fetcher](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) 允许您与路由 [action](https://baimingxuan.github.io/react-router6-doc/route/action) 和 [loader](https://baimingxuan.github.io/react-router6-doc/route/loader) 进行交互，而不会在浏览器中导致导航，同时还能获得所有传统优势，如错误处理、重新验证、中断处理和竞争条件处理。
 
 想象一下任务列表：
 
@@ -573,7 +573,7 @@ function Tasks() {
 }
 ```
 
-每个任务都可以独立于其他任务被标记为已完成，并有自己的待处理状态，而且不会导致使用 [fetcher](https://reactrouter.com/en/main/hooks/use-fetcher) 进行导航：
+每个任务都可以独立于其他任务被标记为已完成，并有自己的待处理状态，而且不会导致使用 [fetcher](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) 进行导航：
 
 ```jsx
 function ToggleCompleteButton({ task }) {
@@ -601,7 +601,7 @@ function ToggleCompleteButton({ task }) {
 
 参阅：
 
-- [`useFetcher`](https://reactrouter.com/en/main/hooks/use-fetcher)
+- [`useFetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)
 
 ## 竞争条件处理
 
@@ -630,7 +630,7 @@ React Router 会取消过时的操作，只自动提交新数据。
                      ^ commit correct state
 ```
 
-React Router 不仅能处理类似导航的竞争条件，还能处理许多其他情况，如加载自动完成的结果或使用[`fetcher`](https://reactrouter.com/en/main/hooks/use-fetcher) 执行多个并发突变（及其自动并发重验证）。
+React Router 不仅能处理类似导航的竞争条件，还能处理许多其他情况，如加载自动完成的结果或使用[`fetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) 执行多个并发突变（及其自动并发重验证）。
 
 ## 错误处理
 
@@ -642,7 +642,7 @@ React Router 会自动处理应用程序中的绝大多数错误。它将捕获�
 
 在实践中，除了在事件处理程序（ `<button onClick>` ）或 `useEffect` 中抛出的错误外，应用程序中几乎所有的错误都是这样。React Router 应用程序往往很少出现这两种错误。
 
-当出现错误时，不会渲染路由的[`element`](https://reactrouter.com/en/main/route/route#element)，而是渲染[`errorElement`](https://reactrouter.com/en/main/route/error-element) 。
+当出现错误时，不会渲染路由的[`element`](https://baimingxuan.github.io/react-router6-doc/route/route#element)，而是渲染[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element) 。
 
 ```jsx
 <Route
@@ -672,8 +672,8 @@ React Router 会自动处理应用程序中的绝大多数错误。它将捕获�
 
 参阅：
 
-- [`<Route errorElement>`](https://reactrouter.com/en/main/route/error-element)
-- [`useRouteError`](https://reactrouter.com/en/main/hooks/use-route-error)
+- [`<Route errorElement>`](https://baimingxuan.github.io/react-router6-doc/route/error-element)
+- [`useRouteError`](https://baimingxuan.github.io/react-router6-doc/hooks/use-route-error)
 
 ##  滚动恢复
 
@@ -683,10 +683,10 @@ React Router 将在导航时模拟浏览器的滚动恢复，在滚动前等待�
 
 参阅：
 
-- [`<ScrollRestoration>`](https://reactrouter.com/en/main/components/scroll-restoration)
+- [`<ScrollRestoration>`](https://baimingxuan.github.io/react-router6-doc/components/scroll-restoration)
 
 ## Web 标准 API
 
-React Router 基于 Web 标准 API 构建的。[loader](https://reactrouter.com/en/main/route/loader) 和 [action](https://reactrouter.com/en/main/route/action) 接收标准的 Web Fetch API[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)对象，并且也可以返回[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)对象。取消操作是通过 [Abort Signals](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) 完成的，搜索参数是通过[`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)处理的，数据变更是通过[HTML Forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) 处理的。
+React Router 基于 Web 标准 API 构建的。[loader](https://baimingxuan.github.io/react-router6-doc/route/loader) 和 [action](https://baimingxuan.github.io/react-router6-doc/route/action) 接收标准的 Web Fetch API[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)对象，并且也可以返回[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)对象。取消操作是通过 [Abort Signals](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) 完成的，搜索参数是通过[`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)处理的，数据变更是通过[HTML Forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) 处理的。
 
 你熟练掌握 React Router 时，你也就熟练掌握了 Web 平台。

@@ -1,10 +1,10 @@
 # `useFetchers`
 
-返回所有不带 `load` 、 `submit` 或 `Form` 属性正在进行的 [fetchers](https://reactrouter.com/en/main/hooks/use-fetcher) 数组，但不包括它们的 `load` ， `submit` 或 `Form` 属性（不能让父组件试图控制其子组件的行为！根据实际经验，我们知道这是很愚蠢的做法）。
+返回所有不带 `load` 、 `submit` 或 `Form` 属性正在进行的 [fetchers](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) 数组，但不包括它们的 `load` ， `submit` 或 `Form` 属性（不能让父组件试图控制其子组件的行为！根据实际经验，我们知道这是很愚蠢的做法）。
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)
 
 ```jsx
 import { useFetchers } from "react-router-dom";

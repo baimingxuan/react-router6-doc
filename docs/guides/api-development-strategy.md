@@ -15,7 +15,7 @@
 
 ## 实施情况
 
-我们计划通过我们称之为 "Future Flags" 的方式来实现这一目标，您将在初始化[数据路由](https://reactrouter.com/en/main/routers/picking-a-router)时提供这些标志。可以将其视为未来功能的功能标志。当我们实现新功能时，我们总是尝试以一种向后兼容的方式来实现它们。但是，当需要进行突破性更改时，我们不会将该功能放在 v7 版本的最终版本中。相反，我们会添加一个"Future Flags"，并在 v6 小版本中与当前行为一起实现新功能。这样，用户就可以立即开始使用该功能、提供反馈并报告错误。
+我们计划通过我们称之为 "Future Flags" 的方式来实现这一目标，您将在初始化[数据路由](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)时提供这些标志。可以将其视为未来功能的功能标志。当我们实现新功能时，我们总是尝试以一种向后兼容的方式来实现它们。但是，当需要进行突破性更改时，我们不会将该功能放在 v7 版本的最终版本中。相反，我们会添加一个"Future Flags"，并在 v6 小版本中与当前行为一起实现新功能。这样，用户就可以立即开始使用该功能、提供反馈并报告错误。
 
 这样一来，用户不仅可以逐步采用新功能（而且无需大幅提升版本），我们还能在 *v7 版本发布前*逐步解决所有问题。最后，我们还会在 v6 版本中添加弃用警告，提示用户使用新行为。如果在 v6 发布时，应用程序已经选择了所有`future flags`并更新了代码，那么他们只需将其依赖关系更新到 v7，删除`future flags`，然后在几分钟内就能在 v7 上运行。
 
@@ -50,7 +50,7 @@
 
 ### `@remix-run/router` Future Flags
 
-这些标志仅在使用[数据路由](https://reactrouter.com/en/main/routers/picking-a-router)时适用，并在创建 `router` 实例时传递：
+这些标志仅在使用[数据路由](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)时适用，并在创建 `router` 实例时传递：
 
 ```jsx
 const router = createBrowserRouter(routes, {

@@ -4,8 +4,8 @@
 
 请参阅：
 
-- [`<Route>`](https://reactrouter.com/en/main/route/route)
-- [`loader`](https://reactrouter.com/en/main/route/loader)
-- [`action`](https://reactrouter.com/en/main/route/action)
-- [`errorElement`](https://reactrouter.com/en/main/route/error-element)
-- [`shouldRevalidate`](https://reactrouter.com/en/main/route/should-revalidate)
+- [`<Route>`](https://baimingxuan.github.io/react-router6-doc/route/route)
+- [`loader`](https://baimingxuan.github.io/react-router6-doc/route/loader)
+- [`action`](https://baimingxuan.github.io/react-router6-doc/route/action)
+- [`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)
+- [`shouldRevalidate`](https://baimingxuan.github.io/react-router6-doc/route/should-revalidate)

@@ -22,7 +22,7 @@ type RelativeRoutingType = "route" | "path";
 
 > IMPORTANT
 >
-> 通常在 [`loaders`](https://reactrouter.com/en/main/route/loader) 和[`actions`](https://reactrouter.com/en/main/route/action)中使用[`redirect`](https://reactrouter.com/en/main/fetch/redirect)比使用此钩子更好
+> 通常在 [`loaders`](https://baimingxuan.github.io/react-router6-doc/route/loader) 和[`actions`](https://baimingxuan.github.io/react-router6-doc/route/action)中使用[`redirect`](https://baimingxuan.github.io/react-router6-doc/fetch/redirect)比使用此钩子更好
 
 `useNavigate` 钩子会返回一个函数，让您以编程方式导航，例如在效果中导航：
 
@@ -44,7 +44,7 @@ function useLogoutTimer() {
 
 `navigate` 函数有两个签名：
 
-- 或者传递一个 `To` 值（与 `<Link to>` 类型相同），并可选择第二个 `options` 参数（与 [`Link`](https://reactrouter.com/en/main/components/link)可以传递的属性类似），或者
+- 或者传递一个 `To` 值（与 `<Link to>` 类型相同），并可选择第二个 `options` 参数（与 [`Link`](https://baimingxuan.github.io/react-router6-doc/components/link)可以传递的属性类似），或者
 - 在历史堆栈中传递您想去的 delta 值。例如， `navigate(-1)` 相当于点击后退按钮
 
 ## `options.replace`
@@ -53,7 +53,7 @@ function useLogoutTimer() {
 
 ## `options.state`
 
-您可以在[历史状态](https://developer.mozilla.org/en-US/docs/Web/API/History/state)中存储一个可选的 `state` 值，然后通过[`useLocation`](https://reactrouter.com/en/main/hooks/use-location)访问目的地路由。例如:
+您可以在[历史状态](https://developer.mozilla.org/en-US/docs/Web/API/History/state)中存储一个可选的 `state` 值，然后通过[`useLocation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-location)访问目的地路由。例如:
 
 ```jsx
 navigate("/new-route", { state: { key: "value" } });
@@ -61,7 +61,7 @@ navigate("/new-route", { state: { key: "value" } });
 
 ## `options.preventScrollReset`
 
-使用[ `<ScrollRestoration>`](https://reactrouter.com/en/main/components/scroll-restoration) 组件时，可以通过以下方式禁用重置滚动到页面顶部的功能 `options.preventScrollReset`
+使用[ `<ScrollRestoration>`](https://baimingxuan.github.io/react-router6-doc/components/scroll-restoration) 组件时，可以通过以下方式禁用重置滚动到页面顶部的功能 `options.preventScrollReset`
 
 ## `options.relative`
 
@@ -86,11 +86,11 @@ function EditContact() {
 
 ## `options.unstable_viewTransition`
 
-`unstable_viewTransition` 选项通过在 `document.startViewTransition()` 中封装最终状态更新，为该导航启用[视图转换](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)。如果需要为该视图转换应用特定样式，还需要利用[ `unstable_useViewTransitionState()`](https://reactrouter.com/en/main/hooks//use-view-transition-state)。
+`unstable_viewTransition` 选项通过在 `document.startViewTransition()` 中封装最终状态更新，为该导航启用[视图转换](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)。如果需要为该视图转换应用特定样式，还需要利用[ `unstable_useViewTransitionState()`](https://baimingxuan.github.io/react-router6-doc/hooks//use-view-transition-state)。
 
 > IMPORTANT
 >
-> `unstable_viewTransition` 仅在使用数据路由时有效，请参阅 ["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)。
+> `unstable_viewTransition` 仅在使用数据路由时有效，请参阅 ["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
 
 > IMPORTANT
 >

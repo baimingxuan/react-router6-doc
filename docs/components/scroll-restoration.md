@@ -4,7 +4,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)
 
 只需呈现其中一个，建议在应用程序的根路由中呈现：
 
@@ -87,7 +87,7 @@ function RootRouteComponent() {
 <Form preventScrollReset={true} />
 ```
 
-另请参阅：[`<Link preventScrollReset>`](https://reactrouter.com/en/main/components/link#preventscrollreset),[`<Form preventScrollReset>`](https://reactrouter.com/en/main/components/form#preventscrollreset)
+另请参阅：[`<Link preventScrollReset>`](https://baimingxuan.github.io/react-router6-doc/components/link#preventscrollreset),[`<Form preventScrollReset>`](https://baimingxuan.github.io/react-router6-doc/components/form#preventscrollreset)
 
 ## 滚动闪烁
 

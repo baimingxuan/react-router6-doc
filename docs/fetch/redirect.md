@@ -29,7 +29,7 @@ new Response("", {
 
 另请参阅：
 
-- [从`loader`返回响应](https://reactrouter.com/en/main/route/loader#returning-responses)
+- [从`loader`返回响应](https://baimingxuan.github.io/react-router6-doc/route/loader#returning-responses)
 
 ## 类型声明
 

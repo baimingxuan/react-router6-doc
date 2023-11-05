@@ -1,6 +1,6 @@
 # `isRouteErrorResponse`
 
-如果[路由错误](https://reactrouter.com/en/main/hooks/use-route-error)是*路由错误响应*，则返回 `true` 。
+如果[路由错误](https://baimingxuan.github.io/react-router6-doc/hooks/use-route-error)是*路由错误响应*，则返回 `true` 。
 
 ```jsx
 import { isRouteErrorResponse } from "react-router-dom";

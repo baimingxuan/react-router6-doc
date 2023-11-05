@@ -13,4 +13,4 @@ declare function useMatch<
 
 返回给定路径上的路由相对于当前位置的匹配数据。
 
-更多信息，请参阅[`matchPath`](https://reactrouter.com/en/main/utils/match-path)。
+更多信息，请参阅[`matchPath`](https://baimingxuan.github.io/react-router6-doc/utils/match-path)。

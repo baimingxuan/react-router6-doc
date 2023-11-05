@@ -1,6 +1,6 @@
 # `<StaticRouterProvider>`
 
-`<StaticRouterProvider>` 接受来自 [`createStaticRouter()`](https://reactrouter.com/en/main/routers/create-static-router) 的 `router` 和来自 [`createStaticHandler()`](https://reactrouter.com/en/main/routers/create-static-handler) 的 `context` ，并在服务器（即 [Node](https://nodejs.org/) 或其他 Javascript 运行时）上渲染您的应用程序。有关更全面的概述，请参阅[服务器端渲染](https://reactrouter.com/en/main/guides/ssr)指南。
+`<StaticRouterProvider>` 接受来自 [`createStaticRouter()`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-router) 的 `router` 和来自 [`createStaticHandler()`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-handler) 的 `context` ，并在服务器（即 [Node](https://nodejs.org/) 或其他 Javascript 运行时）上渲染您的应用程序。有关更全面的概述，请参阅[服务器端渲染](https://baimingxuan.github.io/react-router6-doc/guides/ssr)指南。
 
 ```jsx
 import {
@@ -76,6 +76,6 @@ declare function StaticRouterProvider(props: {
 
 **另请参见:**
 
-- [`createStaticHandler`](https://reactrouter.com/en/main/routers/create-static-handler)
-- [`createStaticRouter`](https://reactrouter.com/en/main/routers/create-static-router)
-- [`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router)
+- [`createStaticHandler`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-handler)
+- [`createStaticRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-router)
+- [`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)

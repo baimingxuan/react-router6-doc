@@ -1,6 +1,6 @@
 # `createStaticHandler`
 
-`createStaticHandler` 用于在服务器（即 [Node](https://nodejs.org/) 或其他 Javascript 运行时）上执行数据获取和提交，然后通过`<StaticRouterProvider>`在服务器端渲染应用程序。有关更全面的概述，请参阅[服务器端渲染](https://reactrouter.com/en/main/guides/ssr)指南。
+`createStaticHandler` 用于在服务器（即 [Node](https://nodejs.org/) 或其他 Javascript 运行时）上执行数据获取和提交，然后通过`<StaticRouterProvider>`在服务器端渲染应用程序。有关更全面的概述，请参阅[服务器端渲染](https://baimingxuan.github.io/react-router6-doc/guides/ssr)指南。
 
 ```jsx
 import {
@@ -75,7 +75,7 @@ interface StaticHandler {
 
 ## `routes`/`basename`
 
-这些信息与 `routes` / `basename` 传递给[`createBrowserRouter`](https://reactrouter.com/en/main/routers/create-browser-router) 的一样。
+这些信息与 `routes` / `basename` 传递给[`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router) 的一样。
 
 ## `handler.query(request, opts)`
 
@@ -126,5 +126,5 @@ staticHandler.queryRoute(new Request("/parent/child"), {
 
 **另请参见:**
 
-- [`createStaticRouter`](https://reactrouter.com/en/main/routers/create-static-router)
-- [`<StaticRouterProvider>`](https://reactrouter.com/en/main/routers/static-router-provider)
+- [`createStaticRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-router)
+- [`<StaticRouterProvider>`](https://baimingxuan.github.io/react-router6-doc/routers/static-router-provider)

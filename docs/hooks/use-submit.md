@@ -4,7 +4,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://reactrouter.com/en/main/routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
 
 例如，每当表单内的值发生变化时就提交表单：
 
@@ -147,7 +147,7 @@ submit(null, {
 <Form action="/logout" method="post" />;
 ```
 
-由于提交的是导航，因此选项还可能包含 [`Form`](https://reactrouter.com/en/main/components/form) 中与导航相关的其他属性，如：
+由于提交的是导航，因此选项还可能包含 [`Form`](https://baimingxuan.github.io/react-router6-doc/components/form) 中与导航相关的其他属性，如：
 
 - `fetcherKey`
 - `navigate`
