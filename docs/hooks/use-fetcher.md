@@ -169,9 +169,9 @@ export function useIdleLogout() {
 
 您可以通过 `fetcher.state` 了解 fetcher 的状态。它将是:
 
-- **空闲** --没有获取任何信息。
-- **提交** - 由于使用 POST、PUT、PATCH 或 DELETE 提交了取件，路由操作被调用
-- **加载** - fetcher 正在调用`loader`（来自 `fetcher.load` ），或在单独提交或调用 `useRevalidator` 后正在重新验证
+- **idle** - 没有获取任何信息。
+- **submitting** - 由于使用 POST、PUT、PATCH 或 DELETE 提交了取件，路由操作被调用
+- **loading** - fetcher 正在调用`loader`（来自 `fetcher.load` ），或在单独提交或调用 `useRevalidator` 后正在重新验证
 
 ### `fetcher.data`
 
