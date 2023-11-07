@@ -2,7 +2,7 @@
 
 > NOTE
 >
-> 这是 `useSearchParams` 的 React Native 版本。有关`Web`版本，[请点击此处](../hooks/use-search-params)。
+> 这是 `useSearchParams` 的 React Native 版本。有关`Web`版本，[请点击此处](https://baimingxuan.github.io/react-router6-doc/hooks/use-search-params)。
 
 类型声明
 

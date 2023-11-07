@@ -4,7 +4,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅 ["选择路由"](../routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅 ["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
 
 ```jsx
 createBrowserRouter([
@@ -27,11 +27,11 @@ createBrowserRouter([
 ]);
 ```
 
-当用户在应用程序中导航时，下一个匹配路由分支的加载器将被并行调用，其数据将通过[`useLoaderData`](../hooks/use-loader-data)提供给组件。
+当用户在应用程序中导航时，下一个匹配路由分支的加载器将被并行调用，其数据将通过[`useLoaderData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-loader-data)提供给组件。
 
 ## `params`
 
-路由参数会[动态片段](../route/route#dynamic-segments)中解析并传递给`loader`。这对于确定要加载的资源非常有用：
+路由参数会[动态片段](https://baimingxuan.github.io/react-router6-doc/route/route#dynamic-segments)中解析并传递给`loader`。这对于确定要加载的资源非常有用：
 
 ```jsx
 createBrowserRouter([
@@ -82,7 +82,7 @@ function loader({ request }) {
 
 ## 返回响应
 
-您可以从加载器返回任何想要的内容，并从[`useLoaderData`](../hooks/use-loader-data)获取访问权限，也可以返回网络 Response。
+您可以从加载器返回任何想要的内容，并从[`useLoaderData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-loader-data)获取访问权限，也可以返回网络 Response。
 
 这似乎不会立即派上用场，但请考虑一下 `fetch` 。由于 `fetch` 的返回值是一个 Response，而`loader`能理解 Response，因此许多加载器都能返回一个简单的 fetch！
 
@@ -130,7 +130,7 @@ function SomeRoute() {
 }
 ```
 
-使用[`json`](../fetch/json)工具简化了这一过程，因此您不必亲自构建它们。下一个示例实际上与上一个示例相同：
+使用[`json`](https://baimingxuan.github.io/react-router6-doc/fetch/json)工具简化了这一过程，因此您不必亲自构建它们。下一个示例实际上与上一个示例相同：
 
 ```jsx
 import { json } from "react-router-dom";
@@ -157,4 +157,4 @@ function loader({ request, params }) {
 }
 ```
 
-有关详细信息，请阅读[`errorElement`](../route/error-element)文档。
+有关详细信息，请阅读[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)文档。

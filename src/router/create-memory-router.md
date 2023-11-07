@@ -78,4 +78,4 @@ createMemoryRouter(routes, {
 
 ## 其他属性
 
-对于所有的其他属性，请参阅[`createBrowserRouter`](../routers/create-browser-router)
+对于所有的其他属性，请参阅[`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)

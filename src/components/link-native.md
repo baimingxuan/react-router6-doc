@@ -2,7 +2,7 @@
 
 > NOTE
 >
-> 这是 `<Link>` 的 React Native 版本。要查看Web版，[请点击此处](../components/link)。
+> 这是 `<Link>` 的 React Native 版本。要查看Web版，[请点击此处](https://baimingxuan.github.io/react-router6-doc/components/link)。
 
 类型声明
 

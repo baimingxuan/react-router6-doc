@@ -34,7 +34,7 @@ function SomeComponent() {
 
 将 `<Route handle>` 与 `useMatches` 配对后，功能会变得非常强大，因为您可以将任何想要的东西放在 `handle` 路由上，并在任何地方访问 `useMatches` 。
 
-`useMatches` 只适用于[`createBrowserRouter`](../routers/create-browser-router)这样的数据路由，因为它们预先知道完整的路由树，可以提供所有当前匹配结果。此外， `useMatches` 不会向下匹配到任何子路由树，因为路由器不知道子路由。
+`useMatches` 只适用于[`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)这样的数据路由，因为它们预先知道完整的路由树，可以提供所有当前匹配结果。此外， `useMatches` 不会向下匹配到任何子路由树，因为路由器不知道子路由。
 
 ## 面包屑
 

@@ -109,7 +109,7 @@ function DeepComponent() {
 // Aaaaaaaaand we're done here.
 ```
 
-在 v6 中使用 `element` prop 的另一个重要原因是， `<Route children>` 专用于嵌套路由。您可以在 v6 [入门指南](../start/overview#nested-routes)中了解更多相关信息。
+在 v6 中使用 `element` prop 的另一个重要原因是， `<Route children>` 专用于嵌套路由。您可以在 v6 [入门指南](https://baimingxuan.github.io/react-router6-doc/start/overview#nested-routes)中了解更多相关信息。
 
 ## 如何在 react-router v6 中添加不匹配 (404) 路由？
 

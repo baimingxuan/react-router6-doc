@@ -16,7 +16,7 @@ React Router 中最基本的服务器呈现非常简单。不过，除了获取�
 
 如果您想对 React Router 应用程序进行服务器渲染，我们强烈推荐您使用[Remix](https://remix.run/)。这是我们的另一个项目，它构建于 React Router 之上，可以处理上述所有问题，甚至更多。试试看吧！
 
-如果您想自己解决这个问题，您需要在服务器上使用 `<StaticRouterProvider>` 或 `<StaticRouter>` ，这取决于您选择的[路由](../routers/picking-a-router)。如果使用 `<StaticRouter>` ，请跳转到 ["不使用数据路由 "](../guides/ssr#without-a-data-router)部分。
+如果您想自己解决这个问题，您需要在服务器上使用 `<StaticRouterProvider>` 或 `<StaticRouter>` ，这取决于您选择的[路由](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。如果使用 `<StaticRouter>` ，请跳转到 ["不使用数据路由 "](https://baimingxuan.github.io/react-router6-doc/guides/ssr#without-a-data-router)部分。
 
 ## 使用数据路由
 
@@ -198,7 +198,7 @@ app.get("*", async (req, res) => {
 
 #### 懒加载路由
 
-如果您在路由中使用了[`route.lazy`](../route/lazy)，那么在客户端上，您可能已经拥有了水合所需的所有数据，但还没有路由定义！理想情况下，您的设置会在服务器上确定匹配的路由，并在关键路径上交付路由包，这样您就不会在最初匹配的路由上使用 `lazy` 。但如果情况并非如此，则需要在水合之前加载这些路由并更新到位，以避免路由器退回到加载状态：
+如果您在路由中使用了[`route.lazy`](https://baimingxuan.github.io/react-router6-doc/route/lazy)，那么在客户端上，您可能已经拥有了水合所需的所有数据，但还没有路由定义！理想情况下，您的设置会在服务器上确定匹配的路由，并在关键路径上交付路由包，这样您就不会在最初匹配的路由上使用 `lazy` 。但如果情况并非如此，则需要在水合之前加载这些路由并更新到位，以避免路由器退回到加载状态：
 
 `entry-client.jsx`
 
@@ -233,9 +233,9 @@ ReactDOM.hydrateRoot(
 
 另请参阅：
 
-- [`createStaticHandler`](../routers/create-static-handler)
-- [`createStaticRouter`](../routers/create-static-router)
-- [`<StaticRouterProvider>`](../routers/static-router-provider)
+- [`createStaticHandler`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-handler)
+- [`createStaticRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-router)
+- [`<StaticRouterProvider>`](https://baimingxuan.github.io/react-router6-doc/routers/static-router-provider)
 
 ## 不使用数据路由
 

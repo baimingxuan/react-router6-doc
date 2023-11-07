@@ -2,7 +2,7 @@
 
 > NOTE
 >
-> 这是`<Link>` 的 Web 版。有关 React Native 版本，[请访问此处](../components/link-native)。
+> 这是`<Link>` 的 Web 版。有关 React Native 版本，[请访问此处](https://baimingxuan.github.io/react-router6-doc/components/link-native)。
 
 类型声明
 
@@ -85,7 +85,7 @@ function EditContact() {
 
 ## `preventScrollReset`
 
-如果使用的是[`<ScrollRestoration>`](../components/scroll-restoration)，则可以防止在点击链接时将滚动位置重置到窗口顶部。
+如果使用的是[`<ScrollRestoration>`](https://baimingxuan.github.io/react-router6-doc/components/scroll-restoration)，则可以防止在点击链接时将滚动位置重置到窗口顶部。
 
 ```jsx
 <Link to="?tab=one" preventScrollReset={true} />
@@ -151,7 +151,7 @@ let { state } = useLocation();
 </Link>
 ```
 
-如果需要为该视图转换应用特定样式，还需要利用[`unstable_useViewTransitionState()`](../hooks//use-view-transition-state) 钩子（或查看 [NavLink](../components/nav-link) 中的 `transitioning` 类和 `isTransitioning` 渲染属性）：
+如果需要为该视图转换应用特定样式，还需要利用[`unstable_useViewTransitionState()`](https://baimingxuan.github.io/react-router6-doc/hooks//use-view-transition-state) 钩子（或查看 [NavLink](https://baimingxuan.github.io/react-router6-doc/components/nav-link) 中的 `transitioning` 类和 `isTransitioning` 渲染属性）：
 
 ```jsx
 function ImageLink(to) {
@@ -184,7 +184,7 @@ function ImageLink(to) {
 
 > IMPORTANT
 >
-> `unstable_viewTransition` 仅在使用数据路由器时有效，请参阅 ["选择路由"](../routers/picking-a-router)。
+> `unstable_viewTransition` 仅在使用数据路由器时有效，请参阅 ["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
 
 > IMPORTANT
 >

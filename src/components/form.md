@@ -29,7 +29,7 @@ interface FormProps
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
 
 ```jsx
 import { Form } from "react-router-dom";
@@ -49,9 +49,9 @@ function NewEvent() {
 >
 > 确保您的输入有名称，否则 `FormData` 将不包含该字段的值。
 
-所有这些都会触发任何已渲染[`useNavigation`](../hooks/use-navigation)钩子的状态更新，因此您可以在异步操作执行过程中构建待定指标和乐观的用户界面。
+所有这些都会触发任何已渲染[`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)钩子的状态更新，因此您可以在异步操作执行过程中构建待定指标和乐观的用户界面。
 
-如果表单*不像*导航，您可能需要 [`useFetcher`](../hooks/use-fetcher) 。
+如果表单*不像*导航，您可能需要 [`useFetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) 。
 
 ## `action`
 
@@ -102,7 +102,7 @@ function ProjectsPage() {
 
 **另请参阅：**
 
-- [索引搜索参数](../guides/index-search-param)（索引与父路由消歧对比）
+- [索引搜索参数](https://baimingxuan.github.io/react-router6-doc/guides/index-search-param)（索引与父路由消歧对比）
 
 ## `method`
 
@@ -196,7 +196,7 @@ function Project() {
 
 ## `navigate`
 
-您可以指定 `<Form navigate={false}>` ，让表单跳过导航，在内部使用[fetcher](../hooks/use-fetcher)。这基本上是 `useFetcher()` + `<fetcher.Form>` 的简写，在这种情况下，您并不关心结果数据，而只想启动提交并通过[`useFetchers()`](../hooks/use-fetchers)访问待处理状态。
+您可以指定 `<Form navigate={false}>` ，让表单跳过导航，在内部使用[fetcher](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)。这基本上是 `useFetcher()` + `<fetcher.Form>` 的简写，在这种情况下，您并不关心结果数据，而只想启动提交并通过[`useFetchers()`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetchers)访问待处理状态。
 
 ## `fetcherKey`
 
@@ -244,9 +244,9 @@ function Project() {
 
 **另请参阅：**
 
-- [`useNavigation`](../hooks/use-navigation)
-- [`useActionData`](../hooks/use-action-data)
-- [`useSubmit`](../hooks/use-submit)
+- [`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)
+- [`useActionData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-action-data)
+- [`useSubmit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit)
 
 ## `state`
 
@@ -268,7 +268,7 @@ let { state } = useLocation();
 
 ## `preventScrollReset`
 
-如果使用[`<ScrollRestoration>`](../components/scroll-restoration)，则可以防止在表单操作重定向到新位置时，滚动位置被重置到窗口顶部。
+如果使用[`<ScrollRestoration>`](https://baimingxuan.github.io/react-router6-doc/components/scroll-restoration)，则可以防止在表单操作重定向到新位置时，滚动位置被重置到窗口顶部。
 
 ```jsx
 <Form method="post" preventScrollReset={true} />
@@ -276,11 +276,11 @@ let { state } = useLocation();
 
 **另请参阅：**
 
-[`<Link preventScrollReset>`](../components/link#preventscrollreset)
+[`<Link preventScrollReset>`](https://baimingxuan.github.io/react-router6-doc/components/link#preventscrollreset)
 
 ## `unstable_viewTransition`
 
-`unstable_viewTransition` 属性通过在 `document.startViewTransition()` 中封装最终状态更新，为该导航启用了[视图转换](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)。如果需要为该视图转换应用特定样式，还需要利用 [`unstable_useViewTransitionState()`](../hooks//use-view-transition-state)。
+`unstable_viewTransition` 属性通过在 `document.startViewTransition()` 中封装最终状态更新，为该导航启用了[视图转换](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)。如果需要为该视图转换应用特定样式，还需要利用 [`unstable_useViewTransitionState()`](https://baimingxuan.github.io/react-router6-doc/hooks//use-view-transition-state)。
 
 > IMPORTANT
 >
@@ -370,4 +370,4 @@ function FilterForm() {
 
 **另请参阅：**
 
-- [useSubmit](../hooks/use-submit)
+- [useSubmit](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit)

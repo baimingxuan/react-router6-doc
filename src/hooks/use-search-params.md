@@ -2,7 +2,7 @@
 
 > NOTE
 >
-> 这是 `useSearchParams` 的`Web`版。有关 React Native 版本，[请点击此处](../hooks/use-search-params-rn)。
+> 这是 `useSearchParams` 的`Web`版。有关 React Native 版本，[请点击此处](https://baimingxuan.github.io/react-router6-doc/hooks/use-search-params-rn)。
 
 类型声明
 
@@ -61,4 +61,4 @@ function App() {
 
 > NOTE
 >
-> `setSearchParams` 函数的工作原理与[`navigate`](../hooks/use-navigate)类似，但只针对URL的[搜索部分](https://developer.mozilla.org/en-US/docs/Web/API/Location/search)。此外，请注意 `setSearchParams` 的第二个参数与 `navigate` 的第二个参数类型相同。
+> `setSearchParams` 函数的工作原理与[`navigate`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigate)类似，但只针对URL的[搜索部分](https://developer.mozilla.org/en-US/docs/Web/API/Location/search)。此外，请注意 `setSearchParams` 的第二个参数与 `navigate` 的第二个参数类型相同。

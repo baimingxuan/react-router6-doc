@@ -4,8 +4,8 @@
 
 请参阅：
 
-- [`<Route>`](../route/route)
-- [`loader`](../route/loader)
-- [`action`](../route/action)
-- [`errorElement`](../route/error-element)
-- [`shouldRevalidate`](../route/should-revalidate)
+- [`<Route>`](https://baimingxuan.github.io/react-router6-doc/route/route)
+- [`loader`](https://baimingxuan.github.io/react-router6-doc/route/loader)
+- [`action`](https://baimingxuan.github.io/react-router6-doc/route/action)
+- [`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)
+- [`shouldRevalidate`](https://baimingxuan.github.io/react-router6-doc/route/should-revalidate)

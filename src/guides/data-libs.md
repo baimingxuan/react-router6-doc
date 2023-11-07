@@ -24,7 +24,7 @@ export const loader = ({ params }) => {
 };
 ```
 
-如果查询客户端能正确抛出错误，那么 React Router 的[`errorElement`](../route/error-element)也能正常工作。
+如果查询客户端能正确抛出错误，那么 React Router 的[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)也能正常工作。
 
 当然，您可以使用数据仓库的所有功能，例如缓存。缓存数据可以确保当用户点击返回按钮进入已经看过的页面时，数据会立即从缓存中加载。有时缓存是正确的选择，有时你总是希望数据是新鲜的，但这并不在 React Router 数据 API 的决定范围之内。
 
@@ -47,7 +47,7 @@ export default function SomeRouteComponent() {
 
 由于这些库中的大多数都有某种缓存机制，因此您需要在某些时候使这些缓存失效。
 
-React Router[操作](../route/action)就是使缓存失效的最佳场所。
+React Router[操作](https://baimingxuan.github.io/react-router6-doc/route/action)就是使缓存失效的最佳场所。
 
 ```jsx
 import { queryClient } from "./query-client";
@@ -100,8 +100,8 @@ function SomeView() {
 
 ## 重合部分
 
-像 `useQuery` 这样的钩子经常返回 pending 和 error 状态，您可以使用它们来拆分您的 UI。使用 React Router，您可以将所有这些分支逻辑放在[`errorElement`](../route/error-element)、[`useNavigation`](../hooks/use-navigation)和[`Await`](../components/await)中，避免在正常路径组件中处理分支逻辑。
+像 `useQuery` 这样的钩子经常返回 pending 和 error 状态，您可以使用它们来拆分您的 UI。使用 React Router，您可以将所有这些分支逻辑放在[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)、[`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)和[`Await`](https://baimingxuan.github.io/react-router6-doc/components/await)中，避免在正常路径组件中处理分支逻辑。
 
 ## 结论
 
-有了所有这些 API 的协同工作，您现在就可以使用来自 React Router 的[`useNavigation`](../hooks/use-navigation)来构建待处理状态、优化的用户界面等。使用 React Router 为数据加载、突变和导航状态计时，然后使用 React Query 等库实际实现加载、失效、存储和缓存。
+有了所有这些 API 的协同工作，您现在就可以使用来自 React Router 的[`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)来构建待处理状态、优化的用户界面等。使用 React Router 为数据加载、突变和导航状态计时，然后使用 React Query 等库实际实现加载、失效、存储和缓存。

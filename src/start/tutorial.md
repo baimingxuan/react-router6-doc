@@ -44,11 +44,11 @@ src
 
 ##  添加 Router
 
-首先要做的是创建[浏览器路由](../routers/create-browser-router)并配置我们的第一个路由。这将为我们的 Web 应用启用客户端路由。
+首先要做的是创建[浏览器路由](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)并配置我们的第一个路由。这将为我们的 Web 应用启用客户端路由。
 
 `main.jsx`文件是入口点。打开它，我们将在页面上使用 React Router。
 
-👉**在 `main.jsx` 中创建并渲染[浏览器路由](../routers/create-browser-router)**
+👉**在 `main.jsx` 中创建并渲染[浏览器路由](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)**
 
 `src/main.jsx`
 
@@ -142,7 +142,7 @@ export default function Root() {
 
 还没有关于 React Router 的具体内容，所以请随意复制/粘贴所有内容。
 
-👉**将`<Root>`设置为根路由[`element`](../route/route#element)**
+👉**将`<Root>`设置为根路由[`element`](https://baimingxuan.github.io/react-router6-doc/route/route#element)**
 
 `src/main.jsx`
 
@@ -209,7 +209,7 @@ export default function ErrorPage() {
 }
 ```
 
-👉**将`<ErrorPage>`设置为根路由上的[`errorElement`](../route/error-element)**
+👉**将`<ErrorPage>`设置为根路由上的[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)**
 
 `src/main.jsx`
 
@@ -238,7 +238,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 (也没好到哪里去。也许有人忘了让设计者制作错误页面。也许每个人都忘了让设计者制作错误页面，然后责怪设计者没有想到这一点😆）。
 
-请注意，[`useRouteError`](../hooks/use-route-error)提供了抛出的错误信息。当用户导航到不存在的路由时，你会得到一个带有 "Not Found（未找到）"的[错误响应](../utils/is-route-error-response)`statusText` 。在本教程的稍后部分，我们还将看到其他一些错误，并对它们进行更多讨论。
+请注意，[`useRouteError`](https://baimingxuan.github.io/react-router6-doc/hooks/use-route-error)提供了抛出的错误信息。当用户导航到不存在的路由时，你会得到一个带有 "Not Found（未找到）"的[错误响应](https://baimingxuan.github.io/react-router6-doc/utils/is-route-error-response)`statusText` 。在本教程的稍后部分，我们还将看到其他一些错误，并对它们进行更多讨论。
 
 现在，只要知道几乎所有错误都将由该页面处理，而不是无限旋转、无响应页面或空白屏幕，就足够了 🙌。
 
@@ -410,11 +410,11 @@ const router = createBrowserRouter([
 ]);
 ```
 
-现在你将再次看到根布局，但右侧是一个空白页。我们需要告诉根路由在哪里呈现子路由。我们可以通过[`<Outlet>`](../components/outlet)来实现。
+现在你将再次看到根布局，但右侧是一个空白页。我们需要告诉根路由在哪里呈现子路由。我们可以通过[`<Outlet>`](https://baimingxuan.github.io/react-router6-doc/components/outlet)来实现。
 
 找到`<div id="detail">`并在里面放置一个`<Outlet>`。
 
-👉**渲染[`<Outlet>`](../components/outlet)**
+👉**渲染[`<Outlet>`](https://baimingxuan.github.io/react-router6-doc/components/outlet)**
 
 `src/routes/root.jsx`
 
@@ -437,7 +437,7 @@ export default function Root() {
 
 你可能注意到，也可能没有注意到，当我们点击侧边栏中的链接时，浏览器会对下一个 URL 进行完整的文档请求，而不是使用 React Router。
 
-客户端路由允许我们的应用程序更新 URL，而无需从服务器请求另一个文档。相反，应用程序可以立即呈现新的用户界面。让我们通过[`<Link>`](../components/link)实现这一点。
+客户端路由允许我们的应用程序更新 URL，而无需从服务器请求另一个文档。相反，应用程序可以立即呈现新的用户界面。让我们通过[`<Link>`](https://baimingxuan.github.io/react-router6-doc/components/link)实现这一点。
 
 👉**将侧边栏`<a href>`更改为`<Link to>`**
 
@@ -483,7 +483,7 @@ URL段、布局和数据往往耦合在一起（三合一？）我们已经可�
 
 由于这种天然的耦合，React Router 具有数据约定，可以轻松地将数据导入路由组件。
 
-我们将使用两个`API`来加载数据，[`loader`](../route/loader)和[`useLoaderData`](../hooks/use-loader-data)。首先，我们将在根模块中创建并导出一个加载器函数，然后将其连接到路由。最后，我们将访问并呈现数据。
+我们将使用两个`API`来加载数据，[`loader`](https://baimingxuan.github.io/react-router6-doc/route/loader)和[`useLoaderData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-loader-data)。首先，我们将在根模块中创建并导出一个加载器函数，然后将其连接到路由。最后，我们将访问并呈现数据。
 
 👉**从`root.jsx`导出 loader**
 
@@ -589,7 +589,7 @@ React Router 将 HTML 表单导航模拟为数据突变原型，符合 JavaScrip
 
 对于一些网络开发人员来说，HTML 表单并不熟悉，它实际上是在浏览器中进行导航，就像点击链接一样。唯一的区别在于请求：链接只能更改 URL，而表单还可以更改请求方式（GET 与 POST）和请求主体（POST 表单数据）。
 
-果没有客户端路由，浏览器会自动序列化表单数据，并将其作为 POST 的请求正文和 GET 的 URLSearchParams 发送到服务器。React Router 也会做同样的事情，只不过它不是将请求发送到服务器，而是使用客户端路由，并将请求发送到路由[`action`](../route/action)。
+果没有客户端路由，浏览器会自动序列化表单数据，并将其作为 POST 的请求正文和 GET 的 URLSearchParams 发送到服务器。React Router 也会做同样的事情，只不过它不是将请求发送到服务器，而是使用客户端路由，并将请求发送到路由[`action`](https://baimingxuan.github.io/react-router6-doc/route/action)。
 
 我们可以点击应用程序中的 "新建 "按钮来测试一下。由于 Vite 服务器未配置为处理 POST 请求，因此应用程序应该会崩溃（它会发送 404，不过可能应该是 405 🤷）。
 
@@ -599,7 +599,7 @@ React Router 将 HTML 表单导航模拟为数据突变原型，符合 JavaScrip
 
 ## 创建联系人
 
-我们将在根路由中导出 `action` ，将其连接到路由配置，并将 `<form>` 更改为 React Router[`<Form>`](../components/form)，从而创建新的联系人。
+我们将在根路由中导出 `action` ，将其连接到路由配置，并将 `<form>` 更改为 React Router[`<Form>`](https://baimingxuan.github.io/react-router6-doc/components/form)，从而创建新的联系人。
 
 👉**创建操作，并将`<form>`更改为`<Form>`**
 
@@ -678,7 +678,7 @@ const router = createBrowserRouter([
 
 > 🧐 等一下...侧边栏是怎么更新的？我们在哪里调用了 `action` ？重新获取数据的代码在哪里？ `useState` 、 `onSubmit` 和 `useEffect` 在哪里？
 
-这就是“老式的 Web”编程模式的体现。正如我们之前所讨论的，[`<Form>`](../components/form)阻止浏览器向服务器发送请求，而是将其发送到路由 `action` 。在 Web 语义中，POST 通常意味着某些数据正在发生变化。按照惯例，React Router 会将此作为提示，在操作完成后自动重新验证页面上的数据。这意味着 `useLoaderData` 钩子会自动更新，用户界面也会自动与数据保持同步！太酷了
+这就是“老式的 Web”编程模式的体现。正如我们之前所讨论的，[`<Form>`](https://baimingxuan.github.io/react-router6-doc/components/form)阻止浏览器向服务器发送请求，而是将其发送到路由 `action` 。在 Web 语义中，POST 通常意味着某些数据正在发生变化。按照惯例，React Router 会将此作为提示，在操作完成后自动重新验证页面上的数据。这意味着 `useLoaderData` 钩子会自动更新，用户界面也会自动与数据保持同步！太酷了
 
 ## Loaders 中的 URL 参数
 
@@ -701,7 +701,7 @@ const router = createBrowserRouter([
 
 请注意 `:contactId` URL 段。冒号 ( `:` ) 具有特殊含义，将其转换为“动态段”。动态段将匹配 URL 该位置上的动态（变化）值，如联系人 ID。我们将 URL 中的这些值称为“URL 参数”，简称 "params"。
 
-这些[`params`](../route/loader#params)将传递给`loader`，其键与动态段匹配。例如，我们的分段名为 `:contactId` ，因此值将作为 `params.contactId` 传递。
+这些[`params`](https://baimingxuan.github.io/react-router6-doc/route/loader#params)将传递给`loader`，其键与动态段匹配。例如，我们的分段名为 `:contactId` ，因此值将作为 `params.contactId` 传递。
 
 这些参数最常用于通过 ID 查找记录。让我们试试看。
 
@@ -758,7 +758,7 @@ const router = createBrowserRouter([
 
 ## 更新数据
 
-与创建数据一样，您也可以通过[`Form`](../components/form)更新数据。让我们在 `contacts/:contactId/edit` 创建一个新路由。同样，我们先从组件开始，然后将其连接到路由配置。
+与创建数据一样，您也可以通过[`Form`](https://baimingxuan.github.io/react-router6-doc/components/form)更新数据。让我们在 `contacts/:contactId/edit` 创建一个新路由。同样，我们先从组件开始，然后将其连接到路由配置。
 
 👉 **创建编辑组件**
 
@@ -983,7 +983,7 @@ updates.last; // "Name"
 
 除了 `action` 之外，我们讨论的这些 API 都不是由 React Router 提供的：[`request`](https://developer.mozilla.org/en-US/docs/Web/API/Request), [`request.formData`](https://developer.mozilla.org/en-US/docs/Web/API/Request/formData),[`Object.fromEntries`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries)都是由`web`平台提供的。
 
-我们完成动作后，请注意结尾处的[`redirect`](../fetch/redirect)：
+我们完成动作后，请注意结尾处的[`redirect`](https://baimingxuan.github.io/react-router6-doc/fetch/redirect)：
 
 `src/routes/edit.jsx`
 
@@ -996,7 +996,7 @@ export async function action({ request, params }) {
 }
 ```
 
-`loader`和`action`都可以[返回`Response`](../route/loader#returning-responses)（这是有道理的，因为它们都收到了[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)!）。[`redirect`](../fetch/redirect)辅助函数只是为了更方便地返回[`response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)，告诉应用程序更改位置。
+`loader`和`action`都可以[返回`Response`](https://baimingxuan.github.io/react-router6-doc/route/loader#returning-responses)（这是有道理的，因为它们都收到了[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request)!）。[`redirect`](https://baimingxuan.github.io/react-router6-doc/fetch/redirect)辅助函数只是为了更方便地返回[`response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)，告诉应用程序更改位置。
 
 如果没有客户端路由，如果服务器在 POST 请求后重定向，新页面将获取最新数据并渲染。正如我们之前所学到的，React 路由器会模拟这种模式，并在执行操作后自动重新验证页面上的数据。这就是为什么当我们保存表单时，侧边栏会自动更新。如果没有客户端路由，就不会有额外的重新验证代码，所以客户端路由也不需要有额外的重新验证代码！
 
@@ -1036,7 +1036,7 @@ export async function action() {
 
 ## 活动链接样式
 
-现在我们有了一堆记录，侧边栏上的记录就不清楚了。我们可以使用[`NavLink`](../components/nav-link)来解决这个问题。
+现在我们有了一堆记录，侧边栏上的记录就不清楚了。我们可以使用[`NavLink`](https://baimingxuan.github.io/react-router6-doc/components/nav-link)来解决这个问题。
 
 👉**在侧边栏中使用`NavLink`**
 
@@ -1095,7 +1095,7 @@ export default function Root() {
 
 当用户浏览应用时，React Router 会在为下一页加载数据时*保留旧页面*。您可能已经注意到，当您在列表之间点击时，应用程序感觉有点反应迟钝。让我们为用户提供一些反馈，这样应用程序就不会感觉反应迟钝了。
 
-React Router 在幕后管理所有状态，并揭示构建动态 Web 应用程序所需的状态片段。在本例中，我们将使用[`useNavigation`](../hooks/use-navigation)钩子。
+React Router 在幕后管理所有状态，并揭示构建动态 Web 应用程序所需的状态片段。在本例中，我们将使用[`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)钩子。
 
 👉**使用`useNavigation`添加全局待定用户界面**
 
@@ -1129,7 +1129,7 @@ export default function Root() {
 }
 ```
 
-[`useNavigation`](../hooks/use-navigation)返回当前导航状态：可以是`"idle" | "submitting" | "loading"`
+[`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)返回当前导航状态：可以是`"idle" | "submitting" | "loading"`
 
 在我们的案例中，如果我们没有闲置，就会在应用程序的主要部分添加一个 `"loading"` 类。然后，CSS 会在短暂延迟后添加一个漂亮的淡入淡出效果（以避免在快速加载时用户界面闪烁）。当然，你也可以做任何你想做的事，比如在顶部显示一个旋转器或加载条。
 
@@ -1242,7 +1242,7 @@ export async function action({ params }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/17.webp)
 
-认识这个屏幕吗？它就是我们之前的[`errorElement`](../route/error-element)。然而，用户除了点击刷新之外，根本无法从这个屏幕中恢复过来。
+认识这个屏幕吗？它就是我们之前的[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)。然而，用户除了点击刷新之外，根本无法从这个屏幕中恢复过来。
 
 让我们为销毁路由创建一条上下文错误信息：
 
@@ -1326,7 +1326,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-注意是[`{ index:true }`](../route/route#index)而不是[`{ path: "" }`](../route/route#path)。这将告诉路由，当用户位于父路由的确切路径时，路由器将匹配并呈现此路由，因此在 `<Outlet>` 中没有其他子路由需要呈现。
+注意是[`{ index:true }`](https://baimingxuan.github.io/react-router6-doc/route/route#index)而不是[`{ path: "" }`](https://baimingxuan.github.io/react-router6-doc/route/route#path)。这将告诉路由，当用户位于父路由的确切路径时，路由器将匹配并呈现此路由，因此在 `<Outlet>` 中没有其他子路由需要呈现。
 
 ![img](https://reactrouter.com/_docs/tutorial/20.webp)
 
@@ -1601,7 +1601,7 @@ export default function Root() {
 
 在这里，我们需要做出一个产品决策。对于这个用户界面，我们可能更倾向于在每次按键时进行过滤，而不是在明确提交表单时。
 
-我们已经看到了 `useNavigate` ，因此我们将使用它的表亲[`useSubmit`](../hooks/use-submit) 。
+我们已经看到了 `useNavigate` ，因此我们将使用它的表亲[`useSubmit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit) 。
 
 `src/routes/root.jsx`
 
@@ -1648,13 +1648,13 @@ export default function Root() {
 
 现在，当你输入时，表格就会自动提交！
 
-注意[`submit`](../hooks/use-submit)的参数。们传递的是 `event.currentTarget.form` 。 `currentTarget` 是事件所连接的 DOM 节点，而 `currentTarget.form` 是输入的父表单节点。 `submit` 函数将序列化并提交您传递给它的任何表单。
+注意[`submit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit)的参数。们传递的是 `event.currentTarget.form` 。 `currentTarget` 是事件所连接的 DOM 节点，而 `currentTarget.form` 是输入的父表单节点。 `submit` 函数将序列化并提交您传递给它的任何表单。
 
 ## 添加搜索旋转器
 
 在生产应用程序中，这种搜索很可能要查找数据库中的记录，而数据库太大，无法一次性全部发送并在客户端进行过滤。这就是为什么这个演示有一些伪造的网络延迟。
 
-在没有任何加载指示器的情况下，搜索感觉有点迟钝。即使我们能让数据库变得更快，但用户的网络延迟始终是我们无法控制的。为了获得更好的用户体验，让我们为搜索添加一些即时的用户界面反馈。为此，我们将再次使用[`useNavigation`](../hooks/use-navigation)。
+在没有任何加载指示器的情况下，搜索感觉有点迟钝。即使我们能让数据库变得更快，但用户的网络延迟始终是我们无法控制的。为了获得更好的用户体验，让我们为搜索添加一些即时的用户界面反馈。为此，我们将再次使用[`useNavigation`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigation)。
 
 👉**添加搜索旋转器**
 
@@ -1764,7 +1764,7 @@ export default function Root() {
 
 到目前为止，我们所有的突变（更改数据）都是使用表单导航，在历史堆栈中创建新条目。虽然这些用户流程很常见，但想要在不引起导航的情况下更改数据也同样常见。
 
-针对这些情况，我们有[`useFetcher`](../hooks/use-fetcher)钩子。它允许我们与`loaders`和`actions`进行通信，而不会导致导航。
+针对这些情况，我们有[`useFetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)钩子。它允许我们与`loaders`和`actions`进行通信，而不会导致导航。
 
 联系人页面上的★按钮就可以实现这一点。我们不是要创建或删除新记录，也不是要更改页面，我们只是要更改我们正在查看的页面上的数据。
 
@@ -1871,7 +1871,7 @@ const router = createBrowserRouter([
 
 你可能注意到了，当我们点击上一节中的收藏按钮时，应用程序感觉有点反应迟钝。我们再次添加了一些网络延迟，因为在现实世界中会出现这种情况！
 
-为了给用户提供一些反馈，我们可以通过[`fetcher.state`](../hooks/use-fetcher#fetcherstate)让星形进入加载状态（很像之前的 `navigation.state` ），但这次我们可以做得更好。我们可以使用一种名为 "优化用户界面 "的策略
+为了给用户提供一些反馈，我们可以通过[`fetcher.state`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher#fetcherstate)让星形进入加载状态（很像之前的 `navigation.state` ），但这次我们可以做得更好。我们可以使用一种名为 "优化用户界面 "的策略
 
 `fetcher`知道提交给操作的表单数据，因此可以在 `fetcher.formData` 上获取这些数据。我们将利用这些数据立即更新星形的状态，即使网络尚未结束。如果更新最终失败，用户界面将恢复为真实数据。
 
@@ -1916,7 +1916,7 @@ function Favorite({ contact }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/25.webp)
 
-当我们尝试呈现 `null` 联系信息时，我们的根[`errorElement`](../route/error-element)正在捕捉这个意外错误。很好，错误得到了妥善处理，但我们可以做得更好！
+当我们尝试呈现 `null` 联系信息时，我们的根[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)正在捕捉这个意外错误。很好，错误得到了妥善处理，但我们可以做得更好！
 
 只要在`loader`或`action`中出现预期的错误情形（如数据不存在），就可以 `throw` 。调用堆栈会中断，React Router 会捕获它，然后渲染错误路径。我们甚至不会尝试呈现 `null` 联系人。
 
