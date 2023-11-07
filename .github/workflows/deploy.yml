@@ -37,4 +37,4 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
           BRANCH: gh-pages
-          FOLDER: docs/.vitepress/dist
+          FOLDER: ./dist

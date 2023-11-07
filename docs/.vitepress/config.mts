@@ -4,12 +4,31 @@ export default defineConfig({
   title: 'React Router6 中文文档',
   description: '文档内容详细翻译自官方英文文档',
   base: '/react-router6-doc/',
-  head: [['link', { rel: 'icon', href: '/.vitepress/logo/favicon.ico' }]],
+  srcDir: '../src',
+  outDir: '../dist',
+  cleanUrls: true,
+
+  head: [
+    [
+      'link',
+      { rel: 'icon', href: '/favicon.ico' }
+    ],
+    [
+      'script',
+      { id: 'register-sw' },
+      `;(() => {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js')
+        }
+      })()`
+    ]
+  ],
+  
   themeConfig: {
 
     logo: {
-      light: '/.vitepress/logo/logo.svg',
-      dark: '/.vitepress/logo/logo_dark.svg'
+      light: '/logo.svg',
+      dark: '/logo_dark.svg'
     },
 
     nav: [
