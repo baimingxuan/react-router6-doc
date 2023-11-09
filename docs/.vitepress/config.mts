@@ -11,7 +11,7 @@ export default defineConfig({
   head: [
     [
       'link',
-      { rel: 'icon', href: '/favicon.ico' }
+      { rel: 'icon', href: '/react-router6-doc/favicon.ico' }
     ],
     [
       'script',
