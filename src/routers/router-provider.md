@@ -1,6 +1,6 @@
 # `<RouterProvider>`
 
-所有[数据路由](../router/picking-a-router)对象都将传递给该组件，以渲染应用程序并启用其他数据 API。
+所有[数据路由](../routers/picking-a-router)对象都将传递给该组件，以渲染应用程序并启用其他数据 API。
 
 > 由于在数据 API 的设计中解耦了获取和呈现，因此您应该在 React 树之外创建路由，并使用静态定义的路由集。有关此设计的更多信息，请参阅 [Remixing React Router](https://remix.run/blog/remixing-react-router) 博文和 [When to Fetch](https://www.youtube.com/watch?v=95B8mnhzoCM) 会议演讲。
 

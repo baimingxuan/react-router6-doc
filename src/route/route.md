@@ -274,7 +274,7 @@ function Team() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如[`createBrowserRouter`](../router/create-browser-router)），这将毫无用处
+> 如果您没有使用数据路由器（如[`createBrowserRouter`](../routers/create-browser-router)），这将毫无用处
 
 详情请查看 [loader](../route/loader) 文档。
 
@@ -292,7 +292,7 @@ function Team() {
 />
 ```
 
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../router/create-browser-router)），这将毫无用处
+> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../routers/create-browser-router)），这将毫无用处
 >
 
 更多详情，请参阅 [action](../route/action) 文档。
@@ -355,7 +355,7 @@ function Team() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../router/create-browser-router) ），这将毫无用处
+> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../routers/create-browser-router) ），这将毫无用处
 
 更多详情，请参阅 [errorElement](../route/error-element) 文档。
 
@@ -400,6 +400,6 @@ export function Component() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../router/create-browser-router)），这将毫无用处
+> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../routers/create-browser-router)），这将毫无用处
 
 更多详情，请参阅 [lazy](../route/lazy) 文档。

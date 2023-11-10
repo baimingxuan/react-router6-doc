@@ -1,6 +1,6 @@
 # `<Await>`
 
-用于呈现具有自动错误处理的功能[延迟值](https://baimingxuan.github.io/react-router6-doc/utils/defer)。请务必查看[延迟数据指南](https://baimingxuan.github.io/react-router6-doc/guides/deferred)，因为有一些 API 与此组件配合使用。
+用于呈现具有自动错误处理的功能[延迟值](../utils/defer)。请务必查看[延迟数据指南](../guides/deferred)，因为有一些 API 与此组件配合使用。
 
 ```jsx
 import { Await, useLoaderData } from "react-router-dom";
@@ -59,7 +59,7 @@ interface AwaitResolveRenderFunction {
 </Await>
 ```
 
-使用React元素时，[`useAsyncValue`](https://baimingxuan.github.io/react-router6-doc/hooks/use-async-value)将提供数据：
+使用React元素时，[`useAsyncValue`](../hooks/use-async-value)将提供数据：
 
 ```jsx
 <Await resolve={reviewsPromise}>
@@ -74,7 +74,7 @@ function Reviews() {
 
 ## `errorElement`
 
-当Promise被拒绝时，错误元素会渲染，而不是子元素。您可以通过[`useAsyncError`](https://baimingxuan.github.io/react-router6-doc/hooks/use-async-error)访问错误。
+当Promise被拒绝时，错误元素会渲染，而不是子元素。您可以通过[`useAsyncError`](../hooks/use-async-error)访问错误。
 
 如果Promise被拒绝，您可以提供一个可选的 `errorElement` ，通过 `useAsyncError` 钩子在上下文用户界面中处理该错误。
 
@@ -92,11 +92,11 @@ function ReviewsError() {
 }
 ```
 
-如果不提供 errorElement，被拒绝的值将上升到最近的路由级[`errorElement`](https://baimingxuan.github.io/react-router6-doc/route/error-element)，并可通过[`useRouteError`](https://baimingxuan.github.io/react-router6-doc/hooks/use-route-error)钩子访问。
+如果不提供 errorElement，被拒绝的值将上升到最近的路由级[`errorElement`](../route/error-element)，并可通过[`useRouteError`](../hooks/use-route-error)钩子访问。
 
 ## `resolve`
 
-获取从[延迟](https://baimingxuan.github.io/react-router6-doc/utils/defer) [加载器](https://baimingxuan.github.io/react-router6-doc/route/loader)返回的 `promise`值，并进行解析和渲染。
+获取从[延迟](../utils/defer) [加载器](../route/loader)返回的 `promise`值，并进行解析和渲染。
 
 ```jsx
 import {

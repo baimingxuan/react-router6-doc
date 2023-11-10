@@ -75,7 +75,7 @@ interface StaticHandler {
 
 ## `routes`/`basename`
 
-这些信息与 `routes` / `basename` 传递给[`createBrowserRouter`](../router/create-browser-router) 的一样。
+这些信息与 `routes` / `basename` 传递给[`createBrowserRouter`](../routers/create-browser-router) 的一样。
 
 ## `handler.query(request, opts)`
 
@@ -126,5 +126,5 @@ staticHandler.queryRoute(new Request("/parent/child"), {
 
 **另请参见:**
 
-- [`createStaticRouter`](../router/create-static-router)
-- [`<StaticRouterProvider>`](../router/static-router-provider)
+- [`createStaticRouter`](../routers/create-static-router)
+- [`<StaticRouterProvider>`](../routers/static-router-provider)

@@ -4,12 +4,12 @@
 
 ## 使用 v6.4 数据 API
 
-在 v6.4 中，引入了支持新[数据 APIs](../router/picking-a-router#data-apis) 的新路由：
+在 v6.4 中，引入了支持新[数据 APIs](../routers/picking-a-router#data-apis) 的新路由：
 
-- [`createBrowserRouter`](../router/create-browser-router)
-- [`createMemoryRouter`](../router/create-memory-router)
-- [`createHashRouter`](../router/create-hash-router)
-- [`createStaticRouter`](../router/create-static-router)
+- [`createBrowserRouter`](../routers/create-browser-router)
+- [`createMemoryRouter`](../routers/create-memory-router)
+- [`createHashRouter`](../routers/create-hash-router)
+- [`createStaticRouter`](../routers/create-static-router)
 
 以下路由不支持数据 API：
 
@@ -49,19 +49,19 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ## Web 项目
 
-我们建议所有的 Web 项目使用 [`createBrowserRouter`](../router/create-browser-router)。
+我们建议所有的 Web 项目使用 [`createBrowserRouter`](../routers/create-browser-router)。
 
 在 `history.pushState` 标准化之前，它使用的是完整 URL，而不是 Web 应用中常见的 Hash URL（ `#this/stuff` ）。完整 URL 更利于搜索引擎优化，更利于服务器渲染，而且与其他网络平台的兼容性更好。
 
 如果将应用程序托管在静态文件服务器上，则需要将其配置为将所有请求发送到 `index.html` ，以避免出现 404 错误。
 
-如果由于某种原因无法使用完整的 URL，[`createHashRouter`](../router/create-hash-router)是下一个最佳选择。
+如果由于某种原因无法使用完整的 URL，[`createHashRouter`](../routers/create-hash-router)是下一个最佳选择。
 
 如果对数据应用程序接口不感兴趣，可以继续使用[`<BrowerRouter>`](../router-components/browser-router)，如果不能使用完整的 URL，则可以使用[`<HashRouter>`](../router-components/hash-router).
 
 ## 测试
 
-使用 [`createMemoryRouter`](../router/create-memory-router) 或[`<MemoryRouter>`](../router-components/memory-router)测试使用 React 路由器 API 的组件是最简单的，而不是在应用程序中使用需要 DOM 历史 API 的路由器。
+使用 [`createMemoryRouter`](../routers/create-memory-router) 或[`<MemoryRouter>`](../router-components/memory-router)测试使用 React 路由器 API 的组件是最简单的，而不是在应用程序中使用需要 DOM 历史 API 的路由器。
 
 某些 React Router API 在内部使用 `fetch` ，它仅从 Node.js v18 开始受支持。如果您的项目使用 v17 或更低版本，则应手动添加 `fetch` polyfill。一种方法是安装 [`whatwg-fetch`](https://www.npmjs.com/package/whatwg-fetch)并将其添加到 `jest.config.js` 文件中，如下所示：
 

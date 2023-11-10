@@ -78,4 +78,4 @@ createMemoryRouter(routes, {
 
 ## 其他属性
 
-对于所有的其他属性，请参阅[`createBrowserRouter`](../router/create-browser-router)
+对于所有的其他属性，请参阅[`createBrowserRouter`](../routers/create-browser-router)

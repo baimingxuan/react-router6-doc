@@ -83,35 +83,35 @@ export default defineConfig({
         items: [
           {
             text: '选择Router',
-            link: '/router/picking-a-router'
+            link: '/routers/picking-a-router'
           },
           {
             text: 'createBrowserRouter',
-            link: '/router/create-browser-router'
+            link: '/routers/create-browser-router'
           },
           {
             text: 'createHashRouter',
-            link: '/router/create-hash-router'
+            link: '/routers/create-hash-router'
           },
           {
             text: 'createMemoryRouter',
-            link: '/router/create-memory-router'
+            link: '/routers/create-memory-router'
           },
           {
             text: 'createStaticHandler',
-            link: '/router/create-static-handler'
+            link: '/routers/create-static-handler'
           },
           {
             text: 'createStaticRouter',
-            link: '/router/create-static-router'
+            link: '/routers/create-static-router'
           },
           {
             text: 'RouterProvider',
-            link: '/router/router-provider'
+            link: '/routers/router-provider'
           },
           {
             text: 'staticRouterProvider',
-            link: '/router/static-router-provider'
+            link: '/routers/static-router-provider'
           }
         ]
       },

@@ -10,7 +10,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
 
 ```jsx
 import { useNavigation } from "react-router-dom";
@@ -29,7 +29,7 @@ function SomeComponent() {
 
 > IMPORTANT
 >
-> `useNavigation().formMethod` 字段为小写，没有 `future.v7_normalizeFormMethod` [Future Flag](https://baimingxuan.github.io/react-router6-doc/guides/api-development-strategy)。为了与 `fetch()` 在 v7 版本中的行为保持一致，我们正在将其规范化为大写，因此请升级 React Router v6 应用程序以采用大写 HTTP 方法。
+> `useNavigation().formMethod` 字段为小写，没有 `future.v7_normalizeFormMethod` [Future Flag](../guides/api-development-strategy)。为了与 `fetch()` 在 v7 版本中的行为保持一致，我们正在将其规范化为大写，因此请升级 React Router v6 应用程序以采用大写 HTTP 方法。
 
 ## `navigation.state`
 
@@ -103,6 +103,6 @@ let isRedirecting =
 
 ## `navigation.location`
 
-这告诉您下一个[位置](https://baimingxuan.github.io/react-router6-doc/utils/location)是什么。
+这告诉您下一个[位置](../utils/location)是什么。
 
 请注意，如果正在向链接指向的 URL 提交表单，该链接将不会显示为 "pending"，因为我们只在 "loading "状态下才这样做。当状态为 "submitting "时，表单将包含待处理用户界面，一旦操作完成，链接将转为待处理状态。

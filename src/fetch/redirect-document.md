@@ -1,6 +1,6 @@
 # `redirectDocument`
 
-这是[`redirect`](https://baimingxuan.github.io/react-router6-doc/fetch/redirect) 的一个小封装，它将触发文档级重定向到新位置，而不是客户端导航。
+这是[`redirect`](../fetch/redirect) 的一个小封装，它将触发文档级重定向到新位置，而不是客户端导航。
 
 当您的 React Router 应用程序与同一域名上的另一个应用程序相邻，并且需要通过 `window.location` 而不是 React Router 导航从 React Router 应用程序重定向到另一个应用程序时，这一点最为有用：
 

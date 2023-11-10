@@ -2,13 +2,13 @@
 
 在 HTML/HTTP 中，数据突变和加载是通过导航来模拟的： `<a href>` 和 `<form action>` 。两者都会在浏览器中引起导航。与 React Router 对应的是 `<Link>` 和 `<Form>` 。
 
-但有时您需要在导航之外调用 [`loader`](https://baimingxuan.github.io/react-router6-doc/route/loader) ，或者调用 [`action`](https://baimingxuan.github.io/react-router6-doc/route/action)（并获取页面上的数据以重新验证），而无需更改 URL。或者您需要同时进行多个突变。
+但有时您需要在导航之外调用 [`loader`](../route/loader) ，或者调用 [`action`](../route/action)（并获取页面上的数据以重新验证），而无需更改 URL。或者您需要同时进行多个突变。
 
 与服务器的许多交互都不是导航事件。此钩子可让你在不导航的情况下将用户界面插入操作和加载器。
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅[“选择路由”](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅[“选择路由”](../routers/picking-a-router)。
 
 这在需要时非常有用：
 
@@ -61,7 +61,7 @@ function SomeComponent() {
 
 ### `key`
 
-默认情况下， `useFetcher` 会生成一个唯一的`fetcher`，该`fetcher`的作用域为该组件（不过，在运行过程中，该`fetcher`可能会在 [`useFetchers()`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetchers) 中查找）。如果你想用自己的 `key` 来识别一个 fetcher，以便从应用程序的其他地方访问它，可以使用 `key` 选项来实现：
+默认情况下， `useFetcher` 会生成一个唯一的`fetcher`，该`fetcher`的作用域为该组件（不过，在运行过程中，该`fetcher`可能会在 [`useFetchers()`](../hooks/use-fetchers) 中查找）。如果你想用自己的 `key` 来识别一个 fetcher，以便从应用程序的其他地方访问它，可以使用 `key` 选项来实现：
 
 ```jsx
 function AddToBagButton() {
@@ -124,7 +124,7 @@ function SomeComponent() {
 }
 ```
 
-虽然一个 URL 可能匹配多个嵌套路由，但 `fetcher.load()` 调用只会调用叶匹配（或[索引路](https://baimingxuan.github.io/react-router6-doc/guides/index-search-param)由的父路由）上的`loader`。
+虽然一个 URL 可能匹配多个嵌套路由，但 `fetcher.load()` 调用只会调用叶匹配（或[索引路](../guides/index-search-param)由的父路由）上的`loader`。
 
 如果您发现自己在点击处理程序中调用此函数，您可以使用 `<fetcher.Form>` 来简化代码。
 
@@ -157,9 +157,9 @@ export function useIdleLogout() {
 }
 ```
 
-`fetcher.submit` 是 [`useSubmit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit)调用 fetcher 实例的包装器，因此也接受与`useSubmit`相同的选项。
+`fetcher.submit` 是 [`useSubmit`](../hooks/use-submit)调用 fetcher 实例的包装器，因此也接受与`useSubmit`相同的选项。
 
-如果要提交索引路由，请使用[`?index` 参数](https://baimingxuan.github.io/react-router6-doc/guides/index-search-param)。
+如果要提交索引路由，请使用[`?index` 参数](../guides/index-search-param)。
 
 如果您发现自己在点击处理程序中调用此函数，您可以使用 `<fetcher.Form>` 来简化代码。
 
@@ -269,5 +269,5 @@ fetcher.formMethod; // "post"
 
 > IMPORTANT
 >
-> `fetcher.formMethod` 字段为小写，没有 `future.v7_normalizeFormMethod` [Future Flag](https://baimingxuan.github.io/react-router6-doc/guides/api-development-strategy)。为了与 `fetch()` 在 v7 中的行为保持一致，我们正在将其规范化为大写，因此请升级 React Router v6 应用程序以采用大写 HTTP 方法。
+> `fetcher.formMethod` 字段为小写，没有 `future.v7_normalizeFormMethod` [Future Flag](../guides/api-development-strategy)。为了与 `fetch()` 在 v7 中的行为保持一致，我们正在将其规范化为大写，因此请升级 React Router v6 应用程序以采用大写 HTTP 方法。
 

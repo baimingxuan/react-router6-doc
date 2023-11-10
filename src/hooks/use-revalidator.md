@@ -4,7 +4,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
 
 ```jsx
 import { useRevalidator } from "react-router-dom";
@@ -24,7 +24,7 @@ function WindowFocusRevalidator() {
 }
 ```
 
-同样，React Router 已经在绝大多数情况下自动重新验证了页面上的数据，因此很少需要这样做。如果您发现自己使用此功能对数据进行正常的 CRUD 操作，以响应用户交互，那么您可能没有利用其他 API（如  [`<Form>`](https://baimingxuan.github.io/react-router6-doc/components/form) 、 [`useSubmit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit) 或 [`useFetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) ）来自动执行此操作。
+同样，React Router 已经在绝大多数情况下自动重新验证了页面上的数据，因此很少需要这样做。如果您发现自己使用此功能对数据进行正常的 CRUD 操作，以响应用户交互，那么您可能没有利用其他 API（如  [`<Form>`](../components/form) 、 [`useSubmit`](../hooks/use-submit) 或 [`useFetcher`](../hooks/use-fetcher) ）来自动执行此操作。
 
 ## `revalidator.state`
 

@@ -17,7 +17,7 @@ interface Path {
 }
 ```
 
-此钩子返回当前[`location`](https://baimingxuan.github.io/react-router6-doc/utils/location)对象。如果您想在当前位置发生变化时执行某些副作用，这将非常有用。
+此钩子返回当前[`location`](../utils/location)对象。如果您想在当前位置发生变化时执行某些副作用，这将非常有用。
 
 ```jsx
 import * as React from 'react';
@@ -57,4 +57,4 @@ function App() {
 
 ### `location.state`
 
-[`<Link state>`](https://baimingxuan.github.io/react-router6-doc/components/link#state) 或 [`navigate`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigate) 创建的位置的状态值。
+[`<Link state>`](../components/link#state) 或 [`navigate`](../hooks/use-navigate) 创建的位置的状态值。

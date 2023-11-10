@@ -2,11 +2,11 @@
 
 当我们最初开始将 [Remix Data API 移植到 React Router ](https://remix.run/blog/remixing-react-router)时，我们意识到它们带来了一种非常不同的路由结构化方式。*在 React 渲染组件树*的过程中，我们不再通过[`<Routes>`](../components/routes) 组件来实现路由，而是需要解除路由定义，以便将[获取与渲染分离开来](https://www.youtube.com/watch?v=95B8mnhzoCM)。
 
-这带来了一个有趣的难题。我们有大量的 v6 [`BrowserRouter`](../router-components/browser-router) 应用程序在使用 `<Routes>` 组件定义路由，我们如何为它们提供平滑的升级体验，而不需要大爆炸式地迁移到新方法？这就排除了推出新版本的可能性，我们专注于以*完全向后兼容*的方式添加这些新功能，为用户提供从 [`BrowserRouter`](../router-components/browser-router) 到 [`RouterProvider`](../router/router-provider) 的渐进升级路径。
+这带来了一个有趣的难题。我们有大量的 v6 [`BrowserRouter`](../router-components/browser-router) 应用程序在使用 `<Routes>` 组件定义路由，我们如何为它们提供平滑的升级体验，而不需要大爆炸式地迁移到新方法？这就排除了推出新版本的可能性，我们专注于以*完全向后兼容*的方式添加这些新功能，为用户提供从 [`BrowserRouter`](../router-components/browser-router) 到 [`RouterProvider`](../routers/router-provider) 的渐进升级路径。
 
 ## 差异
 
-首先要注意的是一些新的[数据 API](../router/picking-a-router#data-apis)，它们只能在通过新的[数据路由](../router/picking-a-router)（即 [`createBrowserRouter` ](../router/create-browser-router)）定义的路由上运行。其中包括几类 API：
+首先要注意的是一些新的[数据 API](../routers/picking-a-router#data-apis)，它们只能在通过新的[数据路由](../routers/picking-a-router)（即 [`createBrowserRouter` ](../routers/create-browser-router)）定义的路由上运行。其中包括几类 API：
 
 - 路由级数据应用程序接口，如 `loader` , `action` , `shouldRevalidate` , `handle` , 和 `lazy`
 - I组件内数据钩子，如 `useLoaderData` , `useActionData` , `useFetcher` , `useMatches` , `useNavigation` 等。

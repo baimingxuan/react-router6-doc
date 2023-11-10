@@ -5,7 +5,7 @@
 > 不建议使用哈希 URL。
 >
 
-除此之外，它在功能上与[`createBrowserRouter`](../router/create-browser-router)相同。
+除此之外，它在功能上与[`createBrowserRouter`](../routers/create-browser-router)相同。
 
 ```jsx
 import * as React from "react";

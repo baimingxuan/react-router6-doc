@@ -27,7 +27,7 @@ interface ShouldRevalidateFunctionArgs {
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../router/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
 
 有几种情况下，数据会被重新验证，从而使用户界面与数据自动保持同步：
 

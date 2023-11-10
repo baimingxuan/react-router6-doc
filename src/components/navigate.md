@@ -13,7 +13,7 @@ interface NavigateProps {
 }
 ```
 
-`<Navigate>` 元素在渲染时会改变当前位置。它是[`useNavigate`](https://baimingxuan.github.io/react-router6-doc/hooks/use-navigate)的组件包装器，并接受与 props 相同的参数。
+`<Navigate>` 元素在渲染时会改变当前位置。它是[`useNavigate`](../hooks/use-navigate)的组件包装器，并接受与 props 相同的参数。
 
 > NOTE
 >

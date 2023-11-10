@@ -6,7 +6,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../router/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
 
 每个 `lazy` 函数通常会返回一个动态导入的结果。
 

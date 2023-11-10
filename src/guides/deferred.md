@@ -39,7 +39,7 @@ function PackageRoute() {
 - 添加全局过渡旋转器（对用户体验有一定帮助）。
 - 添加本地化的骨架用户界面（对用户体验有一定帮助）。
 
-如果这些方法效果不佳，那么您可能不得不将慢速数据从 `loader` 移到组件获取中（并在加载时显示骨架回退 UI）。在这种情况下，您需要在挂载时渲染后备 UI，然后启动数据获取。从 DX 的角度来看，这其实并不可怕，这要归功于[`useFetcher`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)。从用户体验的角度来看，这改善了客户端转换和初始页面加载的加载体验。因此，这似乎确实解决了问题。
+如果这些方法效果不佳，那么您可能不得不将慢速数据从 `loader` 移到组件获取中（并在加载时显示骨架回退 UI）。在这种情况下，您需要在挂载时渲染后备 UI，然后启动数据获取。从 DX 的角度来看，这其实并不可怕，这要归功于[`useFetcher`](../hooks/use-fetcher)。从用户体验的角度来看，这改善了客户端转换和初始页面加载的加载体验。因此，这似乎确实解决了问题。
 
 但由于以下两个原因，在大多数情况下（尤其是在对路由组件进行代码拆分的情况下），它仍然不是最佳选择：
 
@@ -48,7 +48,7 @@ function PackageRoute() {
 
 ## 解决方案
 
-React Router 使用 [`defer`响应](https://baimingxuan.github.io/react-router6-doc/utils/defer) 实用程序和 [`<Await />`](https://baimingxuan.github.io/react-router6-doc/components/await) 组件/[ `useAsyncValue`](https://baimingxuan.github.io/react-router6-doc/hooks/use-async-value) 钩子，并利用 React 18 的 Suspense 来获取数据。通过使用这些 API，您可以解决这两个问题：
+React Router 使用 [`defer`响应](../utils/defer) 实用程序和 [`<Await />`](../components/await) 组件/[ `useAsyncValue`](../hooks/use-async-value) 钩子，并利用 React 18 的 Suspense 来获取数据。通过使用这些 API，您可以解决这两个问题：
 
 1. 您的数据不再是瀑布式的：文档 -> JavaScript -> 懒加载路径和数据（并行）。
 2. 您的代码可以在渲染回退和等待数据之间轻松切换
