@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-您也可以使用`JSX`和[`createRoutesFromElements`](https://baimingxuan.github.io/react-router6-doc/utils/create-routes-from-elements)声明路由，元素的属性与路由对象的属性相同：
+您也可以使用`JSX`和[`createRoutesFromElements`](../utils/create-routes-from-elements)声明路由，元素的属性与路由对象的属性相同：
 
 ```jsx
 const router = createBrowserRouter(
@@ -222,11 +222,11 @@ let { org, "*": splat } = params;
 </Route>
 ```
 
-在本例中， `<h1>Layout</h1>` 将通过布局路由的 [Outlet](https://baimingxuan.github.io/react-router6-doc/components/outlet) 与每个子路由的 `element` prop 一起呈现。
+在本例中， `<h1>Layout</h1>` 将通过布局路由的 [Outlet](../components/outlet) 与每个子路由的 `element` prop 一起呈现。
 
 ## `index`
 
-确定路由是否为索引路由。索引路由通过父路由的 URL 呈现到父路由 [Outlet](https://baimingxuan.github.io/react-router6-doc/route/outlet) 中（就像默认的子路由）。
+确定路由是否为索引路由。索引路由通过父路由的 URL 呈现到父路由 [Outlet](../components/outlet) 中（就像默认的子路由）。
 
 ```jsx
 <Route path="/teams" element={<Teams />}>
@@ -235,7 +235,7 @@ let { org, "*": splat } = params;
 </Route>
 ```
 
-这些特殊路线一开始可能会让人一头雾水，因此我们在这里专门为它们编写了一份指南：[索引路由](https://baimingxuan.github.io/react-router6-doc/start/concepts#index-routes)。
+这些特殊路线一开始可能会让人一头雾水，因此我们在这里专门为它们编写了一份指南：[索引路由](../start/concepts#index-routes)。
 
 ## `children`
 
@@ -256,7 +256,7 @@ let { org, "*": splat } = params;
 
 ## `loader`
 
-路由加载器在路由渲染前被调用，并通过[`useLoaderData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-loader-data)为元素提供数据。
+路由加载器在路由渲染前被调用，并通过[`useLoaderData`](../hooks/use-loader-data)为元素提供数据。
 
 ```jsx
 <Route
@@ -274,13 +274,13 @@ function Team() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如[`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)），这将毫无用处
+> 如果您没有使用数据路由器（如[`createBrowserRouter`](../router/create-browser-router)），这将毫无用处
 
-详情请查看 [loader](https://baimingxuan.github.io/react-router6-doc/route/loader) 文档。
+详情请查看 [loader](../route/loader) 文档。
 
 ## `action`
 
-当从[Form](https://baimingxuan.github.io/react-router6-doc/components/form)、[fetcher](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)或[submission](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit) 向路由发送提交信息时，路由操作将被调用。
+当从[Form](../components/form)、[fetcher](../hooks/use-fetcher)或[submission](../hooks/use-submit) 向路由发送提交信息时，路由操作将被调用。
 
 ```jsx
 <Route
@@ -292,10 +292,10 @@ function Team() {
 />
 ```
 
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)），这将毫无用处
+> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../router/create-browser-router)），这将毫无用处
 >
 
-更多详情，请参阅 [action](https://baimingxuan.github.io/react-router6-doc/route/action) 文档。
+更多详情，请参阅 [action](../route/action) 文档。
 
 ## `element`/`Component`
 
@@ -355,13 +355,13 @@ function Team() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router) ），这将毫无用处
+> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../router/create-browser-router) ），这将毫无用处
 
-更多详情，请参阅 [errorElement](https://baimingxuan.github.io/react-router6-doc/route/error-element) 文档。
+更多详情，请参阅 [errorElement](../route/error-element) 文档。
 
 ## `handle`
 
-任何特定于应用程序的数据。有关详情和示例，请参阅 [useMatches](https://baimingxuan.github.io/react-router6-doc/hooks/use-matches) 文档。
+任何特定于应用程序的数据。有关详情和示例，请参阅 [useMatches](../hooks/use-matches) 文档。
 
 ## `lazy`
 
@@ -400,6 +400,6 @@ export function Component() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](https://baimingxuan.github.io/react-router6-doc/routers/create-browser-router)），这将毫无用处
+> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../router/create-browser-router)），这将毫无用处
 
-更多详情，请参阅 [lazy](https://baimingxuan.github.io/react-router6-doc/route/lazy) 文档。
+更多详情，请参阅 [lazy](../route/lazy) 文档。

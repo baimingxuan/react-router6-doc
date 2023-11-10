@@ -2,7 +2,7 @@
 
 这是所有 React Router Web 项目推荐使用的路由。它使用 [DOM 历史记录 API](https://developer.mozilla.org/en-US/docs/Web/API/History) 来更新 URL 和管理历史堆栈。
 
-它还支持 v6.4 数据 API，如 [loaders](https://baimingxuan.github.io/react-router6-doc/route/loader)、[actions](https://baimingxuan.github.io/react-router6-doc/route/action)、[fetchers](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher) 等。
+它还支持 v6.4 数据 API，如 [loaders](../route/loader)、[actions](../route/action)、[fetchers](../hooks/use-fetcher) 等。
 
 > 由于在数据 API 的设计中解耦了获取和呈现，因此您应该在 React 树之外创建路由，并使用静态定义的路由集。有关此设计的更多信息，请参阅 [Remixing React Router](https://remix.run/blog/remixing-react-router) 博文和 [When to Fetch](https://www.youtube.com/watch?v=95B8mnhzoCM) 会议演讲。
 
@@ -53,7 +53,7 @@ function createBrowserRouter(
 
 ## `routes`
 
-[`Route`](https://baimingxuan.github.io/react-router6-doc/components/route) 对象的数组，在 `children` 属性上有嵌套路由。
+[`Route`](../components/route) 对象的数组，在 `children` 属性上有嵌套路由。
 
 ```jsx
 createBrowserRouter([
@@ -98,7 +98,7 @@ createBrowserRouter(routes, {
 
 ## `future`
 
-为路由器启用的一组可选的 [Future Flags](https://baimingxuan.github.io/react-router6-doc/guides/api-development-strategy)。我们建议您尽早选择使用新发布的 future flags，以方便您最终迁移到 v7 版本。
+为路由器启用的一组可选的 [Future Flags](../guides/api-development-strategy)。我们建议您尽早选择使用新发布的 future flags，以方便您最终迁移到 v7 版本。
 
 ```jsx
 const router = createBrowserRouter(routes, {

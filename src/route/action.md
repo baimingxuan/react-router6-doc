@@ -1,10 +1,10 @@
 # `action`
 
-路由 `action` 是对路由 [loader](https://baimingxuan.github.io/react-router6-doc/route/loader) “读取”的“写入”。它们为应用程序提供了一种使用简单的 HTML 和 HTTP 语义执行数据突变的方法，而 React Router 则抽象掉了异步 UI 和重新验证的复杂性。这为您提供了 HTML + HTTP（浏览器处理异步和重新验证）的简单心理模型，以及现代 SPA 的行为和用户体验功能。
+路由 `action` 是对路由 [loader](../route/loader) “读取”的“写入”。它们为应用程序提供了一种使用简单的 HTML 和 HTTP 语义执行数据突变的方法，而 React Router 则抽象掉了异步 UI 和重新验证的复杂性。这为您提供了 HTML + HTTP（浏览器处理异步和重新验证）的简单心理模型，以及现代 SPA 的行为和用户体验功能。
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅 "[选择路由](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)"。
+> 此功能只有在使用数据路由器时才有效，请参阅 "[选择路由](../router/picking-a-router)"。
 
 ```jsx
 <Route
@@ -41,7 +41,7 @@ fetcher.submit(data, {
 
 ## `params`
 
-路由参数会从 [动态片段 ](https://baimingxuan.github.io/react-router6-doc/route/route#dynamic-segments)中解析并传递给您的 `action`。这对于确定要更改的资源非常有用：
+路由参数会从 [动态片段 ](../route/route#dynamic-segments)中解析并传递给您的 `action`。这对于确定要更改的资源非常有用：
 
 ```jsx
 <Route
@@ -78,7 +78,7 @@ fetcher.submit(data, {
 
 您到底在防止什么？
 
-如果没有 JavaScript，只有普通 HTML 和 HTTP 网络服务器，那么所阻止的默认事件实际上是非常好的。浏览器会将表单中的所有数据序列化为[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)，然后作为新请求的正文发送到服务器。与上面的代码一样，React Router[`Form`](https://baimingxuan.github.io/react-router6-doc/components/form)会阻止浏览器发送该请求，而是将请求发送到您的路由操作！这样，只需使用简单的 HTML 和 HTTP 模型，就能实现高度动态的网络应用程序。
+如果没有 JavaScript，只有普通 HTML 和 HTTP 网络服务器，那么所阻止的默认事件实际上是非常好的。浏览器会将表单中的所有数据序列化为[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)，然后作为新请求的正文发送到服务器。与上面的代码一样，React Router[`Form`](../components/form)会阻止浏览器发送该请求，而是将请求发送到您的路由操作！这样，只需使用简单的 HTML 和 HTTP 模型，就能实现高度动态的网络应用程序。
 
 请记住， `formData` 中的值是通过表单提交自动序列化的，因此您的输入需要 `name` 。
 
@@ -94,17 +94,17 @@ formData.get("songTitle");
 formData.get("lyrics");
 ```
 
-有关 `formData` 的更多信息，请参阅 [“使用FormData”](https://baimingxuan.github.io/react-router6-doc/guides/form-data)。
+有关 `formData` 的更多信息，请参阅 [“使用FormData”](../guides/form-data)。
 
 ### 选择性序列化类型
 
-请注意，使用 [`useSubmit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit) 时，也可以通过 `encType: "application/json"` 或 `encType: "text/plain"` 将有效载荷序列化到 `request.json()` 或 `request.text()` 中。
+请注意，使用 [`useSubmit`](../hooks/use-submit) 时，也可以通过 `encType: "application/json"` 或 `encType: "text/plain"` 将有效载荷序列化到 `request.json()` 或 `request.text()` 中。
 
 ## 返回响应
 
-您可以从操作中返回任何想要的内容，并从[`useActionData`](https://baimingxuan.github.io/react-router6-doc/hooks/use-action-data)获取访问权限，也可以返回网络 [响应](https://developer.mozilla.org/en-US/docs/Web/API/Response)。
+您可以从操作中返回任何想要的内容，并从[`useActionData`](../hooks/use-action-data)获取访问权限，也可以返回网络 [响应](https://developer.mozilla.org/en-US/docs/Web/API/Response)。
 
-更多信息，请参阅 [加载器文档](https://baimingxuan.github.io/react-router6-doc/route/loader#returning-responses)。
+更多信息，请参阅 [加载器文档](../route/loader#returning-responses)。
 
 ## 在`Action`中抛出
 
@@ -126,7 +126,7 @@ formData.get("lyrics");
 />
 ```
 
-有关详细信息和扩展用例，请阅读 [errorElement](https://baimingxuan.github.io/react-router6-doc/route/error-element) 文档。
+有关详细信息和扩展用例，请阅读 [errorElement](../route/error-element) 文档。
 
 ## 处理每个路由的多个操作
 

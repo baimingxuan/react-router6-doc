@@ -1,6 +1,6 @@
 # `errorElement`
 
-当 [loader](https://baimingxuan.github.io/react-router6-doc/route/loader)、[action](https://baimingxuan.github.io/react-router6-doc/route/action) 或组件渲染中出现异常时，路由的正常渲染路径 ( `<Route element>` ) 将被渲染为错误路径 ( `<Route errorElement>` )，错误信息将通过 [`useRouteError`](https://baimingxuan.github.io/react-router6-doc/hooks/use-route-error)显示。
+当 [loader](../route/loader)、[action](../route/action) 或组件渲染中出现异常时，路由的正常渲染路径 ( `<Route element>` ) 将被渲染为错误路径 ( `<Route errorElement>` )，错误信息将通过 [`useRouteError`](../hooks/use-route-error)显示。
 
 > NOTE
 >
@@ -8,7 +8,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由时才有效，请参阅 ["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
+> 此功能只有在使用数据路由时才有效，请参阅 ["选择路由"](../router/picking-a-router)。
 
 ```jsx
 <Route
@@ -55,7 +55,7 @@ function ErrorBoundary() {
 
 特别是在`loader`和`action`中，当您处理不受您控制的外部数据时，您不可能总是计划数据是否存在、服务是否可用或用户是否能访问它。在这种情况下，您可以 `throw` 自己的异常。
 
-这是 [loader](https://baimingxuan.github.io/react-router6-doc/route/loader) 中的一个 "未找到 "案例：
+这是 [loader](../route/loader) 中的一个 "未找到 "案例：
 
 ```jsx
 <Route
@@ -84,9 +84,9 @@ function ErrorBoundary() {
 
 ## 抛出响应
 
-通过 [`useRouteError`](https://baimingxuan.github.io/react-router6-doc/hooks/use-route-error)如果抛出的是响应 [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)，React Router 会自动解析响应数据，然后将其返回给您的组件。
+通过 [`useRouteError`](../hooks/use-route-error)如果抛出的是响应 [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)，React Router 会自动解析响应数据，然后将其返回给您的组件。
 
-此外，[`isRouteErrorResponse`](https://baimingxuan.github.io/react-router6-doc/utils/is-route-error-response) 还可让您在边界中检查这种特定类型。配合[`json`](https://baimingxuan.github.io/react-router6-doc/fetch/json)，您可以轻松地抛出带有某些数据的响应，并在边界中呈现不同的情况：
+此外，[`isRouteErrorResponse`](../utils/is-route-error-response) 还可让您在边界中检查这种特定类型。配合[`json`](../fetch/json)，您可以轻松地抛出带有某些数据的响应，并在边界中呈现不同的情况：
 
 ```jsx
 import { json } from "react-router-dom";

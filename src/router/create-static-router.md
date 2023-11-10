@@ -1,6 +1,6 @@
 # `createStaticRouter`
 
-`createStaticRouter` 用于在服务器（即 [Node](https://nodejs.org/) 或其他 Javascript 运行时）上利用[数据路由](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)进行渲染。有关更全面的概述，请参阅[服务器端渲染](https://baimingxuan.github.io/react-router6-doc/guides/ssr)指南。
+`createStaticRouter` 用于在服务器（即 [Node](https://nodejs.org/) 或其他 Javascript 运行时）上利用[数据路由](../router/picking-a-router)进行渲染。有关更全面的概述，请参阅[服务器端渲染](../guides/ssr)指南。
 
 ```jsx
 import {
@@ -56,5 +56,5 @@ declare function createStaticRouter(
 
 **另请参见:**
 
-- [`createStaticHandler`](https://baimingxuan.github.io/react-router6-doc/routers/create-static-handler)
-- [`<StaticRouterProvider>`](https://baimingxuan.github.io/react-router6-doc/routers/static-router-provider)
+- [`createStaticHandler`](../router/create-static-handler)
+- [`<StaticRouterProvider>`](../router/static-router-provider)

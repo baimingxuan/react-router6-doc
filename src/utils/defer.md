@@ -10,4 +10,4 @@ async function loader() {
 }
 ```
 
-更多信息，请参阅[延迟指南](https://baimingxuan.github.io/react-router6-doc/guides/deferred)。
+更多信息，请参阅[延迟指南](../guides/deferred)。

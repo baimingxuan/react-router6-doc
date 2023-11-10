@@ -69,7 +69,7 @@ function App() {
 
 ## `future`
 
-一组可选的[Future Flags](https://baimingxuan.github.io/react-router6-doc/guides/api-development-strategy) 。我们建议您尽早选择使用新发布的`future flags`，以方便您最终迁移到 v7 版本。
+一组可选的[Future Flags](../guides/api-development-strategy) 。我们建议您尽早选择使用新发布的`future flags`，以方便您最终迁移到 v7 版本。
 
 ```jsx
 function App() {

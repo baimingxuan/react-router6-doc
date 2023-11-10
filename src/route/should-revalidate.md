@@ -23,20 +23,20 @@ interface ShouldRevalidateFunctionArgs {
 }
 ```
 
-通过此功能，您可以选择不对路由的[`loader`](https://baimingxuan.github.io/react-router6-doc/route/loader)进行重新验证，以优化其性能。
+通过此功能，您可以选择不对路由的[`loader`](../route/loader)进行重新验证，以优化其性能。
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](https://baimingxuan.github.io/react-router6-doc/routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../router/picking-a-router)。
 
 有几种情况下，数据会被重新验证，从而使用户界面与数据自动保持同步：
 
-- 从[`Form`](https://baimingxuan.github.io/react-router6-doc/components/form)调用[`action`](https://baimingxuan.github.io/react-router6-doc/route/action)后
-- 从[`<fetcher.Form>`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)调用[`action`](https://baimingxuan.github.io/react-router6-doc/route/action)后
-- 从[`useSubmit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-submit)调用[`action`](https://baimingxuan.github.io/react-router6-doc/route/action)后
-- 从[`fetcher.submit`](https://baimingxuan.github.io/react-router6-doc/hooks/use-fetcher)调用[`action`](https://baimingxuan.github.io/react-router6-doc/route/action)后
+- 从[`Form`](../components/form)调用[`action`](../route/action)后
+- 从[`<fetcher.Form>`](../hooks/use-fetcher)调用[`action`](../route/action)后
+- 从[`useSubmit`](../hooks/use-submit)调用[`action`](../route/action)后
+- 从[`fetcher.submit`](../hooks/use-fetcher)调用[`action`](../route/action)后
 - 当通过 `useRevalidator`触发显式重新验证时
-- 当已渲染路由的[URL 参数](https://baimingxuan.github.io/react-router6-doc/route/route#dynamic-segments)更改时
+- 当已渲染路由的[URL 参数](../route/route#dynamic-segments)更改时
 - 当 URL 搜索参数更改时
 - 当导航到与当前 URL 相同的 URL 时
 
