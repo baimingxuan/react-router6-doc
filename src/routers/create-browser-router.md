@@ -111,11 +111,11 @@ const router = createBrowserRouter(routes, {
 
 目前可用的`future flags`如下：
 
-| Flag                    | 描述                                                     |
-| ----------------------- | -------------------------------------------------------- |
-| `v7_fetcherPersist`     | 延迟活动的`fetcher`清理，直到它们返回到 `idle` 状态      |
-| `v7_normalizeFormMethod | 将 `useNavigation().formMethod` 规范化为大写的 HTTP 方法 |
-| `v7_prependBasename`    | 将路由的基名添加到`navigate/fetch`路径的前面             |
+| Flag                     | 描述                                                     |
+| ------------------------ | -------------------------------------------------------- |
+| `v7_fetcherPersist`      | 延迟活动的`fetcher`清理，直到它们返回到 `idle` 状态      |
+| `v7_normalizeFormMethod` | 将 `useNavigation().formMethod` 规范化为大写的 HTTP 方法 |
+| `v7_prependBasename`     | 将路由的基名添加到`navigate/fetch`路径的前面             |
 
 ## `window`
 
