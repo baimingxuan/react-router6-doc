@@ -14,6 +14,7 @@ const router = createBrowserRouter([
     path: "teams/:teamId",
 
     // with this data loaded before rendering
+    // 渲染前运行的加载器
     loader: async ({ request, params }) => {
       return fetch(
         `/fake/api/teams/${params.teamId}.json`,
@@ -22,17 +23,19 @@ const router = createBrowserRouter([
     },
 
     // performing this mutation when data is submitted to it
+    // 提交数据时执行此突变(处理重定向等副作用)
     action: async ({ request }) => {
       return updateFakeTeam(await request.formData());
     },
 
     // and renders this element in case something went wrong
+    // 发生错误时，渲染内容
     errorElement: <ErrorBoundary />,
   },
 ]);
 ```
 
-您也可以使用`JSX`和[`createRoutesFromElements`](../utils/create-routes-from-elements)声明路由，元素的属性与路由对象的属性相同：
+您也可以使用[`createRoutesFromElements`](../utils/create-routes-from-elements)来编写`JSX`的方式声明路由，元素的属性与路由对象的属性相同：
 
 ```jsx
 const router = createBrowserRouter(
@@ -92,10 +95,12 @@ interface RouteObject {
 ```jsx
 <Route
   // this path will match URLs like
+  // 这个路径将会匹配如下内容：
   // - /teams/hotspur
   // - /teams/real
   path="/teams/:teamId"
   // the matching param will be available to the loader
+  // 匹配到的参数将会用于loader和action中
   loader={({ params }) => {
     console.log(params.teamId); // "hotspur"
   }}
@@ -105,6 +110,7 @@ interface RouteObject {
 />;
 
 // and the element through `useParams`
+// 也可以通过useParams访问
 function Team() {
   let params = useParams();
   console.log(params.teamId); // "hotspur"
@@ -127,7 +133,7 @@ params.productId;
 - 🚫`"/:category--:productId"`
 - ✅`"/:productSlug"`
 
-您仍然可以支持像这样的 URL 模式，只是需要进行一些自己的解析：
+您仍然可以支持像这样的 URL 模式，只是需要自己进行解析：
 
 ```jsx
 function Product() {
@@ -321,7 +327,7 @@ function Team() {
 
 在 `loader` 或 `action` 中，当路由在渲染时抛出异常时，该 React 元素/组件将代替正常的 `element` / `Component` 进行渲染。
 
-如果您想自己创建 React 元素，请使用 `errorElement` ：
+如果您想自己创建 React 元素来作为出现异常时的显示，请使用 `errorElement` ：
 
 ```jsx
 <Route
