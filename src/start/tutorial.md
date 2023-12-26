@@ -1,4 +1,15 @@
+# 在开始之前
+欢迎来到本教程！我们将花30-60min构建一个小型但功能丰富的联系人跟踪应用。
+
+每当你看见👉️符号，就说明你应该做一些事情。
+而其余的只供您参考和更深入的理解。
+
+接下来让我们开始吧。
+
 #  开始
+
+>NOTE
+>如果你不打算在自己的应用程序中跟随进行，你可以跳过这一部分。
 
 我们将在本教程中使 [`Vite`](https://vitejs.dev/guide/)作为我们的打包工具和开发服务器。您需要安装[`Node.js`](https://nodejs.org/)以使用 `npm` 命令行工具。
 
@@ -75,7 +86,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-第一条路由就是我们常说的 "根路由"，因为其余的路由都将在它的内部呈现。它将作为用户界面的根布局，我们还将嵌套布局。
+第一条路由就是我们常说的 "根路由"，其余的路由都将在它的内部呈现。它将作为用户界面的根布局，随着教程的继续，我们还将嵌套布局。
 
 ##  根路由
 
@@ -88,7 +99,7 @@ mkdir src/routes
 touch src/routes/root.jsx
 ```
 
-(如果不想成为命令行书呆子，请使用编辑器来代替这些命令🤓）。
+(如果不想成为命令行书呆子，请使用编辑器来自己完成这些命令🤓）。
 
 👉**创建根布局组件**
 
@@ -140,7 +151,7 @@ export default function Root() {
 }
 ```
 
-还没有关于 React Router 的具体内容，所以请随意复制/粘贴所有内容。
+还没有关于 React Router 的具体内容，所以请**随意**复制/粘贴所有内容。
 
 👉**将`<Root>`设置为根路由[`element`](../route/route#element)**
 
@@ -164,13 +175,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-应用程序现在应该是这个样子了。有个会写 CSS 的设计师真是太好了，不是吗？(谢谢你，吉姆 🙏）。
+应用程序现在应该是这个样子了。有个会写 CSS 的设计师真是太好了，不是吗？(谢谢你，[吉姆(jim)](https://blog.jim-nielsen.com/) 🙏）。
 
 ![img](https://reactrouter.com/_docs/tutorial/01.webp)
 
 ## 处理未找到的错误
 
-在项目初期了解应用程序对错误的响应总是一个好主意，因为在创建新应用程序时，我们编写的错误远多于功能！这样不仅能让用户获得良好的体验，还能在开发过程中为您提供帮助。
+在项目初期，知道应用程序的错误响应总是一件好事，因为在创建新应用程序的过程中，我们编写的错误远远多于功能！让我们添加错误处理，这样不仅能让用户获得良好的体验，还能在开发过程中为我们开发者提供帮助。
 
 我们在这个应用程序中添加了一些链接，让我们看看点击这些链接会发生什么？
 
@@ -180,7 +191,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 真恶心！这是 React Router 中默认的错误界面，在本应用中，根元素上的`flex box`样式让它变得更糟😂。
 
-只要您的应用程序在渲染、加载数据或执行数据突变时出现错误，React Router 就会捕获并渲染错误页面。让我们制作自己的错误页面。
+只要您的应用程序在渲染、加载数据或执行数据突变时出现错误，React Router 就会捕获并渲染错误页面。
+
+接下来，让我们制作自己的错误页面。
 
 👉**创建错误页面组件**
 
@@ -236,7 +249,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ![新的错误页面，但仍然很难看](https://reactrouter.com/_docs/tutorial/03.webp)
 
-(也没好到哪里去。也许有人忘了让设计者制作错误页面。也许每个人都忘了让设计者制作错误页面，然后责怪设计者没有想到这一点😆）。
+(一点吐槽：也没好到哪里去。也许有人忘了让设计者制作错误页面。也许每个人都忘了让设计者制作错误页面，然后责怪设计者没有想到这一点😆）。
 
 请注意，[`useRouteError`](../hooks/use-route-error)提供了抛出的错误信息。当用户导航到不存在的路由时，你会得到一个带有 "Not Found（未找到）"的[错误响应](../utils/is-route-error-response)`statusText` 。在本教程的稍后部分，我们还将看到其他一些错误，并对它们进行更多讨论。
 
@@ -254,7 +267,7 @@ touch src/routes/contact.jsx
 
 👉**添加联系人组件用户界面**
 
-这只是一堆元素，可以随意复制/粘贴。
+这只是一堆元素，可以**随意**复制/粘贴。
 
 `src/routes/contact.jsx`
 
@@ -436,6 +449,7 @@ export default function Root() {
 ## 客户端路由
 
 你可能注意到，也可能没有注意到，当我们点击侧边栏中的链接时，浏览器会对下一个 URL 进行完整的文档请求，而不是使用 React Router。
+> 原生请求时，会导致强制刷新，相当于重新请求一次后端，但使用react-router就可以减少请求。后面会详细讲解
 
 客户端路由允许我们的应用程序更新 URL，而无需从服务器请求另一个文档。相反，应用程序可以立即呈现新的用户界面。让我们通过[`<Link>`](../components/link)实现这一点。
 
@@ -474,16 +488,18 @@ export default function Root() {
 
 ## 加载数据
 
-URL段、布局和数据往往耦合在一起（三合一？）我们已经可以在这个应用程序中看到这一点：
+URL段、布局和数据往往耦合在一起组合成一个url`http://localhost:5173/contacts/1`，难以直接分辨解读，我们可以在这个应用程序中看到这一点：
 
 | URL段        | 组件        | 数据         |
 | ------------ | ----------- | ------------ |
 | /            | `<Root>`    | 通讯录       |
 | contacts/:id | `<Contact>` | 个人联系方式 |
 
-由于这种天然的耦合，React Router 具有数据约定，可以轻松地将数据导入路由组件。
+由于这种天然的耦合，React Router 具有数据约定，可以帮助开发者轻松地将数据导入路由组件。
 
-我们将使用两个`API`来加载数据，[`loader`](../route/loader)和[`useLoaderData`](../hooks/use-loader-data)。首先，我们将在根模块中创建并导出一个加载器函数，然后将其连接到路由。最后，我们将访问并呈现数据。
+我们可以使用两个`API`来加载这些数据，[`loader`](../route/loader)和[`useLoaderData`](../hooks/use-loader-data)。
+
+接下来，我们将在根模块文件中创建并导出一个加载器函数，然后将其配置到路由。最后，我们将调用`useLoaderData`来访问并呈现数据。
 
 👉**从`root.jsx`导出 loader**
 
@@ -585,21 +601,23 @@ export default function Root() {
 
 稍后我们将创建第一个联系人，但首先让我们来谈谈 HTML。
 
-React Router 将 HTML 表单导航模拟为数据突变原型，符合 JavaScript 大爆发之前的网络开发。它为您提供了客户端呈现应用程序的用户体验功能和 "老式 "网络模型的简洁性。
+React Router模拟了HTML表单导航作为数据变更的原始操作，这是在JavaScript爆发前的Web开发中的做法。它使您能够获得客户端渲染应用程序的用户体验能力，同时又保持了"old school"（老派）Web模型的简单性。
 
-对于一些网络开发人员来说，HTML 表单并不熟悉，它实际上是在浏览器中进行导航，就像点击链接一样。唯一的区别在于请求：链接只能更改 URL，而表单还可以更改请求方式（GET 与 POST）和请求主体（POST 表单数据）。
+> 在HTML中，表单通常用于收集用户的输入数据，并将其提交到服务器进行处理或更新。React Router借鉴了这种模式，并使用类似的机制来处理数据的变更。
 
-果没有客户端路由，浏览器会自动序列化表单数据，并将其作为 POST 的请求正文和 GET 的 URLSearchParams 发送到服务器。React Router 也会做同样的事情，只不过它不是将请求发送到服务器，而是使用客户端路由，并将请求发送到路由[`action`](../route/action)。
+一些网络开发人员可能并不知道提交HTML 表单时，它实际上会在浏览器中引起导航事件，就像我们点击某个链接一样。而链接和提交表单的唯一的区别在于请求：链接只能更改 URL，而表单还可以更改请求方式（GET 与 POST）和请求体（POST 表单数据）。
 
-我们可以点击应用程序中的 "新建 "按钮来测试一下。由于 Vite 服务器未配置为处理 POST 请求，因此应用程序应该会崩溃（它会发送 404，不过可能应该是 405 🤷）。
+如果没有客户端路由（也就是`react-router`这类的client-side routing），浏览器会自动序列化表单数据，并以不同的方式发送给服务器。对于POST请求，数据会作为请求体（request body）发送给服务器；而对于GET请求，数据会作为URLSearchParams（URL查询参数）的形式附加在URL上发送给服务器。React Router的行为与此类似，但它不会将请求发送到服务器，而是使用客户端路由并将请求发送到路由操作[`action`](../route/action)进行处理。
+
+我们可以点击应用程序中的 `New`按钮来测试一下。由于 Vite 服务器未配置为处理 POST 请求，因此应用程序应该会崩溃（它会发送 404，不过可能应该是 405 🤷）。
 
 ![img](https://reactrouter.com/_docs/tutorial/07.webp)
 
-与其向 Vite 服务器发送 POST 来创建新联系人，不如使用客户端路由。
+与其向 Vite 服务器发送 POST 来创建新联系人，不如直接使用客户端路由。（让后端同学少掉头发）
 
 ## 创建联系人
 
-我们将在根路由中导出 `action` ，将其连接到路由配置，并将 `<form>` 更改为 React Router[`<Form>`](../components/form)，从而创建新的联系人。
+我们将在根路由文件中编写并导出 `action` ，然后将其连接到路由配置文件中，并将 `<form>` 更改为 React Router封装的[`<Form>`](../components/form)，从而创建新的联系人。
 
 👉**创建操作，并将`<form>`更改为`<Form>`**
 
@@ -670,21 +688,21 @@ const router = createBrowserRouter([
 ]);
 ```
 
-就是这样！点击 "新建 "按钮，你就会看到一条新记录出现在列表中 🥳。
+就是这样！点击 "New"按钮，你就会看到一条新记录出现在列表中 🥳。
 
 ![img](https://reactrouter.com/_docs/tutorial/08.webp)
 
-`createContact` 方法只会创建一个没有姓名、数据或其他任何东西的空联系人。但它还是创建了一条记录，我保证！
+`createContact` 方法只创建了一个没有姓名、数据或其他任何东西的空联系人。不过它还是创建了一条记录，我保证！
 
 > 🧐 等一下...侧边栏是怎么更新的？我们在哪里调用了 `action` ？重新获取数据的代码在哪里？ `useState` 、 `onSubmit` 和 `useEffect` 在哪里？
 
-这就是“老式的 Web”编程模式的体现。正如我们之前所讨论的，[`<Form>`](../components/form)阻止浏览器向服务器发送请求，而是将其发送到路由 `action` 。在 Web 语义中，POST 通常意味着某些数据正在发生变化。按照惯例，React Router 会将此作为提示，在操作完成后自动重新验证页面上的数据。这意味着 `useLoaderData` 钩子会自动更新，用户界面也会自动与数据保持同步！太酷了
+这就是“old school Web”编程模式的体现。正如我们之前所讨论的，[`<Form>`](../components/form)阻止了浏览器发送请求到服务器，而是将其发送到您指定的路由操作`action`中 。这种方式类似于传统Web应用程序中的数据提交行为。根据 Web 语义，使用POST方法通常表示对数据进行更改。React Router利用这一点，自动触发数据重新验证的过程。这意味着所有使用 useLoaderData 钩子的组件都会更新，并且UI会自动与数据保持同步。泰库辣！！
 
 ## Loaders 中的 URL 参数
 
-👉**点击无名记录**
+👉**点击无名（No Name）记录**
 
-我们应该又能看到以前的静态联系页面了，但有一点不同：URL 中现在有了记录的真实 ID。
+我们应该又能看到以前的静态联系页面了，但有一点不同：URL 中现在有了记录的真实 ID`wa1iy3x`。
 
 ![img](https://reactrouter.com/_docs/tutorial/09.webp)
 
@@ -699,9 +717,9 @@ const router = createBrowserRouter([
 ];
 ```
 
-请注意 `:contactId` URL 段。冒号 ( `:` ) 具有特殊含义，将其转换为“动态段”。动态段将匹配 URL 该位置上的动态（变化）值，如联系人 ID。我们将 URL 中的这些值称为“URL 参数”，简称 "params"。
+请注意 `:contactId` URL 段。冒号 ( `:` ) 具有特殊含义，将其转换为“动态段”。动态段将匹配 URL 该位置上的动态（变化）值，如联系人 ID。我们将 URL 中的这些值称为“URL 参数”，简称  "params"。
 
-这些[`params`](../route/loader#params)将传递给`loader`，其键与动态段匹配。例如，我们的分段名为 `:contactId` ，因此值将作为 `params.contactId` 传递。
+这些[`params`](../route/loader#params)将作为键值对传递给加载器`loader`，其键与动态段匹配。例如，我们的分段名定义为为 `:contactId` ，因此值将作为 `params.contactId` 传递（可以再loader上使用）。
 
 这些参数最常用于通过 ID 查找记录。让我们试试看。
 
@@ -960,7 +978,7 @@ const router = createBrowserRouter([
 />
 ```
 
-如果没有 JavaScript，当提交表单时，浏览器会创建[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)，并在将其发送到服务器时将其设置为请求的正文。如前所述，React Router 可以避免这种情况，而是将请求发送到您的操作，包括[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)。
+如果没有 JavaScript，当提交表单时，浏览器会创建[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)对象，并将其设置为请求的主体（body），然后将请求发送到服务器。如前所述，React Router 阻止了这种默认行为，而是将请求发送到您的操作`action`中，同时包括[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)。
 
 表单中的每个字段都可以通过 `formData.get(name)` 访问。例如，在上面的输入字段中，您可以这样访问姓和名：
 
@@ -983,7 +1001,7 @@ updates.last; // "Name"
 
 除了 `action` 之外，我们讨论的这些 API 都不是由 React Router 提供的：[`request`](https://developer.mozilla.org/en-US/docs/Web/API/Request), [`request.formData`](https://developer.mozilla.org/en-US/docs/Web/API/Request/formData),[`Object.fromEntries`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries)都是由`web`平台提供的。
 
-我们完成动作后，请注意结尾处的[`redirect`](../fetch/redirect)：
+我们完成动作后，请注意结尾处的[`redirect`](../fetch/redirect)（重定向）：
 
 `src/routes/edit.jsx`
 
@@ -1036,7 +1054,7 @@ export async function action() {
 
 ## 活动链接样式
 
-现在我们有了一堆记录，侧边栏上的记录就不清楚了。我们可以使用[`NavLink`](../components/nav-link)来解决这个问题。
+现在我们有了一堆记录，但不清楚我们在侧边栏中正在查看的是哪一条。我们可以使用[`NavLink`](../components/nav-link)来解决这个问题。
 
 👉**在侧边栏中使用`NavLink`**
 
@@ -1087,7 +1105,7 @@ export default function Root() {
 }
 ```
 
-请注意，我们正在向 `className` 传递一个函数。当用户访问 `NavLink` 中的 URL 时， `isActive` 将为 true。当即将激活时（数据仍在加载中）， `isPending` 将为 true。这样，我们就可以轻松显示用户所在的位置，并对已点击但仍在等待数据加载的链接提供即时反馈。
+请注意，我们正在向 `className` 传递一个函数。当用户访处于NavLink指定的URL时，isActive将为true。当链接即将被激活时（数据仍在加载中）， `isPending` 将为 true。这样，我们就可以轻松显示用户所在的位置，并对已点击但仍在等待数据加载时，提供即时反馈。
 
 ![img](https://reactrouter.com/_docs/tutorial/15.webp)
 
@@ -1161,9 +1179,9 @@ export default function Root() {
 </Form>
 ```
 
-注意 `action` 指向 `"destroy"` 。与 `<Link to>` 一样， `<Form action>` 也可以取一个相对值。由于表单是在 `contact/:contactId` 中呈现的，因此点击 `destroy` 的相对操作将把表单提交到 `contact/:contactId/destroy` 。
+注意 `action` 指向 `"destroy"` 。与 `<Link to>` 一样， `<Form action>` 也可以接收一个相对值。由于表单是在 `contact/:contactId` 中呈现的，因此点击 `destroy` 的相对操作将把表单提交到 `contact/:contactId/destroy` 。
 
-至此，你应该知道了让删除按钮正常工作所需的一切。也许在继续之前可以试一试？你需要：
+到目前为止，您应该已经掌握了使删除按钮起作用所需的一切知识。也许在继续之前可以试一试？你需要：
 
 1. 一条新路由
 2. 在那条路由上的`action`
@@ -1216,12 +1234,12 @@ const router = createBrowserRouter([
 
 好了，导航到一条记录，点击 "删除 "按钮。这样就可以了！
 
-> 😅 我仍然不明白为什么这一切都可行
+> 😅 我们仍然不明白为什么这一切都可行
 
 当用户点击提交按钮时：
 
 1. `<Form>` 会阻止浏览器向服务器发送新 POST 请求的默认行为，而是通过客户端路由创建一个 POST 请求来模拟浏览器的行为
-2. `<Form action="destroy">` 与 `"contacts/:contactId/destroy"` 上的新路由匹配，并向其发送请求
+2. `<Form action="destroy">` 匹配道路新路由 `"contacts/:contactId/destroy"` ，并向其发送请求
 3.  在操作重定向后，React Router 会调用页面上所有数据的`loader`，以获取最新值（这就是 "重新验证"）。 `useLoaderData` 返回新值，并导致组件更新！
 
 添加表单、添加操作，剩下的就交给 React Router 吧。
@@ -1378,19 +1396,19 @@ export default function EditContact() {
 
 > 🧐 为什么按钮上没有`event.preventDefault`？
 
-`<button type="button">` 虽然看似多余，却是防止按钮提交表单的 HTML 方法。
+`<button type="button">` 虽然看似多余，却是防止按钮提交表单的 默认 HTML 行为。
 
 还有两个功能。我们已进入最后冲刺阶段！
 
 ## URL 搜索参数和 GET 提交
 
-迄今为止，我们所有的交互式用户界面要么是改变 URL 的链接，要么是向操作发布数据的表单。搜索栏很有趣，因为它是两者的混合体：它是一个表单，但只改变 URL，不改变数据。
+目前，我们所有的交互式用户界面要么是改变 URL 的链接，要么是向操作发布数据的表单。搜索栏更有趣，因为它是两者的混合体：它是一个表单，但只改变 URL，不改变数据。
 
 现在它只是一个普通的 HTML `<form>` ，而不是 React Router `<Form>` 。让我们看看浏览器在默认情况下是如何处理它的：
 
 👉**在搜索框中输入名称，然后按回车键**
 
-注意，浏览器的 URL 中现在包含了您的查询，即 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
+注意，浏览器的 URL 中现在包含了您的查询参数，即 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
 
 ```bash
 http://127.0.0.1:5173/?q=ryan
@@ -1420,7 +1438,7 @@ http://127.0.0.1:5173/?q=ryan
 
 ## 使用客户端路由的 GET 提交
 
-让我们使用客户端路由来提交此表单并在现有的加载器中过滤列表。
+让我们改为使用客户端路由来提交此表单并在现有的加载器中过滤列表。
 
 👉**将`<form>`更改为`<Form>`**
 
@@ -1445,6 +1463,7 @@ http://127.0.0.1:5173/?q=ryan
 `src/routes/root.jsx`
 
 ```jsx
+//loader函数中加入
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
@@ -1455,7 +1474,7 @@ export async function loader({ request }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/21.webp)
 
-因为这是 GET 而不是 POST，所以 React Router 不会调用 `action` 。提交 GET 表单与点击链接一样：只是 URL 发生了变化。这就是为什么我们添加的用于过滤的代码在 `loader` 中，而不是在此路由的 `action` 中。
+因为这是 GET 请求而不是 POST 请求，所以 React Router 不会调用 `action` 。提交 GET 表单与点击链接一样：只是 URL 发生了变化。这就是为什么我们添加的用于过滤的代码在 `loader` 中，而不是在此路由的 `action` 中。
 
 这也意味着这是一个正常的页面导航。您可以点击返回按钮，回到原来的位置。
 
@@ -1479,11 +1498,11 @@ export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
-  return { contacts, q };
+  return { contacts, q };//添加q
 }
 
 export default function Root() {
-  const { contacts, q } = useLoaderData();
+  const { contacts, q } = useLoaderData();//使用q
   const navigation = useNavigation();
 
   return (
@@ -1498,7 +1517,7 @@ export default function Root() {
               placeholder="Search"
               type="search"
               name="q"
-              defaultValue={q}
+              defaultValue={q}//使用q
             />
             {/* existing code */}
           </Form>
@@ -1516,14 +1535,14 @@ export default function Root() {
 
 ![img](https://reactrouter.com/_docs/tutorial/21.webp)
 
-现在是问题（1），点击返回按钮并更新输入。我们可以从 React 中引入 `useEffect` ，直接在 DOM 中操作表单的状态。
+现在解决问题（1），点击返回按钮并更新输入。我们可以从 React 中引入 `useEffect` ，直接在 DOM 中操作表单的状态。
 
 👉 **将输入值与 URL 搜索参数同步**
 
 `src/routes/root.jsx`
 
 ```jsx
-import { useEffect } from "react";
+import { useEffect } from "react";//添加useEffect
 
 // existing code
 
@@ -1533,27 +1552,28 @@ export default function Root() {
 
   useEffect(() => {
     document.getElementById("q").value = q;
-  }, [q]);
+  }, [q]);//添加useEffect
 
   // existing code
 }
 ```
 
-> 🤔 您不应该使用受控组件和 React State 来实现这一点吗？
+> 🤔 您是否可以使用受控组件和 React State 来实现这一点吗？
 
-您当然可以将其作为一个受控组件来使用，但同样的行为最终会变得更加复杂。URL 并不是由你来控制的，而是由用户通过后退/前进按钮来控制的。受控组件的同步点更多。
+您当然可以将其作为一个受控组件来使用，但同样的行为最终会变得更加复杂。URL 并不是由你来控制的，而是由用户通过后退/前进按钮来控制的。使用受控组件会导致更多的同步点。(同步点指的是在使用受控组件时，需要确保组件的状态与URL的状态保持同步的位置或时刻。)
 
-请注意，现在控制输入需要三个同步点，而不是一个。行为相同，但代码更复杂了。
+如果您仍然担心，请看下面代码。
+> 请注意，现在控制输入需要三个同步点，而不是一个。行为相同，但代码更复杂了。
 
 `src/routes/root.jsx`
 
 ```jsx
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";//添加useState
 // existing code
 
 export async function loader({ request }) {
   const url = new URL(request.url);
-  const q = url.searchParams.get("q") || "";
+  const q = url.searchParams.get("q") || "";//添加默认值
   const contacts = await getContacts(q);
   return { contacts, q };
 }
@@ -1562,12 +1582,12 @@ export async function loader({ request }) {
 
 export default function Root() {
   const { contacts, q } = useLoaderData();
-  const [query, setQuery] = useState(q);
+  const [query, setQuery] = useState(q);//添加useState
   const navigation = useNavigation();
 
   useEffect(() => {
     setQuery(q);
-  }, [q]);
+  }, [q]);//添加useEffect
 
   return (
     <>
@@ -1584,7 +1604,7 @@ export default function Root() {
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);
-              }}
+              }}//添加onChange,使用setQuery
             />
             {/* existing code */}
           </Form>
@@ -1596,12 +1616,13 @@ export default function Root() {
   );
 }
 ```
+比较一下可以发现，使用useEffect的代码更简洁，而且不需要额外的状态管理。
 
 ##  提交表格`onChange`
 
-在这里，我们需要做出一个产品决策。对于这个用户界面，我们可能更倾向于在每次按键时进行过滤，而不是在明确提交表单时。
+在这里，我们需要做出一个产品决策。对于这个用户界面，我们可能更倾向于在每次按键时进行过滤，而不是在表单明确提交时进行筛选。
 
-我们已经看到了 `useNavigate` ，因此我们将使用它的表亲[`useSubmit`](../hooks/use-submit) 。
+我们已经了解了 `useNavigate` ，现在我们将使用它的类似功能，即[`useSubmit`](../hooks/use-submit) 。
 
 `src/routes/root.jsx`
 
@@ -1609,13 +1630,13 @@ export default function Root() {
 // existing code
 import {
   // existing code
-  useSubmit,
+  useSubmit,//添加useSubmit
 } from "react-router-dom";
 
 export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
-  const submit = useSubmit();
+  const submit = useSubmit();//添加submit
 
   return (
     <>
@@ -1632,7 +1653,7 @@ export default function Root() {
               defaultValue={q}
               onChange={(event) => {
                 submit(event.currentTarget.form);
-              }}
+              }}//添加onChange
             />
             {/* existing code */}
           </Form>
@@ -1648,11 +1669,11 @@ export default function Root() {
 
 现在，当你输入时，表格就会自动提交！
 
-注意[`submit`](../hooks/use-submit)的参数。们传递的是 `event.currentTarget.form` 。 `currentTarget` 是事件所连接的 DOM 节点，而 `currentTarget.form` 是输入的父表单节点。 `submit` 函数将序列化并提交您传递给它的任何表单。
+注意[`submit`](../hooks/use-submit)的参数。我们传递的是 `event.currentTarget.form` 。 `currentTarget` 是事件附加到的 DOM 节点， `currentTarget.form` 是输入的父表单节点。 `submit` 函数将序列化并提交您传递给它的任何表单。
 
 ## 添加搜索旋转器
 
-在生产应用程序中，这种搜索很可能要查找数据库中的记录，而数据库太大，无法一次性全部发送并在客户端进行过滤。这就是为什么这个演示有一些伪造的网络延迟。
+在生产应用程序中，这种搜索很可能要查找数据库中的记录，而数据库太大，无法一次性全部发送并在客户端进行过滤。这就是为什么这个演示有一些模拟的网络延迟。
 
 在没有任何加载指示器的情况下，搜索感觉有点迟钝。即使我们能让数据库变得更快，但用户的网络延迟始终是我们无法控制的。为了获得更好的用户体验，让我们为搜索添加一些即时的用户界面反馈。为此，我们将再次使用[`useNavigation`](../hooks/use-navigation)。
 
@@ -1672,7 +1693,7 @@ export default function Root() {
     navigation.location &&
     new URLSearchParams(navigation.location.search).has(
       "q"
-    );
+    );//添加searching
 
   useEffect(() => {
     document.getElementById("q").value = q;
@@ -1686,13 +1707,13 @@ export default function Root() {
           <Form id="search-form" role="search">
             <input
               id="q"
-              className={searching ? "loading" : ""}
+              className={searching ? "loading" : ""}//添加className
               // existing code
             />
             <div
               id="search-spinner"
               aria-hidden
-              hidden={!searching}
+              hidden={!searching}//添加hidden
             />
             {/* existing code */}
           </Form>
@@ -1712,11 +1733,11 @@ export default function Root() {
 
 ## 管理历史堆栈
 
-如果我们输入 "seba "字符，然后用退格键删除它们，那么堆栈中就会出现 7 个新条目😂。我们肯定不希望出现这种情况
+现在，由于每次按键都会提交表单，所以如果我们输入 "seba "字符，然后用退格键删除它们，历史堆栈中就会出现 7 个新条目😂（长按回退按钮可以查看）。我们肯定不希望出现这种情况
 
 ![img](https://reactrouter.com/_docs/tutorial/23.webp)
 
-我我们可以用下一页*替换*历史堆栈中的当前条目，而不是推入下一页，从而避免这种情况。
+我们可以通过将历史记录堆栈中的当前条目*替换*为下一页，而不是推入下一页，来避免这种情况。
 
 👉**在`submit`中使用`replace`**
 
@@ -1738,6 +1759,7 @@ export default function Root() {
               id="q"
               // existing code
               onChange={(event) => {
+                //修改：添加replace
                 const isFirstSearch = q == null;
                 submit(event.currentTarget.form, {
                   replace: !isFirstSearch,
@@ -1756,15 +1778,15 @@ export default function Root() {
 }
 ```
 
-我们只想替换搜索结果，而不是开始搜索前的页面，因此我们要快速检查这是否是第一次搜索，然后决定替换。
+我们只想替换搜索结果，而不是开始搜索之前的页面，因此我们要快速检查这是否是第一次搜索，然后决定是否进行替换。
 
-每次按键都不再创建新条目，因此用户可以点击退出搜索结果，而无需点击 7 次😅。
+现在，每次按键都不再创建新条目，因此用户可以点击退出搜索结果，而无需点击 7 次😅。
 
 ## 不使用导航的突变
 
 到目前为止，我们所有的突变（更改数据）都是使用表单导航，在历史堆栈中创建新条目。虽然这些用户流程很常见，但想要在不引起导航的情况下更改数据也同样常见。
 
-针对这些情况，我们有[`useFetcher`](../hooks/use-fetcher)钩子。它允许我们与`loaders`和`actions`进行通信，而不会导致导航。
+针对这些情况，我们有[`useFetcher`](../hooks/use-fetcher)钩子函数。它允许我们与`loaders`和`actions`进行通信，而不会导致导航。
 
 联系人页面上的★按钮就可以实现这一点。我们不是要创建或删除新记录，也不是要更改页面，我们只是要更改我们正在查看的页面上的数据。
 
@@ -1776,16 +1798,19 @@ export default function Root() {
 import {
   useLoaderData,
   Form,
+  //修改：添加useFetcher
   useFetcher,
 } from "react-router-dom";
 
 // existing code
 
 function Favorite({ contact }) {
+  //修改：添加useFetcher
   const fetcher = useFetcher();
   let favorite = contact.favorite;
 
   return (
+    //修改：添加fetcher.Form
     <fetcher.Form method="post">
       <button
         name="favorite"
@@ -1803,7 +1828,7 @@ function Favorite({ contact }) {
 }
 ```
 
-在这里，我们不妨看一下这个表单。与往常一样，我们的表单中的字段带有 `name`属性。该表单将发送带有 `favorite` 关键字的 [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) ，该关键字是 `"true" | "false"` 。既然有 `method="post"` ，它就会调用操作。由于没有 `<fetcher.Form action="...">` 属性，它将发布到渲染表单的路由。
+我们在这里可能需要查看一下那个表单。与往常一样，我们的表单中的字段带有 `name`属性。该表单将发送带有 `favorite` 键的 [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) ，该键的值要么是 "true"，要么是 "false"。既然有 `method="post"` ，它就会调用`action`。由于没有提供 `<fetcher.Form action="...">` 属性，它将提交到呈现表单的路由。
 
 👉**创建 action**
 
@@ -1811,8 +1836,10 @@ function Favorite({ contact }) {
 
 ```jsx
 // existing code
+//修改：添加action
 import { getContact, updateContact } from "../contacts";
 
+//修改：添加action
 export async function action({ request, params }) {
   let formData = await request.formData();
   return updateContact(params.contactId, {
@@ -1827,7 +1854,7 @@ export default function Contact() {
 
 非常简单。从请求中提取表单数据并将其发送到数据模型。
 
-👉**配置路由的新操作**
+👉**配置路由的新action**
 
 `src/main.jsx`
 
@@ -1863,9 +1890,9 @@ const router = createBrowserRouter([
 
 ![img](https://reactrouter.com/_docs/tutorial/24.webp)
 
-请看，两颗星都会自动更新。我们的新 `<fetcher.Form method="post">` 与我们一直使用的 `<Form>` 几乎一模一样：它会调用操作，然后自动重新验证所有数据--即使是错误也会以同样的方式被捕获。
+请看，两颗星都会自动更新。我们的新 `<fetcher.Form method="post">` 与我们一直使用的 `<Form>` 几乎一模一样：它会调用action，然后自动重新验证所有数据--即使是错误也会以同样的方式被捕获。
 
-但有一个关键区别，它不是导航--URL 不会改变，历史堆栈也不受影响。
+但有一个关键区别，它不会导航--URL 不会改变，历史堆栈也不受影响。
 
 ## 优化的用户界面
 
@@ -1886,6 +1913,7 @@ function Favorite({ contact }) {
   const fetcher = useFetcher();
 
   let favorite = contact.favorite;
+  // 修改：添加优化值
   if (fetcher.formData) {
     favorite = fetcher.formData.get("favorite") === "true";
   }
@@ -1926,6 +1954,7 @@ function Favorite({ contact }) {
 
 ```jsx
 export async function loader({ params }) {
+  //修改：添加404
   const contact = await getContact(params.contactId);
   if (!contact) {
     throw new Response("", {
@@ -1968,6 +1997,7 @@ createBrowserRouter([
     action: rootAction,
     errorElement: <ErrorPage />,
     children: [
+      //修改：添加无路径路由
       {
         errorElement: <ErrorPage />,
         children: [
@@ -1990,7 +2020,7 @@ createBrowserRouter([
 
 ## JSX 路由
 
-至于我们的最后一招，很多人喜欢用 JSX 配置路由。您可以使用 `createRoutesFromElements` 来做到这一点。在配置路由时，JSX 和对象在功能上没有区别，这只是一种风格上的偏好。
+最后，很多人喜欢用 JSX 配置路由。您可以使用 `createRoutesFromElements` 来做到这一点。在配置路由时，JSX 和对象在功能上没有区别，这只是一种风格上的偏好。
 
 ```jsx
 import {
