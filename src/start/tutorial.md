@@ -1396,19 +1396,19 @@ export default function EditContact() {
 
 > 🧐 为什么按钮上没有`event.preventDefault`？
 
-`<button type="button">` 虽然看似多余，却是防止按钮提交表单的 HTML 方法。
+`<button type="button">` 虽然看似多余，却是防止按钮提交表单的 默认 HTML 行为。
 
 还有两个功能。我们已进入最后冲刺阶段！
 
 ## URL 搜索参数和 GET 提交
 
-迄今为止，我们所有的交互式用户界面要么是改变 URL 的链接，要么是向操作发布数据的表单。搜索栏很有趣，因为它是两者的混合体：它是一个表单，但只改变 URL，不改变数据。
+目前，我们所有的交互式用户界面要么是改变 URL 的链接，要么是向操作发布数据的表单。搜索栏更有趣，因为它是两者的混合体：它是一个表单，但只改变 URL，不改变数据。
 
 现在它只是一个普通的 HTML `<form>` ，而不是 React Router `<Form>` 。让我们看看浏览器在默认情况下是如何处理它的：
 
 👉**在搜索框中输入名称，然后按回车键**
 
-注意，浏览器的 URL 中现在包含了您的查询，即 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
+注意，浏览器的 URL 中现在包含了您的查询参数，即 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)：
 
 ```bash
 http://127.0.0.1:5173/?q=ryan
@@ -1438,7 +1438,7 @@ http://127.0.0.1:5173/?q=ryan
 
 ## 使用客户端路由的 GET 提交
 
-让我们使用客户端路由来提交此表单并在现有的加载器中过滤列表。
+让我们改为使用客户端路由来提交此表单并在现有的加载器中过滤列表。
 
 👉**将`<form>`更改为`<Form>`**
 
@@ -1463,6 +1463,7 @@ http://127.0.0.1:5173/?q=ryan
 `src/routes/root.jsx`
 
 ```jsx
+//loader函数中加入
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
@@ -1473,7 +1474,7 @@ export async function loader({ request }) {
 
 ![img](https://reactrouter.com/_docs/tutorial/21.webp)
 
-因为这是 GET 而不是 POST，所以 React Router 不会调用 `action` 。提交 GET 表单与点击链接一样：只是 URL 发生了变化。这就是为什么我们添加的用于过滤的代码在 `loader` 中，而不是在此路由的 `action` 中。
+因为这是 GET 请求而不是 POST 请求，所以 React Router 不会调用 `action` 。提交 GET 表单与点击链接一样：只是 URL 发生了变化。这就是为什么我们添加的用于过滤的代码在 `loader` 中，而不是在此路由的 `action` 中。
 
 这也意味着这是一个正常的页面导航。您可以点击返回按钮，回到原来的位置。
 
@@ -1497,11 +1498,11 @@ export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
-  return { contacts, q };
+  return { contacts, q };//添加q
 }
 
 export default function Root() {
-  const { contacts, q } = useLoaderData();
+  const { contacts, q } = useLoaderData();//使用q
   const navigation = useNavigation();
 
   return (
@@ -1516,7 +1517,7 @@ export default function Root() {
               placeholder="Search"
               type="search"
               name="q"
-              defaultValue={q}
+              defaultValue={q}//使用q
             />
             {/* existing code */}
           </Form>
@@ -1534,14 +1535,14 @@ export default function Root() {
 
 ![img](https://reactrouter.com/_docs/tutorial/21.webp)
 
-现在是问题（1），点击返回按钮并更新输入。我们可以从 React 中引入 `useEffect` ，直接在 DOM 中操作表单的状态。
+现在解决问题（1），点击返回按钮并更新输入。我们可以从 React 中引入 `useEffect` ，直接在 DOM 中操作表单的状态。
 
 👉 **将输入值与 URL 搜索参数同步**
 
 `src/routes/root.jsx`
 
 ```jsx
-import { useEffect } from "react";
+import { useEffect } from "react";//添加useEffect
 
 // existing code
 
@@ -1551,27 +1552,28 @@ export default function Root() {
 
   useEffect(() => {
     document.getElementById("q").value = q;
-  }, [q]);
+  }, [q]);//添加useEffect
 
   // existing code
 }
 ```
 
-> 🤔 您不应该使用受控组件和 React State 来实现这一点吗？
+> 🤔 您是否可以使用受控组件和 React State 来实现这一点吗？
 
-您当然可以将其作为一个受控组件来使用，但同样的行为最终会变得更加复杂。URL 并不是由你来控制的，而是由用户通过后退/前进按钮来控制的。受控组件的同步点更多。
+您当然可以将其作为一个受控组件来使用，但同样的行为最终会变得更加复杂。URL 并不是由你来控制的，而是由用户通过后退/前进按钮来控制的。使用受控组件会导致更多的同步点。(同步点指的是在使用受控组件时，需要确保组件的状态与URL的状态保持同步的位置或时刻。)
 
-请注意，现在控制输入需要三个同步点，而不是一个。行为相同，但代码更复杂了。
+如果您仍然担心，请看下面代码。
+> 请注意，现在控制输入需要三个同步点，而不是一个。行为相同，但代码更复杂了。
 
 `src/routes/root.jsx`
 
 ```jsx
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";//添加useState
 // existing code
 
 export async function loader({ request }) {
   const url = new URL(request.url);
-  const q = url.searchParams.get("q") || "";
+  const q = url.searchParams.get("q") || "";//添加默认值
   const contacts = await getContacts(q);
   return { contacts, q };
 }
@@ -1580,12 +1582,12 @@ export async function loader({ request }) {
 
 export default function Root() {
   const { contacts, q } = useLoaderData();
-  const [query, setQuery] = useState(q);
+  const [query, setQuery] = useState(q);//添加useState
   const navigation = useNavigation();
 
   useEffect(() => {
     setQuery(q);
-  }, [q]);
+  }, [q]);//添加useEffect
 
   return (
     <>
@@ -1602,7 +1604,7 @@ export default function Root() {
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);
-              }}
+              }}//添加onChange,使用setQuery
             />
             {/* existing code */}
           </Form>
@@ -1614,12 +1616,13 @@ export default function Root() {
   );
 }
 ```
+比较一下可以发现，使用useEffect的代码更简洁，而且不需要额外的状态管理。
 
 ##  提交表格`onChange`
 
-在这里，我们需要做出一个产品决策。对于这个用户界面，我们可能更倾向于在每次按键时进行过滤，而不是在明确提交表单时。
+在这里，我们需要做出一个产品决策。对于这个用户界面，我们可能更倾向于在每次按键时进行过滤，而不是在表单明确提交时进行筛选。
 
-我们已经看到了 `useNavigate` ，因此我们将使用它的表亲[`useSubmit`](../hooks/use-submit) 。
+我们已经了解了 `useNavigate` ，现在我们将使用它的类似功能，即[`useSubmit`](../hooks/use-submit) 。
 
 `src/routes/root.jsx`
 
@@ -1627,13 +1630,13 @@ export default function Root() {
 // existing code
 import {
   // existing code
-  useSubmit,
+  useSubmit,//添加useSubmit
 } from "react-router-dom";
 
 export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
-  const submit = useSubmit();
+  const submit = useSubmit();//添加submit
 
   return (
     <>
@@ -1650,7 +1653,7 @@ export default function Root() {
               defaultValue={q}
               onChange={(event) => {
                 submit(event.currentTarget.form);
-              }}
+              }}//添加onChange
             />
             {/* existing code */}
           </Form>
@@ -1666,11 +1669,11 @@ export default function Root() {
 
 现在，当你输入时，表格就会自动提交！
 
-注意[`submit`](../hooks/use-submit)的参数。们传递的是 `event.currentTarget.form` 。 `currentTarget` 是事件所连接的 DOM 节点，而 `currentTarget.form` 是输入的父表单节点。 `submit` 函数将序列化并提交您传递给它的任何表单。
+注意[`submit`](../hooks/use-submit)的参数。我们传递的是 `event.currentTarget.form` 。 `currentTarget` 是事件附加到的 DOM 节点， `currentTarget.form` 是输入的父表单节点。 `submit` 函数将序列化并提交您传递给它的任何表单。
 
 ## 添加搜索旋转器
 
-在生产应用程序中，这种搜索很可能要查找数据库中的记录，而数据库太大，无法一次性全部发送并在客户端进行过滤。这就是为什么这个演示有一些伪造的网络延迟。
+在生产应用程序中，这种搜索很可能要查找数据库中的记录，而数据库太大，无法一次性全部发送并在客户端进行过滤。这就是为什么这个演示有一些模拟的网络延迟。
 
 在没有任何加载指示器的情况下，搜索感觉有点迟钝。即使我们能让数据库变得更快，但用户的网络延迟始终是我们无法控制的。为了获得更好的用户体验，让我们为搜索添加一些即时的用户界面反馈。为此，我们将再次使用[`useNavigation`](../hooks/use-navigation)。
 
@@ -1690,7 +1693,7 @@ export default function Root() {
     navigation.location &&
     new URLSearchParams(navigation.location.search).has(
       "q"
-    );
+    );//添加searching
 
   useEffect(() => {
     document.getElementById("q").value = q;
@@ -1704,13 +1707,13 @@ export default function Root() {
           <Form id="search-form" role="search">
             <input
               id="q"
-              className={searching ? "loading" : ""}
+              className={searching ? "loading" : ""}//添加className
               // existing code
             />
             <div
               id="search-spinner"
               aria-hidden
-              hidden={!searching}
+              hidden={!searching}//添加hidden
             />
             {/* existing code */}
           </Form>
@@ -1730,11 +1733,11 @@ export default function Root() {
 
 ## 管理历史堆栈
 
-如果我们输入 "seba "字符，然后用退格键删除它们，那么堆栈中就会出现 7 个新条目😂。我们肯定不希望出现这种情况
+现在，由于每次按键都会提交表单，所以如果我们输入 "seba "字符，然后用退格键删除它们，历史堆栈中就会出现 7 个新条目😂（长按回退按钮可以查看）。我们肯定不希望出现这种情况
 
 ![img](https://reactrouter.com/_docs/tutorial/23.webp)
 
-我我们可以用下一页*替换*历史堆栈中的当前条目，而不是推入下一页，从而避免这种情况。
+我们可以通过将历史记录堆栈中的当前条目*替换*为下一页，而不是推入下一页，来避免这种情况。
 
 👉**在`submit`中使用`replace`**
 
@@ -1756,6 +1759,7 @@ export default function Root() {
               id="q"
               // existing code
               onChange={(event) => {
+                //修改：添加replace
                 const isFirstSearch = q == null;
                 submit(event.currentTarget.form, {
                   replace: !isFirstSearch,
@@ -1774,15 +1778,15 @@ export default function Root() {
 }
 ```
 
-我们只想替换搜索结果，而不是开始搜索前的页面，因此我们要快速检查这是否是第一次搜索，然后决定替换。
+我们只想替换搜索结果，而不是开始搜索之前的页面，因此我们要快速检查这是否是第一次搜索，然后决定是否进行替换。
 
-每次按键都不再创建新条目，因此用户可以点击退出搜索结果，而无需点击 7 次😅。
+现在，每次按键都不再创建新条目，因此用户可以点击退出搜索结果，而无需点击 7 次😅。
 
 ## 不使用导航的突变
 
 到目前为止，我们所有的突变（更改数据）都是使用表单导航，在历史堆栈中创建新条目。虽然这些用户流程很常见，但想要在不引起导航的情况下更改数据也同样常见。
 
-针对这些情况，我们有[`useFetcher`](../hooks/use-fetcher)钩子。它允许我们与`loaders`和`actions`进行通信，而不会导致导航。
+针对这些情况，我们有[`useFetcher`](../hooks/use-fetcher)钩子函数。它允许我们与`loaders`和`actions`进行通信，而不会导致导航。
 
 联系人页面上的★按钮就可以实现这一点。我们不是要创建或删除新记录，也不是要更改页面，我们只是要更改我们正在查看的页面上的数据。
 
@@ -1794,16 +1798,19 @@ export default function Root() {
 import {
   useLoaderData,
   Form,
+  //修改：添加useFetcher
   useFetcher,
 } from "react-router-dom";
 
 // existing code
 
 function Favorite({ contact }) {
+  //修改：添加useFetcher
   const fetcher = useFetcher();
   let favorite = contact.favorite;
 
   return (
+    //修改：添加fetcher.Form
     <fetcher.Form method="post">
       <button
         name="favorite"
@@ -1821,7 +1828,7 @@ function Favorite({ contact }) {
 }
 ```
 
-在这里，我们不妨看一下这个表单。与往常一样，我们的表单中的字段带有 `name`属性。该表单将发送带有 `favorite` 关键字的 [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) ，该关键字是 `"true" | "false"` 。既然有 `method="post"` ，它就会调用操作。由于没有 `<fetcher.Form action="...">` 属性，它将发布到渲染表单的路由。
+我们在这里可能需要查看一下那个表单。与往常一样，我们的表单中的字段带有 `name`属性。该表单将发送带有 `favorite` 键的 [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) ，该键的值要么是 "true"，要么是 "false"。既然有 `method="post"` ，它就会调用`action`。由于没有提供 `<fetcher.Form action="...">` 属性，它将提交到呈现表单的路由。
 
 👉**创建 action**
 
@@ -1829,8 +1836,10 @@ function Favorite({ contact }) {
 
 ```jsx
 // existing code
+//修改：添加action
 import { getContact, updateContact } from "../contacts";
 
+//修改：添加action
 export async function action({ request, params }) {
   let formData = await request.formData();
   return updateContact(params.contactId, {
@@ -1845,7 +1854,7 @@ export default function Contact() {
 
 非常简单。从请求中提取表单数据并将其发送到数据模型。
 
-👉**配置路由的新操作**
+👉**配置路由的新action**
 
 `src/main.jsx`
 
@@ -1881,9 +1890,9 @@ const router = createBrowserRouter([
 
 ![img](https://reactrouter.com/_docs/tutorial/24.webp)
 
-请看，两颗星都会自动更新。我们的新 `<fetcher.Form method="post">` 与我们一直使用的 `<Form>` 几乎一模一样：它会调用操作，然后自动重新验证所有数据--即使是错误也会以同样的方式被捕获。
+请看，两颗星都会自动更新。我们的新 `<fetcher.Form method="post">` 与我们一直使用的 `<Form>` 几乎一模一样：它会调用action，然后自动重新验证所有数据--即使是错误也会以同样的方式被捕获。
 
-但有一个关键区别，它不是导航--URL 不会改变，历史堆栈也不受影响。
+但有一个关键区别，它不会导航--URL 不会改变，历史堆栈也不受影响。
 
 ## 优化的用户界面
 
@@ -1904,6 +1913,7 @@ function Favorite({ contact }) {
   const fetcher = useFetcher();
 
   let favorite = contact.favorite;
+  // 修改：添加优化值
   if (fetcher.formData) {
     favorite = fetcher.formData.get("favorite") === "true";
   }
@@ -1944,6 +1954,7 @@ function Favorite({ contact }) {
 
 ```jsx
 export async function loader({ params }) {
+  //修改：添加404
   const contact = await getContact(params.contactId);
   if (!contact) {
     throw new Response("", {
@@ -1986,6 +1997,7 @@ createBrowserRouter([
     action: rootAction,
     errorElement: <ErrorPage />,
     children: [
+      //修改：添加无路径路由
       {
         errorElement: <ErrorPage />,
         children: [
@@ -2008,7 +2020,7 @@ createBrowserRouter([
 
 ## JSX 路由
 
-至于我们的最后一招，很多人喜欢用 JSX 配置路由。您可以使用 `createRoutesFromElements` 来做到这一点。在配置路由时，JSX 和对象在功能上没有区别，这只是一种风格上的偏好。
+最后，很多人喜欢用 JSX 配置路由。您可以使用 `createRoutesFromElements` 来做到这一点。在配置路由时，JSX 和对象在功能上没有区别，这只是一种风格上的偏好。
 
 ```jsx
 import {
