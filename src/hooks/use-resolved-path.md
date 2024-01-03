@@ -30,7 +30,7 @@ declare function useResolvedPath(
 
 ###  未使用标志的行为
 
-如果未启用此标记，默认情况下，在解析 [splat 路由 ( `*` )]((../route/route#splats)) 中的相对路径时，路径的 splat 部分将被忽略。因此，给定的路由树如下：
+如果未启用此标记，默认情况下，在解析 [splat 路由 ( `*` )](../route/route#splats) 中的相对路径时，路径的 splat 部分将被忽略。因此，给定的路由树如下：
 
 ```jsx
 <BrowserRouter>
