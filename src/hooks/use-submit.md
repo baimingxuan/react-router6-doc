@@ -4,7 +4,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅[选择路由](../routers/picking-a-router)。
 
 例如，每当表单内的值发生变化时就提交表单：
 
@@ -93,7 +93,7 @@ submit([
 ]);
 ```
 
-为 POST 提交 JSON 对象时，默认行为是将数据编码为 `FormData` ：
+如果以 POST 方式提交 JSON 对象，默认行为是将数据编码为 `FormData` ：
 
 ```jsx
 submit(
@@ -147,6 +147,10 @@ submit(null, {
 <Form action="/logout" method="post" />;
 ```
 
+> NOTE
+>
+> 请参阅 `useResolvedPath` 文档中的 [Splat Paths](../hooks/use-resolved-path#splat-paths) 部分，了解 `future.v7_relativeSplatPath` 未来标志在 `splat` 路由中相对 `useSubmit()` `action` 的行为。
+
 由于提交的是导航，因此选项还可能包含 [`Form`](../components/form) 中与导航相关的其他属性，如：
 
 - `fetcherKey`
@@ -156,3 +160,11 @@ submit(null, {
 - `replace`
 - `state`
 - `unstable_viewTransition`
+
+### `options.unstable_flushSync`
+
+`unstable_flushSync` 选项会告诉 React Router DOM 将此提交的初始状态更新封装在 `ReactDOM.flushSync` 调用中，而不是默认的 [`ReactDOM.flushSync`](https://react.dev/reference/react-dom/flushSync)  中。这样就可以在更新刷新到 DOM 后立即执行同步 DOM 操作。
+
+> IMPORTANT
+>
+> 请注意，该应用程序接口标记为不稳定状态，在未发布重大版本之前可能会出现破坏性更新。

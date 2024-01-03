@@ -58,9 +58,13 @@ function UsersIndexPage({ users }) {
 
 > 当当前 URL 以 `/` 结尾时，带有 `..` 的 `<Link to>` 与普通 `<a href>` 的行为不同。 `<Link to>` 会忽略尾部斜线，并为每个 `..` 删除一个 URL 段。但是，当当前 URL 以 `/` 结尾时， `<a href>` 值处理 `..` 的方式与其不同。
 
+> NOTE
+>
+> 请参阅 `useResolvedPath` 文档中的 [Splat Paths](../hooks/use-resolved-path#splat-paths) 部分，了解 `future.v7_relativeSplatPath` future 标志在 `splat` 路由中相对 `<Link to> `的行为。
+
 ## `relative`
 
-默认情况下，链接是相对于路由层次结构（ `relative="route"` ）的，因此 `..` 将提升一个 `Route` 级别。有时，您可能会发现有一些匹配的 URL 模式没有嵌套的意义，而您更希望使用相对路径路由。您可以通过 `relative="path"` 选择这种行为：
+默认情况下，链接是相对于路由层次结构（ `relative="route"` ）而言的，因此 `..` 将从当前上下文路由向上移动一级 `Route` 。有时，您可能会发现匹配的 URL 模式没有嵌套的意义，而您更希望使用当前上下文路由路径的相对路径路由。您可以通过 `relative="path"` 选择这种行为：
 
 ```jsx
 // Contact and EditContact do not share additional UI layout
@@ -74,7 +78,8 @@ function UsersIndexPage({ users }) {
 
 function EditContact() {
   // Since Contact is not a parent of EditContact we need to go up one level
-  // in the path, instead of one level in the Route hierarchy
+  // in the current contextual route path, instead of one level in the Route
+  // hierarchy
   return (
     <Link to=".." relative="path">
       Cancel

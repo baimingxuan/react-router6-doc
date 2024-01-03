@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "React Router"
-  text: "v6.18.0 中文文档"
+  text: "v6.21.1 中文文档"
   tagline: 文档内容详细翻译自官方英文文档
   actions:
     - theme: brand

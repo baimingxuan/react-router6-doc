@@ -169,7 +169,15 @@ ReactDOM.hydrateRoot(
 
 ### 其他概念
 
-如上所述，服务器端渲染在大规模应用和生产级应用中非常棘手，如果你想实现这一目标，我们强烈推荐你使用 [Remix](https://remix.run/) 。但是，如果你要走手动路线，这里有一些额外的概念你可能需要考虑：
+如上所述，服务器端渲染在大规模应用和生产级应用中非常棘手，如果你想实现这一目标，我们强烈推荐你使用 [Remix](https://remix.run/) 。但是，如果你要走手动的路由，这里有一些额外的概念你可能需要考虑：
+
+#### Hydration
+
+服务器端渲染的一个核心概念是 [hydration](https://react.dev/reference/react-dom/client/hydrateRoot)，它涉及将客户端 React 应用程序 "附加 "到服务器渲染的 HTML 上。要正确地做到这一点，我们需要在与服务器渲染时相同的状态下创建客户端 React Router 应用程序。当服务器通过 `loader` 函数渲染加载数据时，我们需要将这些数据发送上去，这样就可以使用相同的加载器数据创建客户端路由器，用于初始渲染/水合。
+
+本指南中介绍的 `<StaticRouterProvider>` 和 `createBrowserRouter` 的基本用法可以在内部处理这一问题，但如果需要控制水合过程，可以通过 [`<StaticRouterProvider hydrate={false} />`](../routers/static-router-provider#hydrate) 禁用自动水合过程。
+
+在某些高级用例中，您可能希望对客户端 React Router 应用程序进行部分水合。您可以通过传给 `createBrowserRouter` 的 [`future.v7_partialHydration`](../routers/create-browser-router#partial-hydration-data) 标志来实现这一点。
 
 #### 重定向
 

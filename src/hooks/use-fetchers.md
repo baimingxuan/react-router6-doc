@@ -4,7 +4,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)
+> 此功能只有在使用数据路由器时才有效，请参阅[选择路由](../routers/picking-a-router)
 
 ```jsx
 import { useFetchers } from "react-router-dom";

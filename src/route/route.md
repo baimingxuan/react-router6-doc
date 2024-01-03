@@ -72,8 +72,10 @@ interface RouteObject {
   loader?: LoaderFunction;
   action?: ActionFunction;
   element?: React.ReactNode | null;
-  Component?: React.ComponentType | null;
+  hydrateFallbackElement?: React.ReactNode | null;
   errorElement?: React.ReactNode | null;
+  Component?: React.ComponentType | null;
+  HydrateFallback?: React.ComponentType | null;
   ErrorBoundary?: React.ComponentType | null;
   handle?: RouteObject["handle"];
   shouldRevalidate?: ShouldRevalidateFunction;
@@ -355,9 +357,22 @@ function Team() {
 
 > IMPORTANT
 >
-> 如果您没有使用数据路由器（如 [`createBrowserRouter`](../routers/create-browser-router) ），这将毫无用处
+> 如果您没有使用数据路由（如 [`createBrowserRouter`](../routers/create-browser-router) ），这将毫无用处
 
 更多详情，请参阅 [errorElement](../route/error-element) 文档。
+
+## `hydrateFallbackElement`/`HydrateFallback`
+
+如果您使用[服务器端渲染](../guides/ssr)并利用[部分水合](../routers/create-browser-router#partial-hydration-data)，那么您可以指定一个元素/组件，以便在应用程序初始水合期间为未水合路由进行渲染。
+
+> IMPORTANT
+>
+> 如果您没有使用数据路由（如 [`createBrowserRouter`](../routers/create-browser-router) ），这将毫无用处
+
+> IMPORTANT
+> 这仅适用于更高级的使用案例，如 Remix 的 [`clientLoader`](https://remix.run/route/client-loader) 功能。大多数 SSR 应用程序都不需要利用这些路由属性。
+
+详情请查看 [hydrateFallbackElement](https://reactrouter.com/en/main/route/hydrate-fallback-element) 文档。
 
 ## `handle`
 

@@ -162,6 +162,10 @@ export default defineConfig({
             link: '/route/error-element'
           },
           {
+            text: 'hydrateFallbackElement',
+            link: '/route/hydrate-fallback-element'
+          },
+          {
             text: 'lazy',
             link: '/route/lazy'
           },
@@ -242,6 +246,10 @@ export default defineConfig({
             link: '/hooks/use-before-unload'
           },
           {
+            text: 'useBlocker',
+            link: '/hooks/use-blocker'
+          },
+          {
             text: 'useFetcher',
             link: '/hooks/use-fetcher'
           },
@@ -308,6 +316,10 @@ export default defineConfig({
           {
             text: 'useParams',
             link: '/hooks/use-params'
+          },
+          {
+            text: 'unstable_usePrompt',
+            link: '/hooks/use-prompt'
           },
           {
             text: 'useResolvedPath',

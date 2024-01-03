@@ -15,6 +15,8 @@ interface NavigateOptions {
   state?: any;
   preventScrollReset?: boolean;
   relative?: RelativeRoutingType;
+  unstable_flushSync?: boolean;
+  unstable_viewTransition?: boolean;
 }
 
 type RelativeRoutingType = "route" | "path";
@@ -22,7 +24,7 @@ type RelativeRoutingType = "route" | "path";
 
 > IMPORTANT
 >
-> 通常在 [`loaders`](../route/loader) 和[`actions`](../route/action)中使用[`redirect`](../fetch/redirect)比使用此钩子更好
+> 通常在 [`loaders`](../route/loader) 和[`actions`](../route/action)中使用[`redirect`](../fetch/redirect)比使用此钩子更好。
 
 `useNavigate` 钩子会返回一个函数，让您以编程方式导航，例如在效果中导航：
 
@@ -46,6 +48,10 @@ function useLogoutTimer() {
 
 - 或者传递一个 `To` 值（与 `<Link to>` 类型相同），并可选择第二个 `options` 参数（与 [`Link`](../components/link)可以传递的属性类似），或者
 - 在历史堆栈中传递您想去的 delta 值。例如， `navigate(-1)` 相当于点击后退按钮
+
+> NOTE
+>
+> 请参阅 `useResolvedPath` 文档中的 [Splat Paths](../hooks/use-resolved-path#splat-paths) 部分，了解 `future.v7_relativeSplatPath` future 标志在 `splat` 路由中相对 `useNavigate()` 的行为。
 
 ## `options.replace`
 
@@ -84,14 +90,26 @@ function EditContact() {
 }
 ```
 
+## `options.unstable_flushSync`
+
+`unstable_flushSync` 选项告诉 React Router DOM 将此导航的初始状态更新封装在 [`ReactDOM.flushSync`](https://react.dev/reference/react-dom/flushSync) 调用中，而不是默认的 [`React.startTransition`](https://react.dev/reference/react/startTransition) 中。这样就可以在更新刷新到 DOM 后立即执行同步 DOM 操作。
+
+> IMPORTANT
+>
+> `unstable_flushSync` 仅在使用数据路由器时有效，请参阅 [选择路由](../routers/picking-a-router)。
+
+> IMPORTANT
+>
+> 请注意，该应用程序接口标记为不稳定状态，在未发布重大版本之前可能会出现破坏性更新。
+
 ## `options.unstable_viewTransition`
 
 `unstable_viewTransition` 选项通过在 `document.startViewTransition()` 中封装最终状态更新，为该导航启用[视图转换](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)。如果需要为该视图转换应用特定样式，还需要利用[ `unstable_useViewTransitionState()`](../hooks/use-view-transition-state)。
 
 > IMPORTANT
 >
-> `unstable_viewTransition` 仅在使用数据路由时有效，请参阅 ["选择路由"](../routers/picking-a-router)。
+> `unstable_viewTransition` 仅在使用数据路由时有效，请参阅 [选择路由](../routers/picking-a-router)。
 
 > IMPORTANT
 >
-> 请注意，此应用程序接口标记为不稳定状态，可能会在未发布重大版本时发生破坏性更改。
+> 请注意，此应用程序接口标记为不稳定状态，在未发布重大版本之前可能会出现破坏性更新。

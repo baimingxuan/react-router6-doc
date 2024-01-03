@@ -10,7 +10,7 @@
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅[选择路由](../routers/picking-a-router)。
 
 ```jsx
 import { useNavigation } from "react-router-dom";
@@ -24,6 +24,7 @@ function SomeComponent() {
   navigation.text;
   navigation.formAction;
   navigation.formMethod;
+  navigation.formEncType;
 }
 ```
 
@@ -106,3 +107,42 @@ let isRedirecting =
 这告诉您下一个[位置](../utils/location)是什么。
 
 请注意，如果正在向链接指向的 URL 提交表单，该链接将不会显示为 "pending"，因为我们只在 "loading "状态下才这样做。当状态为 "submitting "时，表单将包含待处理用户界面，一旦操作完成，链接将转为待处理状态。
+
+## `navigation.formAction`
+
+任何从 `<Form>` 或 `useSubmit` 开始的 POST、PUT、PATCH 或 DELETE 导航都将在 `navigation.formAction` 中提供表单提交操作路由的路径值。
+
+如果提交的是 GET 表单， `navigation.formAction` 将为空
+
+如果您在 `example.com/id` 上提交了表格，那么 `navigation.formAction` 就是"/id"
+
+## `navigation.formMethod`
+
+任何从 `<Form>` 或 `useSubmit` 开始的 POST、PUT、PATCH 或 DELETE 导航都将在 `navigation.formMethod` 中提供表单的提交方法值。
+
+如果提交的是 GET 表单， `navigation.formMethod` 将为空
+
+下面是一个例子。请注意 `navigation.formMethod` 为小写
+
+```jsx
+function SubmitButton() {
+  const navigation = useNavigation();
+  if (navigation.formMethod) {
+    console.log(navigation.formMethod); // post
+  }
+
+  return (
+    <Form method="POST">
+      <button>Submit</button>
+    </Form>
+  );
+}
+```
+
+## `navigation.formEncType`
+
+任何从 `<Form>` 或 `useSubmit` 开始的 POST、PUT、PATCH 或 DELETE 导航都将在 `navigation.formEncType` 中提供表单的提交方法值。
+
+该属性可以是四种值之一："text/plain"、"application/json"、"multipart/form-data "或 "application/x-www-form-urlencoded"。
+
+如果提交的是 GET 表单， `navigation.formEncType` 将为空

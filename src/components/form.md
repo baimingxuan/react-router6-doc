@@ -29,7 +29,7 @@ interface FormProps
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅["选择路由"](../routers/picking-a-router)。
+> 此功能只有在使用数据路由器时才有效，请参阅[选择路由](../routers/picking-a-router)。
 
 ```jsx
 import { Form } from "react-router-dom";
@@ -49,7 +49,7 @@ function NewEvent() {
 >
 > 确保您的输入有名称，否则 `FormData` 将不包含该字段的值。
 
-所有这些都会触发任何已渲染[`useNavigation`](../hooks/use-navigation)钩子的状态更新，因此您可以在异步操作执行过程中构建待定指标和乐观的用户界面。
+所有这些都会触发任何已渲染[`useNavigation`](../hooks/use-navigation)钩子的状态更新，因此您可以在异步操作执行过程中构建待定指标和优化的用户界面。
 
 如果表单*不像*导航，您可能需要 [`useFetcher`](../hooks/use-fetcher) 。
 
@@ -103,6 +103,10 @@ function ProjectsPage() {
 **另请参阅：**
 
 - [索引搜索参数](../guides/index-search-param)（索引与父路由消歧对比）
+
+> NOTE
+>
+> 请参阅 `useResolvedPath` 文档中的 [Splat Paths](../hooks/use-resolved-path#splat-paths) 部分，了解 `future.v7_relativeSplatPath` future 标志在 `splat` 路由中相对 `useNavigate()` 的行为。
 
 ## `method`
 

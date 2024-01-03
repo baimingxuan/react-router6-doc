@@ -23,15 +23,18 @@ interface Path {
 
 ```jsx
 function NavImage({ src, alt, id }) {
-  let to = `/images/${idx}`;
-  let vt = unstable_useViewTransitionState(href);
+  const to = `/images/${id}`;
+  const isTransitioning =
+    unstable_useViewTransitionState(to);
   return (
     <Link to={to} unstable_viewTransition>
       <img
         src={src}
         alt={alt}
         style={{
-          viewTransitionName: vt ? "image-expand" : "",
+          viewTransitionName: isTransitioning
+            ? "image-expand"
+            : "",
         }}
       />
     </Link>

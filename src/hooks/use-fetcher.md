@@ -1,14 +1,14 @@
 # `useFetcher`
 
-在 HTML/HTTP 中，数据突变和加载是通过导航来模拟的： `<a href>` 和 `<form action>` 。两者都会在浏览器中引起导航。与 React Router 对应的是 `<Link>` 和 `<Form>` 。
+在 HTML/HTTP 中，数据突变和加载是通过导航来模拟的： `<a href>` 和 `<form action>` 。两者都会在浏览器中引起导航。与 React Router 对应的是 [`<Link>`](../components/link) 和 [`<Form>`](../components/form) 。
 
-但有时您需要在导航之外调用 [`loader`](../route/loader) ，或者调用 [`action`](../route/action)（并获取页面上的数据以重新验证），而无需更改 URL。或者您需要同时进行多个突变。
+但有时您需要在导航之外调用 [`loader`](../route/loader) ，或调用 [`action`](../route/action) （并获取页面上的数据以重新验证），而无需更改 URL。或者您需要同时进行多个突变。
 
-与服务器的许多交互都不是导航事件。此钩子可让你在不导航的情况下将用户界面插入操作和加载器。
+与服务器的许多交互都不是导航事件。此钩子可让你在不导航的情况下在用户界面插入`action`和`loader`。
 
 > IMPORTANT
 >
-> 此功能只有在使用数据路由器时才有效，请参阅[“选择路由”](../routers/picking-a-router)。
+> 此功能只有在使用数据路由时才有效，请参阅[选择路由](../routers/picking-a-router)。
 
 这在需要时非常有用：
 
@@ -104,7 +104,7 @@ function SomeComponent() {
 
 ## 方法
 
-### `fetcher.load()`
+### `fetcher.load(href, options)`
 
 从路由`loader`中加载数据。
 
@@ -132,9 +132,17 @@ function SomeComponent() {
 >
 > 为重新验证的一部分，页面上激活的任何 `fetcher.load` 调用都将重新执行（在导航提交、另一个`fetcher`提交或 `useRevalidator()` 调用之后）。
 
+#### `options.unstable_flushSync`
+
+`unstable_flushSync` 选项告诉 React Router DOM 将此 `fetcher.load` 的初始状态更新封装在 [`ReactDOM.flushSync`](https://react.dev/reference/react-dom/flushSync) 调用中，而不是默认的 [`React.startTransition`](https://react.dev/reference/react/startTransition) 中。这样就可以在更新刷新到 DOM 后立即执行同步 DOM 操作。
+
+> IMPORTANT
+>
+> 请注意，该应用程序接口标记为不稳定状态，在未发布重大版本之前可能会出现破坏性更新。
+
 ## `fetcher.submit()`
 
-`<fetcher.Form>` 的命令式版本。如果是由用户交互启动获取，则应使用 `<fetcher.Form>` 。但如果是由程序员启动获取（而不是响应用户点击按钮等），则应使用此函数。
+`<fetcher.Form>` 的命令式版本。如果是由用户交互启动获取，则应使用 `<fetcher.Form>` 。但如果是由程序员启动获取（而不是响应用户点击按钮等），则应使用该函数。
 
 例如，您可能希望在闲置一定时间后注销用户：
 

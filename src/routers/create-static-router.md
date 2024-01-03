@@ -50,9 +50,33 @@ export async function renderHtml(req) {
 ```ts
 declare function createStaticRouter(
   routes: RouteObject[],
-  context: StaticHandlerContext
+  context: StaticHandlerContext,
+  opts: {
+    future?: {
+      v7_partialHydration?: boolean;
+    };
+  }
 ): Router;
 ```
+
+## `opts.future`
+
+为该静态路由器启用的一组可选[未来标志](../guides/api-development-strategy)。我们建议您尽早选择使用新发布的未来标志，以方便最终迁移到 v7。
+
+```jsx
+const router = createBrowserRouter(routes, {
+  future: {
+    // Opt-into partial hydration
+    v7_partialHydration: true,
+  },
+});
+```
+
+目前可用的未来标志如下:
+
+| Flag                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [`v7_partialHydration`](../routers/create-browser-router#partial-hydration-data) | 支持服务器渲染应用程序的部分水合功能 |
 
 **另请参见:**
 

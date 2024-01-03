@@ -60,11 +60,13 @@ const router = createBrowserRouter(routes, {
 });
 ```
 
-| Flag                     | 说明                                                   |
-| ------------------------ | ------------------------------------------------------ |
-| `v7_fetcherPersist`      | 延迟活动的fetcher清理，直到它们返回到 `idle` 状态      |
-| `v7_normalizeFormMethod` | 将 `useNavigation().formMethod` 规范化为大写 HTTP 方法 |
-| `v7_prependBasename`     | 将路由基名作为导航/获取路径的前缀                      |
+| Flag                                                         | 说明                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------ |
+| `v7_fetcherPersist`                                          | 延迟活动的fetcher清理，直到它们返回到 `idle` 状态      |
+| `v7_normalizeFormMethod`                                     | 将 `useNavigation().formMethod` 规范化为大写 HTTP 方法 |
+| [`v7_partialHydration`](../routers/create-browser-router#partial-hydration-data) | 支持服务端渲染应用程序的部分水合功能                   |
+| `v7_prependBasename`                                         | 将路由基名作为导航/获取路径的前缀                      |
+| [`v7_relativeSplatPath`](../hooks/use-resolved-path#splat-paths) | 修复 splat 路由中相对路径解析的错误                    |
 
 ### 路由 Future Flags React
 

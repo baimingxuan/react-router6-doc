@@ -89,12 +89,14 @@ import { NavLink } from "react-router-dom";
 
 `end` 属性更改了 `active` 和 `pending` 状态的匹配逻辑，使其只匹配到导航链接 `to` 路径的 "末端"。如果 URL 长于 `to` ，将不再被视为激活状态。
 
-| Link                          | URL          | isActive |
-| ----------------------------- | ------------ | -------- |
-| `<NavLink to="/tasks" />`     | `/tasks`     | true     |
-| `<NavLink to="/tasks" />`     | `/tasks/123` | true     |
-| `<NavLink to="/tasks" end />` | `/tasks`     | true     |
-| `<NavLink to="/tasks" end />` | `/tasks/123` | false    |
+| Link                           | Current URL  | isActive |
+| ------------------------------ | ------------ | -------- |
+| `<NavLink to="/tasks" />`      | `/tasks`     | true     |
+| `<NavLink to="/tasks" />`      | `/tasks/123` | true     |
+| `<NavLink to="/tasks" end />`  | `/tasks`     | true     |
+| `<NavLink to="/tasks" end />`  | `/tasks/123` | false    |
+| `<NavLink to="/tasks/" end />` | `/tasks`     | false    |
+| `<NavLink to="/tasks/" end />` | `/tasks/`    | true     |
 
 **关于根路由链接的说明**
 
@@ -169,4 +171,4 @@ a.transitioning img {
 
 > IMPORTANT
 >
-> 请注意，此 API 已被标记为不稳定版，在未发布重大版本之前，可能会出现一些破坏性更改。
+> 请注意，此 API 已被标记为不稳定版，在未发布重大版本之前，可能会出现一些破坏性更新。

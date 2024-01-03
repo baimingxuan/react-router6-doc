@@ -111,11 +111,70 @@ const router = createBrowserRouter(routes, {
 
 目前可用的`future flags`如下：
 
-| Flag                     | 描述                                                     |
-| ------------------------ | -------------------------------------------------------- |
-| `v7_fetcherPersist`      | 延迟活动的`fetcher`清理，直到它们返回到 `idle` 状态      |
-| `v7_normalizeFormMethod` | 将 `useNavigation().formMethod` 规范化为大写的 HTTP 方法 |
-| `v7_prependBasename`     | 将路由的基名添加到`navigate/fetch`路径的前面             |
+| Flag                                                         | Description 说明                                         |
+| ------------------------------------------------------------ | -------------------------------------------------------- |
+| `v7_fetcherPersist`                                          | 延迟活动的`fetcher`清理，直到它们返回到 `idle` 状态      |
+| `v7_normalizeFormMethod`                                     | 将 `useNavigation().formMethod` 规范化为大写的 HTTP 方法 |
+| `v7_partialHydration`                                        | 支持服务端渲染应用程序的部分水合功能                     |
+| `v7_prependBasename`                                         | 将路由的基名添加到`navigate/fetch`路径的前面             |
+| [`v7_relativeSplatPath`](../hooks/use-resolved-path#splat-paths) | 修复`splat` 路由中相对路径解析的错误                     |
+
+## `hydrationData`
+
+在进行[服务器渲染](../guides/ssr)并[选择退出自动水合](../routers/static-router-provider#hydrate)时， `hydrationData` 选项允许您从服务器渲染器中传递水合数据。这几乎总是从 [handler.query](../routers/create-static-handler#handlerqueryrequest-opts) 返回的 `StaticHandlerContext` 值数据的子集：
+
+```jsx
+const router = createBrowserRouter(routes, {
+  hydrationData: {
+    loaderData: {
+      // [routeId]: serverLoaderData
+    },
+    // may also include `errors` and/or `actionData`
+  },
+});
+```
+
+###  Partial Hydration Data
+
+在服务器渲染的应用程序中，你几乎总是会包含一套完整的 `loaderData` 。但在高级用例（如 Remix 的 [`clientLoader`](https://remix.run/route/client-loader) ）中，你可能只想在服务器上渲染的某些路由中包含 `loaderData` 。如果您想启用部分 `loaderData` 并选择使用细粒度的 [`route.HydrateFallback`](../route/hydrate-fallback-element) ，则需要启用 `future.v7_partialHydration` 标志。在启用此标记之前，任何提供的 `loaderData` 都被认为是完整的，不会导致路由加载器在初始水合时执行。
+
+指定此标记后，加载器将在两种情况下运行初始水合：
+
+- 未提供水合数据
+  - 在这种情况下， `HydrateFallback` 成分将在初始水合时呈现
+- `loader.hydrate` 属性设置为 `true
+  - 这样，即使在初始水合时没有渲染`fallback`（即使用水合数据对缓存进行初始化），也可以运行 `loader`
+
+```jsx
+const router = createBrowserRouter(
+  [
+    {
+      id: "root",
+      loader: rootLoader,
+      Component: Root,
+      children: [
+        {
+          id: "index",
+          loader: indexLoader,
+          HydrateFallback: IndexSkeleton,
+          Component: Index,
+        },
+      ],
+    },
+  ],
+  {
+    future: {
+      v7_partialHydration: true,
+    },
+    hydrationData: {
+      loaderData: {
+        root: "ROOT DATA",
+        // No index data provided
+      },
+    },
+  }
+);
+```
 
 ## `window`
 

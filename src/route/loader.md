@@ -80,6 +80,10 @@ function loader({ request }) {
 
 请注意，这里的 API 并不是 React Router 专用的，而是标准的网络对象：[Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)、[URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)、[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)。
 
+## `loader.hydrate`
+
+如果使用[服务器端渲染](../guides/ssr)并利用 `fututre.v7_partialHydration` 标志进行[部分水合](../routers/create-browser-router#partial-hydration-data)，那么即使路由 `loader` 有水合数据，也可能希望选择在初始水合时运行（例如，让用户用水合数据填充缓存）。要在部分水合情况下强制运行 `loader` ，可以在 `loader` 函数上设置 `hydrate` 属性：
+
 ## 返回响应
 
 您可以从加载器返回任何想要的内容，并从[`useLoaderData`](../hooks/use-loader-data)获取访问权限，也可以返回网络 Response。
